@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hadoop,hdfs,ubuntu," />
 
 
 
@@ -81,14 +81,36 @@
 
 
 
-<meta name="description" content="你妈的为什么">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta name="description" content="一、准备 1.1创建Hadoop用户 12345$ sudo useradd -m hadoop -s &#x2F;bin&#x2F;bash  #创建hadoop用户，并使用&#x2F;bin&#x2F;bash作为shell$ sudo passwd hadoop                   #为hadoop用户设置密码，之后需要连续输入两次密码$ sudo adduser hadoop sudo             #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu18下的Hadoop2.6.5单节点集群搭建">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;17&#x2F;Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="你妈的为什么">
+<meta property="og:description" content="一、准备 1.1创建Hadoop用户 12345$ sudo useradd -m hadoop -s &#x2F;bin&#x2F;bash  #创建hadoop用户，并使用&#x2F;bin&#x2F;bash作为shell$ sudo passwd hadoop                   #为hadoop用户设置密码，之后需要连续输入两次密码$ sudo adduser hadoop sudo             #">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1847:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1849:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1851:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1853:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1855:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1857:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1867:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1865:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1863:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1869:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1871:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1873:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;2006:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;2010:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;2012:1">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;2014:1">
+<meta property="article:published_time" content="2019-12-17T08:15:41.000Z">
+<meta property="article:modified_time" content="2019-12-17T08:18:13.985Z">
 <meta property="article:author" content="Rnazoro">
+<meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="hdfs">
+<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="en-resource:&#x2F;&#x2F;database&#x2F;1847:1">
 
 
 
@@ -118,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/17/Ubuntu18下的Hadoop2-6-5单节点集群搭建/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>Ubuntu18下的Hadoop2.6.5单节点集群搭建 | Hexo</title>
   
 
 
@@ -153,8 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,9 +300,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -311,9 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="url">Ubuntu18下的Hadoop2.6.5单节点集群搭建</a></h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu18下的Hadoop2.6.5单节点集群搭建</h1>
         
 
         <div class="post-meta">
@@ -390,6 +409,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -408,9 +432,7 @@
       
 
       
-        
-          
-            <h2 id="一、准备">一、准备</h2>
+        <h2 id="一、准备">一、准备</h2>
 <h3 id="1-1创建Hadoop用户">1.1创建Hadoop用户</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo useradd -m hadoop -s /bin/bash  <span class="comment">#创建hadoop用户，并使用/bin/bash作为shell</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo passwd hadoop                   <span class="comment">#为hadoop用户设置密码，之后需要连续输入两次密码</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo adduser hadoop sudo             <span class="comment">#为hadoop用户增加管理员权限</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> su - hadoop                          <span class="comment">#切换当前用户为用户hadoop</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update                  <span class="comment">#更新软件包信息</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="1-2设置SSH无密码登录">1.2设置SSH无密码登录</h3>
@@ -493,8 +515,6 @@
 <p>启动hadoop守护进程
 <img src="en-resource://database/2014:1" alt="9ed70e88427c9d31438f11a51e1950ec.png"></p>
 
-          
-        
       
     </div>
     
@@ -504,175 +524,92 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Rnazoro 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Rnazoro 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Rnazoro
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Ubuntu18下的Hadoop2.6.5单节点集群搭建">http://yoursite.com/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Rnazoro">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatar.gitee.com/uploads/86/2325086_Rna_zoro.png?1553656223">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/13/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-13T17:58:17+08:00">
-                2019-12-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-13T17:17:17+08:00">
-                2019-12-13
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
           
-            
+            <a href="/tags/hdfs/" rel="tag"># hdfs</a>
           
-
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           
-          
-             <span id="/2019/12/13/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/13/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -682,10 +619,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -693,6 +631,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -713,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -805,6 +756,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、准备"><span class="nav-number">1.</span> <span class="nav-text">一、准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1创建Hadoop用户"><span class="nav-number">1.1.</span> <span class="nav-text">1.1创建Hadoop用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2设置SSH无密码登录"><span class="nav-number">1.2.</span> <span class="nav-text">1.2设置SSH无密码登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装JDK"><span class="nav-number">2.</span> <span class="nav-text">二、安装JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、下载安装Hadoop"><span class="nav-number">3.</span> <span class="nav-text">三、下载安装Hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、设置Hadoop环境变量"><span class="nav-number">4.</span> <span class="nav-text">四、设置Hadoop环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、修改Hadoop配置文件"><span class="nav-number">5.</span> <span class="nav-text">五、修改Hadoop配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、创建并格式化HDFS目录"><span class="nav-number">6.</span> <span class="nav-text">六、创建并格式化HDFS目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、启动Hadoop"><span class="nav-number">7.</span> <span class="nav-text">七、启动Hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、遇到的问题和解决办法"><span class="nav-number">8.</span> <span class="nav-text">八、遇到的问题和解决办法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -965,6 +932,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
