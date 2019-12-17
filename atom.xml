@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://norhub.xyz/"/>
-  <updated>2019-12-17T09:32:39.572Z</updated>
+  <updated>2019-12-17T09:46:53.553Z</updated>
   <id>https://norhub.xyz/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Ubuntu18下的Hadoop2.6.5单节点集群搭建</title>
+    <title>Ubuntu18下的Hadoop2-6-5单节点集群搭建</title>
     <link href="https://norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
     <id>https://norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
-    <published>2019-12-17T08:15:41.000Z</published>
-    <updated>2019-12-17T09:32:39.572Z</updated>
+    <published>2019-12-17T09:45:32.000Z</published>
+    <updated>2019-12-17T09:46:53.553Z</updated>
     
     <summary type="html">
     
