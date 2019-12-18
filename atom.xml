@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://norhub.xyz/"/>
+  <link href="http://www.norhub.xyz/"/>
   <updated>2019-12-18T02:24:47.114Z</updated>
-  <id>https://norhub.xyz/</id>
+  <id>http://www.norhub.xyz/</id>
   
   <author>
     <name>Rnazoro</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Ubuntu18下的Hadoop2-6-5单节点集群搭建</title>
-    <link href="https://norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
-    <id>https://norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
+    <link href="http://www.norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <id>http://www.norhub.xyz/2019/12/17/Ubuntu18%E4%B8%8B%E7%9A%84Hadoop2-6-5%E5%8D%95%E8%8A%82%E7%82%B9%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
     <published>2019-12-17T09:45:32.000Z</published>
     <updated>2019-12-18T02:24:47.114Z</updated>
     
@@ -35,21 +35,21 @@
     </summary>
     
     
-      <category term="环境搭建" scheme="https://norhub.xyz/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+      <category term="环境搭建" scheme="http://www.norhub.xyz/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     
-      <category term="hadoop" scheme="https://norhub.xyz/tags/hadoop/"/>
+      <category term="hadoop" scheme="http://www.norhub.xyz/tags/hadoop/"/>
     
-      <category term="hdfs" scheme="https://norhub.xyz/tags/hdfs/"/>
+      <category term="hdfs" scheme="http://www.norhub.xyz/tags/hdfs/"/>
     
-      <category term="ubuntu" scheme="https://norhub.xyz/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http://www.norhub.xyz/tags/ubuntu/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://norhub.xyz/2019/12/13/hello-world/"/>
-    <id>https://norhub.xyz/2019/12/13/hello-world/</id>
+    <link href="http://www.norhub.xyz/2019/12/13/hello-world/"/>
+    <id>http://www.norhub.xyz/2019/12/13/hello-world/</id>
     <published>2019-12-13T09:58:17.119Z</published>
     <updated>2019-12-13T09:17:17.282Z</updated>
     
