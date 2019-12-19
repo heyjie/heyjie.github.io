@@ -7,9 +7,7 @@ tags:
 	- hadoop
 	- hdfs
 	- ubuntu
-copyright: true
-description: 
-top:
+description: hadoop伪集群搭建，创建hadoop用户，安装jdk，配置hadoop
 photos: 
     - "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2887741090,2362486480&fm=58&s=4384FD0EE8B84D80154180D6020070F3"
 ---
@@ -28,7 +26,7 @@ $ sudo apt-get install openssh-server   #安装SSH server
 $ ssh localhost                         #登陆SSH，第一次登陆输入yes
 $ exit                                  #退出登录的ssh localhost
 $ cd ~/.ssh/                            #如果没法进入该目录，执行一次ssh localhost
-$ ssh-keygen -t rsa　                #产生秘钥进行后续身份验证，需三次回车确认
+$ ssh-keygen -t rsa　                   #产生秘钥进行后续身份验证，需三次回车确认
 ```
 将产生的Key放到许可证文件中
 ```shell
@@ -37,9 +35,9 @@ $ ssh localhost                         #此时已不需密码即可登录localh
 ```
 ## 二、安装JDK
 ```shell
-$ java -version				                    #查看当前java版本，未出现版本信息代表未安装
+$ java -version				            #查看当前java版本，未出现版本信息代表未安装
 $ sudo apt-get install default-jdk		#使用apt-get安装JDK
-$ java -version                               #再次查询Java版本，查看是否安装成功
+$ java -version                         #再次查询Java版本，查看是否安装成功
 ```
 查询java安装路径路径，记住该路径，下面步骤中的配置要用到
 ```shell
@@ -51,8 +49,8 @@ $ update-alternatives --display java
 ```shell
 $ Wget http://archive.apache.org/dist/hadoop/core/hadoop-2.6.4/hadoop-2.6.4.tar.gz    #下载hadoop
 $ sudo tar -zxvf hadoop-2.6.4.tar.gz         #解压缩
-$ sudo mv hadoop-2.6.4 /usr/local/hadoop  #将hadoop移动到/usr/local/hadoop
-$ ll  /usr/local/hadoop                       #查看hadoop安装目录
+$ sudo mv hadoop-2.6.4 /usr/local/hadoop     #将hadoop移动到/usr/local/hadoop
+$ ll  /usr/local/hadoop                      #查看hadoop安装目录
 ```
 ![1849_1.png](Ubuntu18下的Hadoop2-6-5单节点集群搭建/1849_1.png)
 
@@ -98,7 +96,7 @@ $ source ~/.bashrc
 或者使用vim编辑器，点击键盘"i", 就能开始编辑。输入配置文件内容后，点击键盘"esc"键，然后输入`：wq`来保存退出
 ```shell
 $ sudo vim --version              #检查是否安装vim
-$ sudo apt-get install vim      #安装vim
+$ sudo apt-get install vim        #安装vim
 $ sudo vim ~/.bashrc              #编辑.bashrc
 ```
 
@@ -222,7 +220,7 @@ $ start-all.sh
 ## 八、遇到的问题和解决办法
 在安装完成后发现namenode进程没有启动，打不开 http://localhost:50070/ 页面。首先去查看日志
 ```
-$ cd /usr/local/hadoop/logs                 #进入日志目录
+$ cd /usr/local/hadoop/logs                   #进入日志目录
 $ sz hadoop-hadoop-namenode-csubuntu.log      #下载日志
 ```
 ![2006_1.png](Ubuntu18下的Hadoop2-6-5单节点集群搭建/2006_1.png)
@@ -235,7 +233,7 @@ sudo netstat -lnp | grep 9000           #查看9000端口占用
 
 看到是nginx占用了9000端口,把nginx停止就能重新启动hadoop
 ```
-$ ps -ef | grep nginx                       #查看nginx主进程
+$ ps -ef | grep nginx                      #查看nginx主进程
 $ kill -9 主进程号                          #强制停止Nginx
 ```
 ![2012_1.png](Ubuntu18下的Hadoop2-6-5单节点集群搭建/2012_1.png)

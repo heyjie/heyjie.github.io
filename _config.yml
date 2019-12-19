@@ -4,7 +4,7 @@
 
 # Site
 title: Rnazoroのblog
-subtitle: ''
+subtitle: 'Rnazoro'
 description: '你妈的为什么'
 keywords:
 author: Rnazoro
@@ -116,6 +116,7 @@ search:
 sitemap:
   path: sitemap.xml
 
+#rss
 feed:
   type: atom
   path: atom.xml
