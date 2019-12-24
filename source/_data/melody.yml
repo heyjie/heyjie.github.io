@@ -15,10 +15,10 @@ theme_color:
 
 # Main menu navigation
 menu:
-  Home: /
-  Archives: /archives
-  Tags: /tags
-  Categories: /categories
+  主页: /
+  归档: /archives
+  标签: /tags
+  分类: /categories
   #XXX: /xxx
 
 # Favicon
@@ -142,7 +142,7 @@ wordcount:
 
 toc:
   enable: true
-  number: true
+  number: false
 
 post_copyright:
   enable: true
