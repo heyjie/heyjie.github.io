@@ -19,6 +19,8 @@ menu:
   归档: /archives
   标签: /tags
   分类: /categories
+  幻灯片: /slides
+  相册: /gallery
   #XXX: /xxx
 
 # Favicon
@@ -29,7 +31,7 @@ favicon: /melody-favicon.ico
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
 pwa:
-  enable: true
+  enable: false
   manifest: /manifest.json
   # If you don't want to trouble, just ignore the following things
   # See https://realfavicongenerator.net/
@@ -177,7 +179,7 @@ slide:
 
 adv:
   enable: false
-  info: <a href="https://www.vultr.com/?ref=7231808"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
+  info: <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=jv_997j0__v4zv--oO3h4w" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/></a>
 
 # Share System
 # ---------------
@@ -257,9 +259,9 @@ busuanzi:
 
 # Sidebar Settings
 # ---------------
-#links_title: Links
-#links:
-#Name: url
+links_title: Links   # 配置友链的标题文字
+links:
+  百宝箱: https://www.itrhx.com/box/
 
 # Follow Me Button
 follow:
