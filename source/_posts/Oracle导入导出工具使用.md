@@ -6,21 +6,23 @@ categories:
 tags:
 	- 数据库
 ---
+迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单
 
+<!-- more -->
 ## 导用户
 导出用户MDM_P到当前文件夹（导出文件为testDb.dmp）
-`exp MDM_P/8888@192.168.134.9:1521/ora11g file='./testDb.dmp' owner=MDM_P`
+`exp MDM_P/8888@192.168.134.9:1521/ora11g file='./testDb.dmp' owner=MDM_P`  
 从当前文件夹导入MDM_P用户
-`imp MDM_P/8888@192.168.135.10/orcl  file=./testDb.dmp fromuser=MDM_P`
+`imp MDM_P/8888@192.168.135.10/orcl  file=./testDb.dmp fromuser=MDM_P`  
 
 ## 导数据库
-将数据库ORCL完全导出到D盘（导出文件为testDb.dmp）其中full=y表示全库导出：
-`exp scott/tiger@192.168.1.1:1521/ORCL file='d:/testDb.dmp' full=y`
-将D:\example.dmp文件中的库导入到mydb下的system用户中
-`imp system/123456@213.234.12.32/mydb file=D:\example.dmp full=y ignore=y`
-如果表已经存在，则会报错，在后面加上igonre=y（忽略创建错误，继续后面操作）。
+将数据库ORCL完全导出到D盘（导出文件为testDb.dmp）其中full=y表示全库导出：  
+`exp scott/tiger@192.168.1.1:1521/ORCL file='d:/testDb.dmp' full=y`  
+将D:\example.dmp文件中的库导入到mydb下的system用户中  
+`imp system/123456@213.234.12.32/mydb file=D:\example.dmp full=y ignore=y`  
+如果表已经存在，则会报错，在后面加上igonre=y（忽略创建错误，继续后面操作）。  
 ## 导表
-将数据库的表table1,table2导到D盘（导出文件为testDb.dmp）：
+将数据库的表table1,table2导到D盘（导出文件为testDb.dmp）：  
 `exp scott/tiger@192.168.1.1:1521/ORCL file='d:/testDb.dmp' tables=(table1,table2)`
 
 ## exp方式导出数据

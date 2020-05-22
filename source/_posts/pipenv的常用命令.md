@@ -7,11 +7,15 @@ tags:
 	- Python
 	- pipenv
 ---
+Pipenv可以用于简化Python项目中依赖项的管理。只用了一年， Pipenv 就变成了管理软件包依赖关系的 Python 官方推荐资源。 它汇集了Pip，Pipfile和Virtualenv的功能，是一个强大的命令行工具。
+
+<!-- more -->
 ## 安装和升级pipenv
 ```bash
 pip install  pipenv  # 安装pipenv
 pip install  --upgrade pipenv   # 升级安装pipenv
 ```
+
 ## 使用pipenv
 ### 初始化
 ```bash

@@ -12,6 +12,7 @@ tags:
 `sudo vim /etc/apt/sources.list`  
 将里面文件内容全部替换成下面：  
 
+<!-- more -->
 ```shell
 #deb包
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse

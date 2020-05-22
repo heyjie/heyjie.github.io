@@ -11,6 +11,10 @@ description: hadoop伪集群搭建，创建hadoop用户，安装jdk，配置hado
 photos: 
     - "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2887741090,2362486480&fm=58&s=4384FD0EE8B84D80154180D6020070F3"
 ---
+Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
+![](Ubuntu18下的Hadoop2-6-5单节点集群搭建/20200522160349.png)
+
+<!-- more -->
 ## 一、准备
 
 ### 1.1创建Hadoop用户

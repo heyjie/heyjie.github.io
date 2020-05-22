@@ -17,15 +17,16 @@ sudo apt-get update  #更新软件源
 sudo apt-get install mysql-server  #安装mysql
 ```
 
-上述命令会安装以下包：
-apparmor
-mysql-client-5.7
-mysql-common
-mysql-server
-mysql-server-5.7
-mysql-server-core-5.7
+上述命令会安装以下包：  
+apparmor  
+mysql-client-5.7  
+mysql-common  
+mysql-server  
+mysql-server-5.7  
+mysql-server-core-5.7  
 因此无需再安装mysql-client等。安装过程会提示设置mysql root用户的密码，设置完成后等待自动安装即可。默认安装完成就启动了mysql
 
+<!-- more -->
 安装MySQL依赖库
 ```
 sudo apt-get install libmysqlclient-dev
@@ -56,19 +57,12 @@ mysql_secure_installation
 
 ``` sh
 secure enough. Would you like to setup VALIDATE PASSWORD plugin?    # 要安装验证密码插件吗?
-
 Press y|Y for Yes, any other key for No: N    # 这里我选择N
-
 New password:   # 输入要为root管理员设置的数据库密码
-
 Re-enter new password:   # 再次输入密码
-
 Remove anonymous users? (Press y|Y for Yes, any other key for No) : y     # 删除匿名账户
-
 Disallow root login remotely? (Press y|Y for Yes, any other key for No) : N    # 禁止root管理员从远程登录，这里我没有禁止
-
 Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y   # 删除test数据库并取消对它的访问权限
-
 Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y   # 刷新授权表，让初始化后的设定立即生效
 ```
 
@@ -88,15 +82,15 @@ vim /etc/mysql/mysql.conf.d/mysqld.cnf
 mysql -u root -p
 ```
 
-```sh
+```bash
 mysql> grant all on *.* to root@'%' identified by '你的密码' with grant option;
 
 mysql> flush privileges;    # 刷新权限
 
 mysql> exit
-
+```
 然后执行exit命令退出mysql服务，再执行如下命令重启mysql：
-
+```
 systemctl restart mysql
 ```
 

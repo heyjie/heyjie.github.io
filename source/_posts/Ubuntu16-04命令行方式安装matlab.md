@@ -5,16 +5,19 @@ categories:
     - 环境搭建
 tags: 
     - matlab
-	- ubuntu
+    - ubuntu
 ---
+Linux服务器命令行模式安装Matlab
 
-安装jdk
+<!-- more -->
+## 安装jdk
 ```bash
 java -version                #查看当前java版本，未出现版本信息代表未安装
 sudo apt-get install default-jdk  #使用apt-get安装JDK
 java -version                         #再次查询Java版本，查看是否安装成功
 ```
 
+## 安装matlab
 创建挂载文件夹，挂载镜像
 ```bash
 sudo mkdir  /data/matlab
@@ -68,16 +71,24 @@ sudo mount -o loop R2018b_glnxa64_dvd2.iso /data/matlab
 
 出现`End - Successful`就安装成功
 
-破解
+## 破解matlab
+替换so文件
 ```bash
 cp ./Crack/R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl/* /data/MATLAB/R2018b/bin/glnxa64/matlab_startup_plugins/lmgrimpl
-
+```
+破解
+```
 sudo /data/MATLAB/R2018b/bin/activate_matlab.sh -isSilent -propertiesFile /data/MATLAB/etc/activate.ini
 ```
 
-配置环境变量
+## 配置环境变量
+
 ```bash
 vim ~/.bashrc
 export MATLAB_HOME=/home/zh/MATLAB/2018b
-export PATH=${MATLAB_HOME}/bin:$PATH保存退出后激活：source ~/.bashrc
+export PATH=${MATLAB_HOME}/bin:$PATH
+```
+保存退出后激活
+```
+source ~/.bashrc
 ```

@@ -1,4 +1,6 @@
 ---
-type: "categories"
+layout: category
+index: true
+title: 所有分类
 comments: false
 ---

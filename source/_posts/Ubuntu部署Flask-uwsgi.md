@@ -6,8 +6,12 @@ categories:
 tags: 
     - python
     - flask
-	- ubuntu
+    - ubuntu
 ---
+uWSGI是一个Web服务器，它实现了WSGI协议、uwsgi、http等协议。
+![结构图](Ubuntu部署Flask-uwsgi/SDF98D.png)
+
+<!-- more -->
 ## 一、准备
 更新apt源
 ```bash
@@ -73,6 +77,8 @@ iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 5432 -j ACCEPT
 ```
 
 ## 三、安装配置nginx
+为什么有了uWSGI为什么还需要nginx？因为nginx具备优秀的静态内容处理能力，然后将动态内容转发给uWSGI服务器，这样可以达到很好的客户端响应。
+
 安装nginx
 ```bash
 sudo apt-get install nginx
@@ -105,9 +111,13 @@ sudo /etc/init.d/nginx restart # 重启nginx
 ```
 
 ## 四、配置uwsgi
-安装uwsgi
+ubuntu安装uwsgi
 ```bash
 sudo apt-get install uwsgi
+```
+或者直接用pip安装
+```
+pip install uwsgi
 ```
 建立uwsgi配置文件，此文件放在项目文件夹中，配置内容如下
 ```ini

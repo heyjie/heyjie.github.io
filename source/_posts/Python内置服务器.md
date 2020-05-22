@@ -6,7 +6,9 @@ categories:
 tags:
 	- Python
 ---
+python内置了一个下载服务器。例如你的同事要让你传的文件位于某一个目录下面，那么你可以进入这个目录，然后用python开启一个下载服务器
 
+<!-- more -->
 ## SimpleHTTPServer搭建web服务器
 ```
 python -m http.server 8080
@@ -33,7 +35,8 @@ pip install pyftpdlib
 ```
 python -m pyftpdlib -p 21
 ```
-后面的21端口依然是可选的，不填会随机一个，被占用的端口将跳过。在浏览器敲入本机地址：`ftp://localhost:21`这时候，是匿名访问，也就是用户名是anonymous，密码为空，如果想要控制访问权限，你需要自己定制服务器，具体的可以参看pyftpdlib Tutorial，我这里拷贝过来一段作为介绍：
+后面的21端口依然是可选的，不填会随机一个，被占用的端口将跳过。  
+在浏览器敲入本机地址：`ftp://localhost:21`这时候，是匿名访问，也就是用户名是anonymous，密码为空，如果想要控制访问权限，你需要自己定制服务器，具体的可以参看pyftpdlib Tutorial，我这里拷贝过来一段作为介绍：
 ```python
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler

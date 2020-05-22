@@ -8,6 +8,10 @@ tags:
 	- ubuntu
 description: Matlab安装，Ubuntu18安装matlab
 ---
+MathWorks公司每年会发布两个版本的MATLAB，一般在3月份发布A版，9月份左右发布B版。两个版本功能并无差异，但相对来说，B版更为稳定，因此个人推荐安装B版。目前最新的版本是MATLAB 2018b，下面给出详细的中文版下载与安装教程。
+![](Ubuntu18安装Matlab2018b/20200522161249.png)
+
+<!-- more -->
 ## 下载Matlab2018b
 
 <https://blog.csdn.net/weixin_41038644/article/details/84668127>
