@@ -2,11 +2,13 @@
 title: OracleLinux环境搭建
 date: 2019-12-26 16:00:16
 categories: 
-    - 环境搭建
+    - 程序开发
+    - 数据库
+    - Oracle
 tags: 
 	- 数据库
-	- Oracle
-	- Linux
+	- oracle
+	- oraclelinux
 ---
 Oracle Linux以对Oracle软件和硬件支持较好见长,安装Oracle数据库首选系统，最重要的是Oracle数据库跑在上Oracle Linux性能可以提升超过75%  
 ![](OracleLinux环境搭建/20200522165409.png)

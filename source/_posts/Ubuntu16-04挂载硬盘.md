@@ -2,9 +2,10 @@
 title: Ubuntu16.04挂载硬盘端信息
 date: 2020-04-15 13:47:36
 categories: 
-    - 环境搭建
+    - 程序开发
+    - Ubuntu
 tags: 
-	- ubuntu
+    - ubuntu
 ---
 操作前先要添加一块硬盘
 

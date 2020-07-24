@@ -2,10 +2,12 @@
 title: Ubuntu部署Flask+uwsgi
 date: 2020-04-15 13:55:59
 categories: 
-    - 环境搭建
+    - [程序开发,Python]
+    - [程序开发,Ubuntu]
 tags: 
     - python
     - flask
+    - uwsgi
     - ubuntu
 ---
 uWSGI是一个Web服务器，它实现了WSGI协议、uwsgi、http等协议。

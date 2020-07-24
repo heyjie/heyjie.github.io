@@ -1,11 +1,12 @@
 ---
-title: Ubuntu16.04命令行方式安装matlab
+title: Ubuntu16.04命令行方式安Matlab
 date: 2020-04-15 14:02:43
 categories: 
-    - 环境搭建
+    - [程序开发,Matlab]
+    - [程序开发,Ubuntu]
 tags: 
-    - matlab
     - ubuntu
+    - matlab
 ---
 Linux服务器命令行模式安装Matlab
 

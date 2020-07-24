@@ -2,10 +2,12 @@
 title: Ubuntu部署Flask+gunicorn
 date: 2020-04-15 13:56:15
 categories: 
-    - 环境搭建
+    - [程序开发,Python]
+    - [程序开发,Ubuntu]
 tags: 
     - python
     - flask
+    - gunicorn
     - ubuntu
 ---
 Gunicorn是一个unix上被广泛使用的高性能的Python WSGI UNIX HTTP Server。

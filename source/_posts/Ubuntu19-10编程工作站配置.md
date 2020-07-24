@@ -2,9 +2,10 @@
 title: Ubuntu19.10编程工作站配置
 date: 2020-04-16 11:31:30
 categories: 
-    - 环境搭建
+    - 程序开发
+    - Ubuntu
 tags: 
-	- ubuntu
+    - ubuntu
 ---
 ubuntu在个人工作站与服务器领域都表现的非常稳定优秀，工程师使用ubuntu做为个人开发电脑完全没有问题，功能齐全性能稳定，因为用户众多解决问题也比较容易。
 ![](https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_250,h_250/https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg)

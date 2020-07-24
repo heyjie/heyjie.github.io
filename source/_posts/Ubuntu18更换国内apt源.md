@@ -2,9 +2,10 @@
 title: Ubuntu更换国内apt源
 date: 2020-02-16 19:49:11
 categories: 
-    - 环境搭建
+    - 程序开发
+    - Ubuntu
 tags: 
-	- ubuntu
+    - ubuntu
 ---
 备份原来的源：  
 `sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak`  

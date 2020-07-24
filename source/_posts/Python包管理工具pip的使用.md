@@ -4,9 +4,10 @@ date: 2019-12-28 09:50:08
 updated: 2020-1-15 15:32:00
 categories: 
     - 程序开发
+    - Python
 tags:
-	- Python
-	- pip
+    - python
+    - pip
 ---
 pip是Python包管理工具，该工具提供了对Python包的查找、下载、安装、卸载的功能。
 
@@ -50,6 +51,14 @@ pip list -o  # 查看可升级的包
 ``` python
 pip freeze > requirements.txt  # 生成txt文件
 pip install -r requirements.txt  # 安装txt依赖
+```
+
+在全局环境中使用`pipreqs`生成当前目录依赖
+``` python
+# 安装
+pip install pipreqs
+# 在当前目录生成
+pipreqs . --encoding=utf8 --force
 ```
 
 安装包

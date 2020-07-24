@@ -3,8 +3,11 @@ title: Oracle导入导出工具使用
 date: 2020-04-15 14:07:07
 categories: 
     - 程序开发
+    - 数据库
+    - Oracle
 tags:
-	- 数据库
+    - 数据库
+    - Oracle
 ---
 迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单
 

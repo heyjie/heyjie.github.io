@@ -3,9 +3,10 @@ title: Python将图片转字符画
 date: 2020-01-10 15:34:52
 categories: 
     - 程序开发
+    - Python
 tags:
-	- Python
-	- pillow
+    - python
+    - pillow
 ---
 使用Pillow可以把图片转成字符画，Pillow是Python平台上的图像处理库，功能强大，简单易用。
 ![](Python将图片转字符画/20200522164327.png)

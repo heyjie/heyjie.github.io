@@ -2,9 +2,11 @@
 title: Ubuntu18下安装MySql
 date: 2020-02-16 20:00:11
 categories: 
-    - 环境搭建
+    - [程序开发,Ubuntu]
+    - [程序开发,数据库,MySql]
 tags: 
-	- ubuntu
+    - [mysql]
+    - [ubuntu]
 ---
 查看有没有安装MySQL
 ```

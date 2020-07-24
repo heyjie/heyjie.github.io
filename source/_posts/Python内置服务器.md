@@ -3,8 +3,9 @@ title: Python内置服务器
 date: 2020-04-15 13:33:23
 categories: 
     - 程序开发
+    - Python
 tags:
-	- Python
+    - python
 ---
 python内置了一个下载服务器。例如你的同事要让你传的文件位于某一个目录下面，那么你可以进入这个目录，然后用python开启一个下载服务器
 

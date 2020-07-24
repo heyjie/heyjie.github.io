@@ -2,11 +2,12 @@
 title: Ubuntu18下的Hadoop2-6-5单节点集群搭建
 date: 2019-12-17 17:45:32
 categories: 
-    - 环境搭建
+    - 程序开发
+    - Hadoop
 tags: 
-	- hadoop
-	- hdfs
-	- ubuntu
+    - [hadoop]
+    - [hdfs]
+    - [ubuntu]
 description: hadoop伪集群搭建，创建hadoop用户，安装jdk，配置hadoop
 photos: 
     - "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2887741090,2362486480&fm=58&s=4384FD0EE8B84D80154180D6020070F3"

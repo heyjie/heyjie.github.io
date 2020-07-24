@@ -3,9 +3,10 @@ title: pipenv的常用命令
 date: 2020-04-15 13:19:54
 categories: 
     - 程序开发
+    - Python
 tags:
-	- Python
-	- pipenv
+    - python
+    - pipenv
 ---
 Pipenv可以用于简化Python项目中依赖项的管理。只用了一年， Pipenv 就变成了管理软件包依赖关系的 Python 官方推荐资源。 它汇集了Pip，Pipfile和Virtualenv的功能，是一个强大的命令行工具。
 
