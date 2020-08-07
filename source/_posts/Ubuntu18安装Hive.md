@@ -1,5 +1,5 @@
 ---
-title: Ubuntu18安装Hive
+title: Ubuntu18安装Hive2.3.7
 date: 2020-07-08 17:26:29
 categories: 
     - 程序开发
@@ -12,6 +12,12 @@ tags:
 hive是基于hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表并提供类sql查询功能
 
 <!-- more -->
+## 准备工作
+* 安装Hive之前必须配置好hadoop环境
+* 安装Hive之前必须配置好JDK
+* 安装好mysql数据库
+* Hive可以只安装在namenode所在的机器上，如果NameNode有多个，则每个都需要安装，可以不在datanode上安装
+
 ## 为什么要用Hive
 1. 直接使用hadoop所面临的问题:
 * 人员学习成本太高
@@ -49,17 +55,20 @@ mv apache-hive-2.3.7-bin /usr/local/hive
 配置hive环境变量
 ```
 vim /etc/profile
---------------------------------------------------
-export  HIVE_HOME=/usr/local/hive
+```
+
+输入下面内容
+```
+export HIVE_HOME=/usr/local/hive
 export HIVE_CONF_DIR=$HIVE_HOME/conf
-export  PATH=$PATH:$HIVE_HOME/bin
--------------------------------------------------
+export PATH=$PATH:$HIVE_HOME/bin
 ```
 
 授权
 ```
 sudo chown -R hadoop:hadoop /usr/local/hive
 ```
+
 使配置文件的修改生效
 ```
 source /etc/profile
@@ -72,43 +81,46 @@ source /etc/profile
 ```
 cd $HIVE_CONF_DIR
 ```
+
 拷贝hive-default.xml.template并重命名为hive-site.xml
 ```
 cp hive-default.xml.template  hive-site.xml
 ```
+
 编辑hive-site.xml
 ```
 vim hive-site.xml
 ```
 
 使用hadoop新建hdfs目录
-因为在hive-site.xml中有这样的配置：
-```
+因为在hive-site.xml中有这样的配置
+```xml
 <name>hive.metastore.warehouse.dir</name>
   <value>/user/hive/warehouse</value>
    <name>hive.exec.scratchdir</name>
   <value>/tmp/hive</value>
 ```
+
 所以要在Hadoop集群新建/user/hive/warehouse目录，执行命令
-```
-#进入Hadoop主目录
+```bash
+# 进入Hadoop主目录
 cd $HADOOP_HOME
 
-#创建目录
-bin/hadoop fs -mkdir -p  /user/hive/warehouse
+# 创建目录
+hadoop fs -mkdir -p  /user/hive/warehouse
 
-#新建的目录赋予读写权限
-bin/hadoop fs -chmod -R 777 /user/hive/warehouse
+# 新建的目录赋予读写权限
+hadoop fs -chmod -R 777 /user/hive/warehouse
 
-#新建/tmp/hive/目录
-bin/hadoop fs -mkdir -p /tmp/hive/
+# 新建/tmp/hive/目录
+hadoop fs -mkdir -p /tmp/hive/
 
-#目录赋予读写权限
-bin/hadoop fs -chmod -R 777 /tmp/hive
+# 目录赋予读写权限
+hadoop fs -chmod -R 777 /tmp/hive
 
-#用以下命令检查目录是否创建成功
-bin/hadoop fs -ls /user/hive
-bin/hadoop fs -ls /tmp/hive
+# 用以下命令检查目录是否创建成功
+hadoop fs -ls /user/hive
+hadoop fs -ls /tmp/hive
 ```
 
 修改hive-site.xml中的临时目录
@@ -135,14 +147,14 @@ vim hive-site.xml
 ```
 
 例如原来：
-```
+```xml
  <property>
     <name>hive.downloaded.resources.dir</name><value>${system:java.io.tmpdir}/${hive.session.id}_resources</value>
     <description>Temporary local directory for added resources in the remote file system.</description>
   </property>
 ```
 替换为：
-```
+```xml
 <property>
     <name>hive.downloaded.resources.dir</name>
     <!--value>${system:java.io.tmpdir}/${hive.session.id}_resources</value-->
@@ -153,28 +165,29 @@ vim hive-site.xml
 
 ### 修改hive-site.xml数据库相关的配置
 `javax.jdo.option.ConnectionDriverName`，将该name对应的value修改为MySQL驱动类路径：
-```
-<property
-  <name>javax.jdo.option.ConnectionDriverName</name
-  <value>com.mysql.jdbc.Driver</value>
+```xml
+<property>
+<name>javax.jdo.option.ConnectionDriverName</name>
+<value>com.mysql.jdbc.Driver</value>
 </property>  
 ```
 
 `javax.jdo.option.ConnectionURL`，将该name对应的value修改为MySQL的地址：
-```
+```xml
 <name>javax.jdo.option.ConnectionURL</name>
- <value>jdbc:mysql://127.0.0.1:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=false</value>
+<value>jdbc:mysql://127.0.0.1:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=false</value>
 ```
 
 `javax.jdo.option.ConnectionUserName`，将对应的value修改为MySQL数据库登录名：
-```
+```xml
 <name>javax.jdo.option.ConnectionUserName</name>
-<value>root</value>
+<value>hive</value>
 ```
 
 `javax.jdo.option.ConnectionPassword`，将对应的value修改为MySQL数据库的登录密码：
-```
-<name>javax.jdo.option.ConnectionPassword</name><value>*******</value>
+```xml
+<name>javax.jdo.option.ConnectionPassword</name>
+<value>hive</value>
 ```
 
 将MySQL驱动包上载到Hive的lib目录下
@@ -183,43 +196,50 @@ cp /home/heyj/down/mysql-connector-java-5.1.36.jar $HIVE_HOME/lib/
 ```
 
 新建hive-env.sh文件并进行修改
-```
+```bash
 cd $HIVE_CONF_DIR
 
 #基于模板创建hive-env.sh
 cp hive-env.sh.template hive-env.sh
 
 vim hive-env.sh
-#编辑配置文件并加入以下配置：
--------------------------------------------------
-export HADOOP_HOME=/home/hadoop/hadoop-2.3.7
-export HIVE_CONF_DIR=/usr/local/apache-hive-2.3.7/conf
-export HIVE_AUX_JARS_PATH=/usr/local/apache-hive-2.3.7/lib
---------------------------------------------------
+```
+
+编辑配置文件并加入以下配置：
+```conf
+# Set HADOOP_HOME to point to a specific hadoop install directory
+HADOOP_HOME=/usr/local/hadoop
+
+# Hive Configuration Directory can be controlled by:
+export HIVE_CONF_DIR=/usr/local/hive/conf
+
+# Folder containing extra libraries required for hive compilation/execution can be controlled by:
+export HIVE_AUX_JARS_PATH=/usr/local/hive/lib
 ```
 
 ### 创建元数据库
 登录mysql数据库
-```
+```bash
 mysql -u root -p
 ```
+
 mysql创建hive用户密码
 ```sql
-mysql> CREATE DATABASE hive; 
-mysql> USE hive; 
+mysql> CREATE DATABASE hive;
+mysql> USE hive;
 mysql> CREATE USER 'hive'@'localhost' IDENTIFIED BY 'hive';
-mysql> GRANT ALL ON hive.* TO 'hive'@'localhost' IDENTIFIED BY 'hive'; 
-mysql> GRANT ALL ON hive.* TO 'hive'@'%' IDENTIFIED BY 'hive'; 
-mysql> FLUSH PRIVILEGES; 
+mysql> GRANT ALL ON hive.* TO 'hive'@'localhost' IDENTIFIED BY 'hive';
+mysql> GRANT ALL ON hive.* TO 'hive'@'%' IDENTIFIED BY 'hive';
+mysql> FLUSH PRIVILEGES;
 mysql> quit;
 ```
 
 从Hive 2.1开始，我们需要运行下面的schematool命令作为初始化步骤,MySQL数据库初始化
-```
-#进入到hive的bin目录
+```bash
+# 进入到hive的bin目录
 cd $HIVE_HOME/bin
 
-#对数据库进行初始化
+# 对数据库进行初始化
 schematool -initSchema -dbType mysql
 ```
 执行成功后，在mysql的hive数据库里已生成metadata数据表：
@@ -228,16 +248,12 @@ schematool -initSchema -dbType mysql
 
 执行hive的sql命令，在sql位置输入sql命令
 ```
-hive -e ‘sql’
+hive -e 'sql'
 ```
 
 或者启动hive，在命令行输入sql
-```
-#进入Hive的bin目录
-cd $HIVE_HOME/bin
-
-#执行hive启动
-./hive
+```bash
+hive
 ```
 
 显示hive中所有的内置函数，测试hive是否可用
@@ -265,36 +281,40 @@ nohup bin/hiveserver2 1>/var/log/hiveserver.log 2>/var/log/hiveserver.err &
 
 启动成功后，可以在别的节点上用beeline去连接,有两种方法：
 
-1. hive/bin/beeline 回车，进入beeline的命令界面
+1. `beeline` 回车，进入beeline的命令界面
    输入命令连接hiveserver2
-   beeline> !connect jdbc:hive2//mini1:10000
+   ```
+   beeline> !connect jdbc:hive2://localhost:10000
+   ```
    （hadoop01是hiveserver2所启动的那台主机名，端口默认是10000）
 
 2. 或者启动就连接：
-   bin/beeline -u jdbc:hive2://mini1:10000 -n hadoop
+   ```
+   beeline -u jdbc:hive2://localhost:10000 -n hadoop
+   ```
 
 如果hiveserver2无法连接，修改`hive.server2.authentication`
-```
+```xml
 <name>hive.server2.authentication</name>
     <value>NOSASL</value>
 ```
 在hadoop的core-site.xml中追加
-```
-<property>     
-	<name>hadoop.proxyuser.root.hosts</name>     
-	<value>*</value>
- </property> 
-<property>     
-	<name>hadoop.proxyuser.root.groups</name>    
-    <value>*</value> 
+```xml
+<property>
+  <name>hadoop.proxyuser.root.hosts</name>
+  <value>*</value>
+ </property>
+<property>
+  <name>hadoop.proxyuser.root.groups</name>
+    <value>*</value>
 </property>
-<property>     
-	<name>hadoop.proxyuser.heyj.hosts</name>     
-	<value>*</value> 
-</property> 
-<property>     
-	<name>hadoop.proxyuser.heyj.groups</name>     
-	<value>*</value> 
+<property>
+  <name>hadoop.proxyuser.hadoop.hosts</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.hadoop.groups</name>
+  <value>*</value>
 </property>
 ```
 浏览器打开ip(安装hive的主机ip地址)+端口10002，就能看到hiveserver2服务web页面
@@ -326,6 +346,12 @@ nohup bin/hiveserver2 1>/var/log/hiveserver.log 2>/var/log/hiveserver.err &
 -- 显示建表语句 可以查看表创建语句
 
 ### 创建表
+> create database hive_db  
+-- 创建数据库
+
+> use hive_db  
+-- 使用数据库
+
 > create table  if not exists table_name (foo int, bar string) row format delimited fields terminated by ',' stored as textfile;  
 -- 创建内部表
 
