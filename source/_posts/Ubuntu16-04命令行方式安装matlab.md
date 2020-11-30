@@ -3,7 +3,7 @@ title: Ubuntu16.04命令行方式安Matlab
 date: 2020-04-15 14:02:43
 categories: 
     - [程序开发,Matlab]
-    - [程序开发,Ubuntu]
+    - [程序开发,Linux,Ubuntu]
 tags: 
     - ubuntu
     - matlab

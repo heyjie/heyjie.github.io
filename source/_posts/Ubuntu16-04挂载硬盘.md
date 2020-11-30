@@ -3,6 +3,7 @@ title: Ubuntu16.04挂载硬盘端信息
 date: 2020-04-15 13:47:36
 categories: 
     - 程序开发
+    - linux
     - Ubuntu
 tags: 
     - ubuntu

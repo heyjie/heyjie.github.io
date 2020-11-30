@@ -45,6 +45,7 @@ hexo deploy
 // <title> 为文章标题
 hexo new [layout] <title>
 ```
+
 ## 常用Hexo命令
 + 初始化目录：`hexo init [folder]`
 + 新建文章：`hexo new [layout] <title>`或`hexo n [layout] <title>`
@@ -67,5 +68,5 @@ npm install hexo-cli -g
 ```
 安装模块，不要用hexo init初始化，部分文件已经拷贝生成，如果不慎使用，则站点配置文件_config.yml会被初始化为默认值
 ```
-npm install
+npm install --registry=https://registry.npm.taobao.org
 ```

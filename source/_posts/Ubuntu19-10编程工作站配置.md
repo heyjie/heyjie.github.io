@@ -3,6 +3,7 @@ title: Ubuntu19.10编程工作站配置
 date: 2020-04-16 11:31:30
 categories: 
     - 程序开发
+    - Linux
     - Ubuntu
 tags: 
     - ubuntu

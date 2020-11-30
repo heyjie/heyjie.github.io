@@ -7,7 +7,7 @@ categories:
     - Oracle
 tags:
     - 数据库
-    - Oracle
+    - oracle
 ---
 迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单
 

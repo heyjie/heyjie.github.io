@@ -1,8 +1,15 @@
 ---
 title: CentOS7安装MySql
 date: 2020-08-05 09:29:05
-tags:
+categories: 
+    - 程序开发
+    - Linux
+    - Centos
+tags: 
+    - linux
+    - centos
 ---
+
 ## 安装mysql
 下载并安装MySQL官方的 Yum Repository
 ```
@@ -13,6 +20,8 @@ yum -y install mysql57-community-release-el7-10.noarch.rpm
 ```
 yum -y install mysql-community-server
 ```
+
+<!-- more -->
 
 ## 使用国内镜像安装
 

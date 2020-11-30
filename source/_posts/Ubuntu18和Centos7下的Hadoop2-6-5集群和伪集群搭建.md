@@ -4,11 +4,11 @@ date: 2019-12-17 17:45:32
 updated: 2020-7-31 10:15:00
 categories: 
     - 程序开发
-    - Hadoop
+    - 大数据
 tags: 
-    - [hadoop]
-    - [hdfs]
-    - [ubuntu]
+    - hadoop
+    - hdfs
+    - ubuntu
 description: hadoop伪集群搭建，创建hadoop用户，安装jdk，配置hadoop
 photos: 
     - "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2887741090,2362486480&fm=58&s=4384FD0EE8B84D80154180D6020070F3"

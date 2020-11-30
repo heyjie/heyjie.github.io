@@ -3,7 +3,7 @@ title: Ubuntu18安装Hive2.3.7
 date: 2020-07-08 17:26:29
 categories: 
     - 程序开发
-    - Hive
+    - 大数据
 tags: 
     - hdfs
     - hive
@@ -352,7 +352,7 @@ nohup bin/hiveserver2 1>/var/log/hiveserver.log 2>/var/log/hiveserver.err &
 > use hive_db  
 -- 使用数据库
 
-> create table  if not exists table_name (foo int, bar string) row format delimited fields terminated by ',' stored as textfile;  
+> create table if not exists table_name (foo int, bar string) row format delimited fields terminated by ',' stored as textfile;  
 -- 创建内部表
 
 > create external table if not exists pageview(pageid int,page_url string comment 'The page URL') row format delimited fields terminated by ',' location 'hdfs://mini1:9000/user/hive/warehouse/'  

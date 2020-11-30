@@ -3,7 +3,7 @@ title: Ubuntu部署Flask+gunicorn
 date: 2020-04-15 13:56:15
 categories: 
     - [程序开发,Python]
-    - [程序开发,Ubuntu]
+    - [程序开发,Linux,Ubuntu]
 tags: 
     - python
     - flask
@@ -39,7 +39,7 @@ gunicorn运行flask app
 ```bash
 gunicorn -w 4 -b 127.0.0.1:5001 manage:app
 ```
-命令参数
+命令参数详解
 ```bash
   --version             # 显示程序的版本号并退出
   -h, --help            # 显示此帮助消息并退出
@@ -112,7 +112,7 @@ stopasgroup=false     ;默认为false,进程被杀死时，是否向这个进程
 killasgroup=false     ;默认为false，向进程组发送kill信号，包括子进程
 ```
 
-常用命令
+supervisor常用命令
 ```bash
 sudo supervisorctl status        //查看所有进程的状态
 sudo supervisorctl stop es       //停止es
@@ -163,12 +163,12 @@ bind = "127.0.0.1:5001"
 workers = 2
 
 # worker进程的工作方式。 有 sync, eventlet, gevent, tornado, gthread, 缺省值sync。
-worker_class = 'sync'
+# 这里工作模式协程
+worker_class = 'gevent'
 
 # 工作进程中线程的数量。建议值2-4 x $(NUM_CORES)， 缺省值1。
 # 此配置只适用于gthread 进程工作方式， 因为gevent这种使用的是协程工作方式。
-threads = 2
-
+# threads = 2
 
 # worker重启之前处理的最大requests数， 缺省值为0表示自动重启disabled。主要是防止内存泄露。
 max_requests = 50000
@@ -185,9 +185,6 @@ limit_request_line = 8190
 limit_request_fields = 200
 
 limit_request_fields_size = 8190
-
-# 工作模式协程
-worker_class = 'gevent'
 
 # 设置最大并发量
 worker_connections = 2000

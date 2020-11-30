@@ -2,12 +2,13 @@
 title: Ubuntu18下安装MySql
 date: 2020-02-16 20:00:11
 categories: 
-    - [程序开发,Ubuntu]
+    - [程序开发,Linux,Ubuntu]
     - [程序开发,数据库,MySql]
 tags: 
-    - [mysql]
-    - [ubuntu]
+    - mySql
+    - ubuntu
 ---
+
 查看有没有安装MySQL
 ```
 dpkg -l | grep mysql
@@ -29,6 +30,7 @@ mysql-server-core-5.7
 因此无需再安装mysql-client等。安装过程会提示设置mysql root用户的密码，设置完成后等待自动安装即可。默认安装完成就启动了mysql
 
 <!-- more -->
+
 安装MySQL依赖库
 ```
 sudo apt-get install libmysqlclient-dev
