@@ -324,6 +324,7 @@ Hadoop 的运行方式是由配置文件决定的（运行 Hadoop 时会读取�
 
 ### 8.1 配置第一台datanode服务器
 
+先把ip改成固定ip
 > ubuntu改ip命令
 ```bash
 sudo vim /etc/network/interfaces                #改ip,
@@ -336,7 +337,7 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens192 #改ip,
 service network restart                         #重启网卡
 ```
 
-修改主机名data1
+修改主机名为data1
 ```bash
 sudo vim /etc/hostname
 ```
@@ -433,6 +434,8 @@ vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
 重复以上步骤再建立3台主机，如果是VM虚拟机则复制3台虚拟机
 
 ### 8.2 配置第二台datanode服务器
+
+先把ip改成固定ip
 > ubuntu改ip命令
 ```bash
 sudo vim /etc/network/interfaces                #改ip,
@@ -445,13 +448,14 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens192 #改ip,
 service network restart                         #重启网卡
 ```
 
-改主机名data2
+改主机名为data2
 ```bash
 sudo vim /etc/hostname
 ```
 
 ### 8.3 配置第三台datanode服务器
 
+先把ip改成固定ip
 > ubuntu改ip命令
 ```bash
 sudo vim /etc/network/interfaces                #改ip,
@@ -464,13 +468,14 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens192 #改ip,
 service network restart                         #重启网卡
 ```
 
-改主机名data3
+改主机名为data3
 ```bash
 sudo vim /etc/hostname
 ```
 
 ### 8.4 配置一台namenode服务器
 
+先把ip改成固定ip
 > ubuntu改ip命令
 ```bash
 sudo vim /etc/network/interfaces                #改ip,
@@ -483,7 +488,7 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens192 #改ip,
 service network restart                         #重启网卡
 ```
 
-改主机名master
+改主机名为master
 ```bash
 sudo vim /etc/hostname
 ```
@@ -593,40 +598,40 @@ exit                            # 退出连接
 
 集群启动后由于存在防火墙，所以hadoop无法访问，可以按需开放以下端口。或者直接关闭，一劳永逸
 
-|组件|节点|默认端口|配置|用途说明|
-|----|----|-------|----|-------|
-HDFS|DataNode|50010|dfs.datanode.address|datanode服务端口，用于数据传输
-HDFS|DataNode|50075|dfs.datanode.http.address|http服务的端口
-HDFS|DataNode|50475|dfs.datanode.https.address|https服务的端口
-HDFS|DataNode|50020|dfs.datanode.ipc.address|ipc服务的端口
-HDFS|NameNode|50070|dfs.namenode.http-address|http服务的端口
-HDFS|NameNode|50470|dfs.namenode.https-address|https服务的端口
-HDFS|NameNode|8020|fs.defaultFS|接收Client连接的RPC端口，用于获取文件系统metadata信息。
-HDFS|journalnode|8485|dfs.journalnode.rpc-address|RPC服务
-HDFS|journalnode|8480|dfs.journalnode.http-address|HTTP服务
-HDFS|ZKFC|8019|dfs.ha.zkfc.port|ZooKeeper FailoverController，用于NN HA
-YARN|ResourceManager|8032|yarn.resourcemanager.address|RM的applications manager(ASM)端口
-YARN|ResourceManager|8030|yarn.resourcemanager.scheduler.address|scheduler组件的IPC端口
-YARN|ResourceManager|8031|yarn.resourcemanager.resource-tracker.address|IPC
-YARN|ResourceManager|8033|yarn.resourcemanager.admin.address|IPC
-YARN|ResourceManager|8088|yarn.resourcemanager.webapp.address|http服务端口
-YARN|NodeManager|8040|yarn.nodemanager.localizer.address|localizer IPC
-YARN|NodeManager|8042|yarn.nodemanager.webapp.address|http服务端口
-YARN|NodeManager|8041|yarn.nodemanager.address|NM中container manager的端口
-YARN|JobHistory Server|10020|mapreduce.jobhistory.address|IPC
-YARN|JobHistory Server|19888|mapreduce.jobhistory.webapp.address|http服务端口
-HBase|Master|60000|hbase.master.port|IPC
-HBase|Master|60010|hbase.master.info.port|http服务端口
-HBase|RegionServer|60020|hbase.regionserver.port|IPC
-HBase|RegionServer|60030|hbase.regionserver.info.port|http服务端口
-HBase|HQuorumPeer|2181|hbase.zookeeper.property.clientPort|HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。
-HBase|HQuorumPeer|2888|hbase.zookeeper.peerport|HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。
-HBase|HQuorumPeer|3888|hbase.zookeeper.leaderport|HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。
-Hive|Metastore|9083|/etc/default/hive-metastore中export PORT=<port>来更新默认端口|
-Hive|HiveServer|10000|/etc/hive/conf/hive-env.sh中export HIVE_SERVER2_THRIFT_PORT=<port>来更新默认端口|
-ZooKeeper|Server|2181|/etc/zookeeper/conf/zoo.cfg中clientPort=<port>|对客户端提供服务的端口
-ZooKeeper|Server|2888|/etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分|follower用来连接到leader，只在leader上监听该端口。
-ZooKeeper|Server|3888|/etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分|用于leader选举的。只在electionAlg是1,2或3(默认)时需要。
+| 组件      | 节点              | 默认端口 | 配置                                                                             | 用途说明                                                         |
+| --------- | ----------------- | -------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| HDFS      | DataNode          | 50010    | dfs.datanode.address                                                             | datanode服务端口，用于数据传输                                   |
+| HDFS      | DataNode          | 50075    | dfs.datanode.http.address                                                        | http服务的端口                                                   |
+| HDFS      | DataNode          | 50475    | dfs.datanode.https.address                                                       | https服务的端口                                                  |
+| HDFS      | DataNode          | 50020    | dfs.datanode.ipc.address                                                         | ipc服务的端口                                                    |
+| HDFS      | NameNode          | 50070    | dfs.namenode.http-address                                                        | http服务的端口                                                   |
+| HDFS      | NameNode          | 50470    | dfs.namenode.https-address                                                       | https服务的端口                                                  |
+| HDFS      | NameNode          | 8020     | fs.defaultFS                                                                     | 接收Client连接的RPC端口，用于获取文件系统metadata信息。          |
+| HDFS      | journalnode       | 8485     | dfs.journalnode.rpc-address                                                      | RPC服务                                                          |
+| HDFS      | journalnode       | 8480     | dfs.journalnode.http-address                                                     | HTTP服务                                                         |
+| HDFS      | ZKFC              | 8019     | dfs.ha.zkfc.port                                                                 | ZooKeeper FailoverController，用于NN HA                          |
+| YARN      | ResourceManager   | 8032     | yarn.resourcemanager.address                                                     | RM的applications manager(ASM)端口                                |
+| YARN      | ResourceManager   | 8030     | yarn.resourcemanager.scheduler.address                                           | scheduler组件的IPC端口                                           |
+| YARN      | ResourceManager   | 8031     | yarn.resourcemanager.resource-tracker.address                                    | IPC                                                              |
+| YARN      | ResourceManager   | 8033     | yarn.resourcemanager.admin.address                                               | IPC                                                              |
+| YARN      | ResourceManager   | 8088     | yarn.resourcemanager.webapp.address                                              | http服务端口                                                     |
+| YARN      | NodeManager       | 8040     | yarn.nodemanager.localizer.address                                               | localizer IPC                                                    |
+| YARN      | NodeManager       | 8042     | yarn.nodemanager.webapp.address                                                  | http服务端口                                                     |
+| YARN      | NodeManager       | 8041     | yarn.nodemanager.address                                                         | NM中container manager的端口                                      |
+| YARN      | JobHistory Server | 10020    | mapreduce.jobhistory.address                                                     | IPC                                                              |
+| YARN      | JobHistory Server | 19888    | mapreduce.jobhistory.webapp.address                                              | http服务端口                                                     |
+| HBase     | Master            | 60000    | hbase.master.port                                                                | IPC                                                              |
+| HBase     | Master            | 60010    | hbase.master.info.port                                                           | http服务端口                                                     |
+| HBase     | RegionServer      | 60020    | hbase.regionserver.port                                                          | IPC                                                              |
+| HBase     | RegionServer      | 60030    | hbase.regionserver.info.port                                                     | http服务端口                                                     |
+| HBase     | HQuorumPeer       | 2181     | hbase.zookeeper.property.clientPort                                              | HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。 |
+| HBase     | HQuorumPeer       | 2888     | hbase.zookeeper.peerport                                                         | HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。 |
+| HBase     | HQuorumPeer       | 3888     | hbase.zookeeper.leaderport                                                       | HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。 |
+| Hive      | Metastore         | 9083     | /etc/default/hive-metastore中export PORT=<port>来更新默认端口                    |
+| Hive      | HiveServer        | 10000    | /etc/hive/conf/hive-env.sh中export HIVE_SERVER2_THRIFT_PORT=<port>来更新默认端口 |
+| ZooKeeper | Server            | 2181     | /etc/zookeeper/conf/zoo.cfg中clientPort=<port>                                   | 对客户端提供服务的端口                                           |
+| ZooKeeper | Server            | 2888     | /etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分         | follower用来连接到leader，只在leader上监听该端口。               |
+| ZooKeeper | Server            | 3888     | /etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分         | 用于leader选举的。只在electionAlg是1,2或3(默认)时需要。          |
 
 例如开放8025端口
 ```
@@ -644,16 +649,16 @@ sudo systemctl restart firewalld.service        # 重启防火墙
 ```
 
 ## 九、Hadoop常用的HDFS命令
-| 命令 | 说明 |
-|------|------|
-| hadoop fs -mkdir | 创建HDFS目录 |
-| hadoop fs -ls | 列出HDFS目录 |
-| hadoop fs -copyFromLocal | 使用copyFromLocal复制本地文件到HDFS |
-| hadoop fs -put | 使用put复制本地文件到HDFS |
-| hadoop fs -cat | 列出HDFS目录下的文件内容 |
-| hadoop fs -copyToLocal | 使用copyToLocal将HDFS上的文件复制到本地 |
-| hadoop fs -cp | 复制HDFS文件 |
-| hadoop fs -rm | 删除HDFS文件 |
+| 命令                     | 说明                                    |
+| ------------------------ | --------------------------------------- |
+| hadoop fs -mkdir         | 创建HDFS目录                            |
+| hadoop fs -ls            | 列出HDFS目录                            |
+| hadoop fs -copyFromLocal | 使用copyFromLocal复制本地文件到HDFS     |
+| hadoop fs -put           | 使用put复制本地文件到HDFS               |
+| hadoop fs -cat           | 列出HDFS目录下的文件内容                |
+| hadoop fs -copyToLocal   | 使用copyToLocal将HDFS上的文件复制到本地 |
+| hadoop fs -cp            | 复制HDFS文件                            |
+| hadoop fs -rm            | 删除HDFS文件                            |
 
 操作示例
 ```bash

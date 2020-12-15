@@ -52,3 +52,27 @@ html5是超文本标记语言（HTML）的第五次重大修改，有全新的�
 * E[att*="val"] :选择具有att属性且值中含有val的E元素
 
 > 属性选择器的权重是10
+
+### 结构伪类选择器
+* E:first-child :匹配父元素中的第一个子元素E
+* E:last-child :匹配父元素中的最后一个子元素E
+* E:nth-child(n) :匹配父元素中的第n个子元素E
+* E:first-of-type :指定类型E的第一个
+* E:last-of-type :指定类型E的最后一个
+* E:nth-of-type(n) :指定类型E的第n个
+
+> n可以是even(偶数)和odd(奇数),或者是公式2n(偶数)、2n+1(奇数)等
+
+### 伪元素选择器
+* ::before :在元素内部的前面插入内容
+* ::after :在元素内部的后面插入内容
+
+> 必须有content属性，属于行内元素，权重为1
+
+### 2d转换
+* transition: all 0.3s; 动画过渡
+* transform: translate(x,y);  #移动到新位置，不影响其他元素位置
+* transform: translate(50%,50%);  #移动到新位置，自身宽度的一半
+* transform: rotate(45deg);  #顺时针旋转45度，角度为负数时是逆时针旋转
+* transform-origin: left bottom;  #转换中心点，可以用方位词像素和百分比
+* transform: scale(x,y); #缩放，使用没有单位的数字参数作为缩放倍数

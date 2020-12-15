@@ -53,6 +53,12 @@ pip freeze > requirements.txt  # 生成txt文件
 pip install -r requirements.txt  # 安装txt依赖
 ```
 
+如果只针对项目生成依赖，推荐使用`pipreqs`
+```
+pip install pipreqs  # 安装
+pipreqs . --encoding=utf8 --force  #在当前目录强制生成txt依赖
+```
+
 在全局环境中使用`pipreqs`生成当前目录依赖
 
 ``` python

@@ -393,7 +393,7 @@ SQL> grant create any view to OACESHI;
 
 # 或者快速创建dba用户
 SQL> create user TEST identified by TEST;
-SQL> grant connect,resource to TEST;
+SQL> grant dba to TEST;
 ```
 
 ## 七、问题解决
