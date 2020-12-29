@@ -48,9 +48,9 @@ docker container ls
 ```bash
 # 开放端口：
 systemctl status firewalld
-firewall-cmd  --zone=public --add-port=3306/tcp -permanent
-firewall-cmd  --reload
-# 关闭防火墙：
+firewall-cmd --zone=public --add-port=3306/tcp -permanent
+firewall-cmd --reload
+# 或者关闭防火墙：
 sudo systemctl stop firewalld
 ```
 

@@ -76,3 +76,63 @@ html5是超文本标记语言（HTML）的第五次重大修改，有全新的�
 * transform: rotate(45deg);  #顺时针旋转45度，角度为负数时是逆时针旋转
 * transform-origin: left bottom;  #转换中心点，可以用方位词像素和百分比
 * transform: scale(x,y); #缩放，使用没有单位的数字参数作为缩放倍数
+
+> 同时添加多个转换，中间用空格隔开，先后顺序会影响转换的结果。有位移和其他属性时，要把位移放在最前面
+
+#### 动画
+使用keyframes定义动画
+```
+@keyframes 动画名称 {
+    0%{
+        width:100px;
+    }
+    100%{
+        width:200px;
+    }
+}
+```
+
+元素使用动画
+```
+div {
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+    margin: 100px auto;
+    animation-name: 动画名称；
+    animation-duration: 持续时间；
+}
+```
+
+* @keyframes :规定动画
+* animation :所有动画属性的简写
+* animation-name :规定@keyframes的动画名称（必要）
+* animation-duration :规定动画完成的周期，默认是0（必要的）
+* animation-timing-function :规定动画速度曲线，默认是"ease"
+* animation-delay :规定动画何时开始，默认是0
+* animation-iteation-count :规定动画播放的次数，默认是1，还有infinite
+* animation-direcition :规定动画是否在下一周期逆向播放，默认是"normal"
+* animation-play-state :规定动画是否正在运行或暂停。默认是"running"还有"paused"
+* animation-fill-mode :规定动画结束后状态，保持forwards回到起始backwards
+
+动画简写属性：
+animation :动画名称 持续时间 运动曲线 何时播放 播放次数 是否反向 动画起始或结束状态
+```
+animation: myfirst 5s linear 2s infinite alternate;
+```
+
+### 3D转换
+3d移动
+* transform:translateX(100px);
+* transform:translateY(100px);
+* transform:translateZ(100px);在z轴移动，单位px
+* transform:translate3d(x,y,z);其中x,y,z分别表示要移动的方向的距离
+
+透视
+perspective:100px;给要透视元素的父盒子添加透视效果,有透视才能看到3d效果
+
+旋转
+* transform:rotateX(45deg);
+* transform:rotateY(45deg);
+* transform:rotateZ(45deg);沿着z正向旋转45度
+* transform:rotate3d(x,y,z,deg);沿着自定义轴旋转，deg为角度

@@ -276,7 +276,12 @@ hive --service hiveserver2
 
 启动为后台
 ```
-nohup bin/hiveserver2 1>/var/log/hiveserver.log 2>/var/log/hiveserver.err &
+nohup hiveserver2 1>/var/log/hiveserver.log 2>/var/log/hiveserver.err &
+```
+停止服务
+```
+ps -aux | grep hiveserver2 | grep -v grep | awk '{print $2}'  # 获取进程id
+kill -9 [进程id]  # 强制停止
 ```
 
 启动成功后，可以在别的节点上用beeline去连接,有两种方法：

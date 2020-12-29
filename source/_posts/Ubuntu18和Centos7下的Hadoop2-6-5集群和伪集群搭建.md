@@ -646,6 +646,9 @@ sudo firewall-cmd --zone=public --list-ports    # 已经开放的端口
 sudo systemctl stop firewalld.service           # 停止防火墙
 sudo systemctl start firewalld.service          # 运行防火墙
 sudo systemctl restart firewalld.service        # 重启防火墙
+sudo firewall-cmd --zone=public --remove-port=5672/tcp --permanent  # 关闭5672端口
+netstat -lnpt # 查看监听的端口
+netstat -lnpt | grep 5672 # 查看端口被哪个进程占用
 ```
 
 ## 九、Hadoop常用的HDFS命令

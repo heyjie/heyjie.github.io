@@ -37,50 +37,14 @@ def demo():
 ```
 gunicorn运行flask app
 ```bash
+# 普通模式启动
 gunicorn -w 4 -b 127.0.0.1:5001 manage:app
+# 后台模式启动
+gunicorn -w 4 -D -b 127.0.0.1:5001 manage:app
+# 配置文件模式启动
+gunicorn --preload -c gunicorn.conf.py manage:app
 ```
-命令参数详解
-```bash
-  --version             # 显示程序的版本号并退出
-  -h, --help            # 显示此帮助消息并退出
-  -c FILE, --config=FILE
-                        # Gunicorn配置文件的路径。 [None]
-  --debug               # 在服务器中打开调试。 [False]
-  --spew                # 安装一个跟踪函数，该函数将抛出服务器执行的每一行。 [False]
-  --access-logfile=FILE
-                        # 要写入的访问日志文件。 [None]
-  --access-logformat=STRING
-                        # 访问日志格式。 [%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"]
-  --error-logfile=FILE, --log-file=FILE
-                        # 要写入的错误日志文件。 [-]
-  --log-level=LEVEL     # 错误日志输出的等级。 [info]
-  --logger-class=STRING
-                        # 要用在gunicorn中记录事件的日志记录器。 [simple]
-  -n STRING, --name=STRING
-                        # 与setproctitle一起用于进程命名的基础。 [None]
-  --preload             # 在worker进程被复制（派生）之前载入应用的代码。通过预加载应用，可以节省内存资源和提高服务启动时间。当然，如果你将应用加载进worker进程这个动作延后，那么重启worker将会容易很多。
-  --reload              # 更改代码的时候重启workers， 只建议在开发过程中开启。文档推荐下载inotify这个包来作为重载引擎。
-  --reload_engine       # 选择重载的引擎，支持的有三种，分别是auto，poll，inotify（需要单独安装） 
-  -D, --daemon          # 以守护进程形式来运行Gunicorn进程。其实就是将这个服务放到后台去运行。 [False]
-  -p FILE, --pid=FILE   # PID文件使用的文件名。 [None]
-  -u USER, --user=USER  # 将工作进程切换为以该用户身份运行。[1000]
-  -g GROUP, --group=GROUP
-                        # 切换工作进程以该组身份运行。 [1000]
-  -m INT, --umask=INT   # Gunicorn编写的文件上文件模式的位掩码。 [0]
-  -b ADDRESS, --bind=ADDRESS
-                        # 要绑定的套接字。 [127.0.0.1:8000]
-  --backlog=INT         # 最大挂起连接数。 [2048]
-  -w INT, --workers=INT
-                        # 处理请求的工作进程数。 [1]
-  -k STRING, --worker-class=STRING
-                        # 使用的工作类型。 [sync]
-  --worker-connections=INT
-                        # 并发客户端的最大数量。 [1000]
-  --max-requests=INT    # 工作进程在重新启动之前将处理的最大请求数。 [0]
-  -t INT, --timeout=INT
-                        # 超过这个时间的工作进程被杀死并重新启动。 [30]
-  --keep-alive=INT      # 等待“保持活动”连接上的请求的秒数。 [2]
-```
+
 ## 配置supervisor
 在production环境，起停和状态的监控最好用supervisior之类的监控工具，然后在gunicorn的前端放置一个http proxy server, 譬如nginx。
 
@@ -204,13 +168,56 @@ errorlog = '/var/www/IASDataFlask/logs/gunicorn_error.log'
 loglevel = 'warning'
 ```
 
-## gunicorn 配置详解
+## 其他说明
+### gunicorn 命令参数详解
+```bash
+  --version             # 显示程序的版本号并退出
+  -h, --help            # 显示此帮助消息并退出
+  -c FILE, --config=FILE
+                        # Gunicorn配置文件的路径。 [None]
+  --debug               # 在服务器中打开调试。 [False]
+  --spew                # 安装一个跟踪函数，该函数将抛出服务器执行的每一行。 [False]
+  --access-logfile=FILE
+                        # 要写入的访问日志文件。 [None]
+  --access-logformat=STRING
+                        # 访问日志格式。 [%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"]
+  --error-logfile=FILE, --log-file=FILE
+                        # 要写入的错误日志文件。 [-]
+  --log-level=LEVEL     # 错误日志输出的等级。 [info]
+  --logger-class=STRING
+                        # 要用在gunicorn中记录事件的日志记录器。 [simple]
+  -n STRING, --name=STRING
+                        # 与setproctitle一起用于进程命名的基础。 [None]
+  --preload             # 在worker进程被复制（派生）之前载入应用的代码。通过预加载应用，可以节省内存资源和提高服务启动时间。当然，如果你将应用加载进worker进程这个动作延后，那么重启worker将会容易很多。
+  --reload              # 更改代码的时候重启workers， 只建议在开发过程中开启。文档推荐下载inotify这个包来作为重载引擎。
+  --reload_engine       # 选择重载的引擎，支持的有三种，分别是auto，poll，inotify（需要单独安装） 
+  -D, --daemon          # 以守护进程形式来运行Gunicorn进程。其实就是将这个服务放到后台去运行。 [False]
+  -p FILE, --pid=FILE   # PID文件使用的文件名。 [None]
+  -u USER, --user=USER  # 将工作进程切换为以该用户身份运行。[1000]
+  -g GROUP, --group=GROUP
+                        # 切换工作进程以该组身份运行。 [1000]
+  -m INT, --umask=INT   # Gunicorn编写的文件上文件模式的位掩码。 [0]
+  -b ADDRESS, --bind=ADDRESS
+                        # 要绑定的套接字。 [127.0.0.1:8000]
+  --backlog=INT         # 最大挂起连接数。 [2048]
+  -w INT, --workers=INT
+                        # 处理请求的工作进程数。 [1]
+  -k STRING, --worker-class=STRING
+                        # 使用的工作类型。 [sync]
+  --worker-connections=INT
+                        # 并发客户端的最大数量。 [1000]
+  --max-requests=INT    # 工作进程在重新启动之前将处理的最大请求数。 [0]
+  -t INT, --timeout=INT
+                        # 超过这个时间的工作进程被杀死并重新启动。 [30]
+  --keep-alive=INT      # 等待“保持活动”连接上的请求的秒数。 [2]
+```
+### gunicorn 配置文件详解
 
 gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以通过配置文件指定。强烈建议使用一个配置文件。
 
 配置项如下：
 
-### server socket
+#### server socket
 
 *   bind  
     监听地址和端口。
@@ -220,7 +227,7 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     建议值 64-2048。
     
 
-### worker 进程
+#### worker 进程
 
 *   workers  
     worker 进程的数量。建议值 2-4 x $(NUM_CORES)， 缺省为 1。
@@ -251,7 +258,7 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     server 端保持连接时间。
     
 
-### security
+#### security
 
 *   limit_request_line  
     http request line 最大字节数。值范围 0-8190， 0 表示无限制。
@@ -263,7 +270,7 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     http request header 字段最大字节数。0 表示无限制。
     
 
-### 调试
+#### 调试
 
 *   reload  
     当代码有修改时，自动重启 workers。适用于开发环境。
@@ -278,7 +285,7 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     检查配置。
     
 
-### server 机制
+#### server 机制
 
 *   sendfile  
     系统底层拷贝数据方式，提供 performance。
@@ -311,7 +318,7 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     附加到 python path 的目录列表。
     
 
-### 日志
+#### 日志
 
 *   accesslog  
     访问日志文件路径。
@@ -335,12 +342,12 @@ gunicorn 配置项可以通过 gunicorn 的启动命令行中设定，也可以�
     日志配置文件。同 python 标准日志模块 logging 的配置。
     
 
-### 进程名
+#### 进程名
 
 *   proc_name  
     设置进程名 (setproctitle)，在 ps，top 等命令中会看到. 缺省值为 default_proc_name 配置。
 
-### server 钩子
+#### server 钩子
 
 *   on_starting
 *   on_reload
