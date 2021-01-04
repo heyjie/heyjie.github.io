@@ -136,3 +136,18 @@ perspective:100px;给要透视元素的父盒子添加透视效果,有透视才�
 * transform:rotateY(45deg);
 * transform:rotateZ(45deg);沿着z正向旋转45度
 * transform:rotate3d(x,y,z,deg);沿着自定义轴旋转，deg为角度
+
+3d呈现
+* transform-style:flaat;默认值，子元素不开启3d立体空间
+* transform-style:preserve-3d; 子元素开启立体空间
+> 控制字元素是否开启3d环境，属性指定给父元素但影响的是子元素
+
+### 浏览器的私有前缀
+浏览器私有前缀是兼容老版本写法，新版本浏览器无需添加
+* -moz-: 代表firefox浏览器私有属性
+* -ms-: 代表ie浏览器私有属性
+* -webkit-:代表safari、chrome私有属性
+* -o-:代表Opera私有属性
+
+使用方法:
+-o-border-radius:10px;
