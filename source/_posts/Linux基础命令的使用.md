@@ -174,10 +174,10 @@ chmod -R 775 [文件名|目录名]     #修改权限，三个数字分别对应�
 ```
 > 数字对应的权限
 
-| 拥有者 | 组    | 其他  |
-| ------ | ----- | ----- |
-| r w x  | r w x | r w x |
-| 4 2 1  | 4 2 1 | 4 2 1 |
+|拥有者|组|其他|
+|------|-|----|
+|r w x|r w x|r w x|
+|4 2 1|4 2 1|4 2 1|
 
 ## 系统信息
 ```
@@ -220,28 +220,3 @@ sudo apt install sl
 # 一个比较漂亮的查看当前进程排名的软件
 sudo apt install htop
 ```
-
-## 主要目录速查表
-* /:根目彔.一般根目录下只存放目录，在linux下有且只有一个根目彔，所有的东西都是从这里开始
-　　　　当在终端里输入/home.其实是在告诉电脑，先从/(根目录）开始，再进入到honie目录
-* /bin、/usr/bin:可执行二进制文件的目录，如常用的命令Is、tar、mv、cat等
-* /boot:放置linux系统启动时用到的一些文件，如linux的内核文件：/boot/vnUnuz,系统引导管理 器：/boot/grub
-* /dev:存放linux系统下的设备文件.访问该目录下某个文件.相当于访问某个设备.常用的是挂載光驱 iiount /dev/cdron /mnt
-* /etc:系统配置文件存放的目录，不建议在此目录下存放可执行文件，重要的配置文件有
-　　　　/etc/inittab
-　　　　/etc/fstab
-　　　　/etc/initd
-　　　　/etc/Xll
-　　　　/etc/sysconfig
-　　　　/etc/xinetd.d
-* /home:系统默认的用户家目录，新增用户账号时.用户的家目录都存放在此目录下
-　　　　〜表示当前用户的家目录，例如cd ~
-　　　　^edu表示用户edu的家目录
-* /lib、/usr/lib、/usr/local/lib:系统使用的函数库的目录，程序在执行过程中，需要调用一些额外的参数 时需要函数库的协助
-* /lost+fount:系统异常产生错误时，会将一些遛失的片段放置于此目录下
-* /mnt:/media:光盘默认挂载点.通常光盘挂载于/mnt/cdrom下，也不一定.可以选择任意位置进行挂载
-* /opt:给主机额外安装软件所摆放的目彔
-* /proc:此目录的数据都在内存中，如系统核心，外部设备，网络状态，由于数据都存放于内存中，所以
-不占用磁盘空间.比较霣要的文件 VMware Fusion
-　　　　有：/proc/cpuinfo、/proc/interrupts、/proc/dma、/proc/ioports、/proonet/* 等
-* /root:系统管埋员root的家目录
