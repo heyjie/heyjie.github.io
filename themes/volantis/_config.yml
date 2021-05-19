@@ -669,8 +669,8 @@ plugins:
   # Tidio聊天功能
   # https://www.tidio.com/
   tidio:
-    enable: #true
-    id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    enable: true
+    id: wsryhun2gmo2v2qdcyknfqufkutbdswi
 
 ############################### Plugins ############################### > end
 
