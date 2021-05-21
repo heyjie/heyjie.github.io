@@ -89,7 +89,7 @@ vi /etc/my.cnf
 
 在[mysqld]段增加下面的代码：character-set-server=utf8
 
-![](CentOS7安装MySql/3341.png)
+![](3341.png)
 
 重启mysql服务器
 ```

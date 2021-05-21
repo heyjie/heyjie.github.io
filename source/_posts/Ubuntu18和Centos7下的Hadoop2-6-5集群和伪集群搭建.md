@@ -14,7 +14,7 @@ photos:
     - "https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2887741090,2362486480&fm=58&s=4384FD0EE8B84D80154180D6020070F3"
 ---
 Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
-![](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/20200522160349.png)
+![](20200522160349.png)
 
 <!-- more -->
 ## 一、准备
@@ -81,7 +81,7 @@ java -version                           # 再次查询Java版本，查看是否�
 update-alternatives --display java
 ```
 
-![1847_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1847_1.png)
+![1847_1.png](1847_1.png)
 
 > centos命令
 安装openJDK
@@ -114,7 +114,7 @@ sudo mv hadoop-2.6.5 /usr/local/hadoop  # 将hadoop移动到/usr/local/hadoop
 ll  /usr/local/hadoop                   # 查看hadoop安装目录
 ```
 
-![1849_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1849_1.png)
+![1849_1.png](1849_1.png)
 
 * bin是运行文件目录，包括Hadoop、HDFS和YARN
 * sbin是shell文件目录，包括start-all.sh、stop-all.sh
@@ -166,7 +166,7 @@ export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native:$JAVA_LIBRARY_PATH
 ```
 
 或者图形界面可以使用`sudo gedit ~/.bashrc`命令编辑，在编辑器中输入后，然后按ctrl+s保存，再关闭编辑器
-![1851_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1851_1.png)
+![1851_1.png](1851_1.png)
 
 让设置立即生效
 
@@ -174,7 +174,7 @@ export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native:$JAVA_LIBRARY_PATH
 source ~/.bashrc
 ```
 
-![1853_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1853_1.png)
+![1853_1.png](1853_1.png)
 
 ## 五、修改Hadoop配置文件
 
@@ -185,7 +185,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
 设置JAVA_HOME的路径，参考安装jdk的部分输出的路径，编辑完成保存退出
-![1855_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1855_1.png)
+![1855_1.png](1855_1.png)
 
 修改core-site.xml文件
 
@@ -210,7 +210,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/core-site.xml
 ```
 
 第一个节点是临时目录，第二个节点是HDFS默认名称
-![1857_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1857_1.png)
+![1857_1.png](1857_1.png)
 
 编辑yarn-site.xml
 
@@ -234,7 +234,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/yarn-site.xml
 </configuration>
 ```
 
-![1867_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1867_1.png)
+![1867_1.png](1867_1.png)
 
 编辑mapred-site.xml，mapred-site.xml用于监控Map与Reduce程序的JobTracker任务分配情况以及TaskTracker任务运行情况
 
@@ -255,7 +255,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/mapred-site.xml
 ```
 
 这个节点是设置mapreduce框架为yarn
-![1865_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1865_1.png)
+![1865_1.png](1865_1.png)
 
 编辑 hdfs-site.xml
 
@@ -283,7 +283,7 @@ sudo vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
 ```
 
 第一个节点是设置blocks副本备份数量，第二个是NameNode数据存储目录，第三个是DataNode数据存储目录
-![1863_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1863_1.png)
+![1863_1.png](1863_1.png)
 
 ## 六、创建并格式化HDFS目录
 
@@ -308,13 +308,13 @@ start-all.sh
 ```
 
 输入`jps`查看进程是否启动
-![1869_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1869_1.png)
+![1869_1.png](1869_1.png)
 
 查看Hadoop ResourceManager Web页面，打开浏览器输入 <http://localhost:8088/>
-![1871_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1871_1.png)
+![1871_1.png](1871_1.png)
 
 查看NameNode HDFS Web页面，打开浏览器输入 <http://localhost:50070/>
-![1873_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/1873_1.png)
+![1873_1.png](1873_1.png)
 
 ## 八、搭建hadoop集群
 
@@ -583,7 +583,7 @@ stop-all.sh
 ```bash
 jsp
 ```
-![](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/Snipaste_2020-07-30_16-57-15.png)
+![](Snipaste_2020-07-30_16-57-15.png)
 
 查看data1启动的进程
 ```bash
@@ -592,7 +592,7 @@ jps                             # 查看data1的进程
 exit                            # 退出连接
 ```
 
-![](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/Snipaste_2020-07-30_16-59-51.png)
+![](Snipaste_2020-07-30_16-59-51.png)
 
 ### 8.7 端口开放说明
 
@@ -689,7 +689,7 @@ cd /usr/local/hadoop/logs               #进入日志目录
 sz hadoop-hadoop-namenode-csubuntu.log  #下载日志
 ```
 
-![2006_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/2006_1.png)
+![2006_1.png](2006_1.png)
 
 发现是9000端口被占用
 
@@ -697,7 +697,7 @@ sz hadoop-hadoop-namenode-csubuntu.log  #下载日志
 sudo netstat -lnp | grep 9000           #查看9000端口占用
 ```
 
-![2010_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/2010_1.png)
+![2010_1.png](2010_1.png)
 
 看到是nginx占用了9000端口,把nginx停止就能重新启动hadoop
 
@@ -706,7 +706,7 @@ ps -ef | grep nginx                     #查看nginx主进程
 sudo kill -9 主进程号                   #强制停止Nginx
 ```
 
-![2012_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/2012_1.png)
+![2012_1.png](2012_1.png)
 
 启动hadoop守护进程
-![2014_1.png](Ubuntu18和Centos7下的Hadoop2-6-5集群和伪集群搭建/2014_1.png)
+![2014_1.png](2014_1.png)

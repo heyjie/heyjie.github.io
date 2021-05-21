@@ -9,7 +9,7 @@ tags:
     - pillow
 ---
 使用Pillow可以把图片转成字符画，Pillow是Python平台上的图像处理库，功能强大，简单易用。
-![](Python将图片转字符画/20200522164327.png)
+![](20200522164327.png)
 <!-- more -->
 ## 安装Pillow
 
@@ -66,13 +66,13 @@ if __name__=='__main__':
 要注意的是`scale`参数直接决定字符画的字符精度  
 
 生成的效果如下所示
-![mousetxt.png](Python将图片转字符画/mousetxt.png)
+![mousetxt.png](mousetxt.png)
 
 原图是这样的
-![mouse.png](Python将图片转字符画/mouse.png)
+![mouse.png](mouse.png)
 
 放大后能看到全部是字符组成的
-![20200112084739.png](Python将图片转字符画/20200112084739.png)
+![20200112084739.png](20200112084739.png)
 
 用到的字符越多，生成字符画的细节越明显。可以把原来的十个字符换成下面这七十个
 ```

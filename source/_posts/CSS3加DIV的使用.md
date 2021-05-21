@@ -97,9 +97,9 @@ emmet语法:
 
 ### 单行文本垂直居中
 文字分为顶线中线和基线,上行基线到下行基线的距离就是行号。中文没有基线，就测两行底线之间的距离
-![](CSS3加DIV的使用/hanggao.png)
+![](hanggao.png)
 盒子里的行高就是上距离加内容距离加下距离，行高等于盒子的高度就能实现文本垂直居中
-![](CSS3加DIV的使用/hanggao2.png)
+![](hanggao2.png)
 
 ## 盒子模型
 
@@ -154,10 +154,10 @@ emmet语法:
 
 ### 外边距的合并
 两个上下相邻的盒子设置了外边距，则取两个值中的较大者合并，这叫外边距塌陷现象
-![](CSS3加DIV的使用/taxian.png)
+![](taxian.png)
 
 垂直的外边距合并，两个嵌套关系的块元素，如果父元素没有上内边距及边框。父元素的上外边距会与子元素的上外边距合并，合并为两者中的较大值
-![](CSS3加DIV的使用/taxian2.png)
+![](taxian2.png)
 
 > 盒子有浮动或者绝对定位（固定定位）属性也能解决外边距合并的问题
 
@@ -192,15 +192,15 @@ css布局的三种机制
 
 ### 清除浮动
 父级盒子很多情况下，不方便给高度，但是子盒子浮动就不占有位置，最后父盒子高度为0，就影响了下面的标准流盒子
-![](/CSS3加DIV的使用/qingchu.png)
-![](/CSS3加DIV的使用/qingchu2.png)
+![](/qingchu.png)
+![](/qingchu2.png)
 清除浮动就是为了解决父级元素因为子级浮动引起的内部高度为0的问题。清除后父级就会根据浮动盒子自动检测高度。父级有了高度就不会影响下面的标准流了
 1. 额外标签法清除浮动，在最后一个浮动标签后面添加一个不浮动的div标签,样式写clear:both
 2. 浮动标签的父级样式添加:overflow:hidden|auto|scroll 都可以实现清除浮动，该样式是溢出样式隐藏
 3. 使用after伪元素清除浮动，给父级添加以下样式就能清除浮动
-![](/CSS3加DIV的使用/qingchu3.png)
+![](/qingchu3.png)
 3. 使用双伪元素清除浮动，给父级添加以下样式就能清除浮动
-![](/CSS3加DIV的使用/qingchu4.png)
+![](/qingchu4.png)
 
 什么时候清除浮动
 * 父级没高度
@@ -239,16 +239,16 @@ css布局的三种机制
 
 > 父级要占有位置，子级要任意摆放，所以经常要使父级相对定位，子级绝对定位（子绝父相）
 
-![](CSS3加DIV的使用/dingwei.png)
+![](dingwei.png)
 
 
 绝对定位居中对齐，先让盒子左侧移动到父级的水平中心位置，再让盒子向左移动自身宽度的一半
-![](CSS3加DIV的使用/dingwei2.png)
+![](dingwei2.png)
 
 > 固定定位居中对齐，`width:100%`加`text-align:center`是通栏居中对齐
 
 堆叠顺序`z-index`，在使用定位时可能会出现盒子重叠，加了定位的盒子后面的盒子会压住前面的盒子，可以用`z-index`层叠等级改变盒子的堆叠顺序
-![](CSS3加DIV的使用/dingwei3.png)
+![](dingwei3.png)
 * z-index 取值可以是正负数或0，数值越大，盒子越靠上
 * 如果取值相同，则按书写顺序，后来居上
 * 取值后面没有单位
@@ -292,7 +292,7 @@ resize:none;
 ### 垂直居中
 vertical-align垂直对齐，只针对于行内元素和行内块元素
 
-![](CSS3加DIV的使用/chuizhi.png)
+![](chuizhi.png)
 基于文本的四条线设置垂直对齐
 
 ```
@@ -300,11 +300,11 @@ vertical-align:baseline | top | middle | bottom
 ```
 > 主要用于控制文字和图片和表单之间垂直对齐关系
 
-![](CSS3加DIV的使用/chuizhi2.png)
+![](chuizhi2.png)
 
 > 文字和图片默认是基线对齐，所以图片底侧会产生空白,改成其他对齐方式就能去除图片底侧空白，或者把图片转换成块元素也能去除
 
-![](CSS3加DIV的使用/chuizhi3.png)
+![](chuizhi3.png)
 
 ### 文本溢出省略
 ```
@@ -315,13 +315,13 @@ overflow: hidden;
 /*用省略号替代超出部分*/
 text-overflow: ellipsis;
 ```
-![](CSS3加DIV的使用/shenglue.png)
+![](shenglue.png)
 
 ### 精灵技术
 
 精灵是将网页中的多个背景图像整合到一张图中，减少服务器请求图片次数。网页中只需要精灵图中的某个小图。
 
-![精灵图](CSS3加DIV的使用/jingling.png)
+![精灵图](jingling.png)
 
 > 精确测量图标在精灵图的位置和大小，先设置盒子宽高，然后利用背景位置（background-position）确定精灵图位置
 
@@ -329,7 +329,7 @@ text-overflow: ellipsis;
 > 利用精灵图设置文本的左侧背景和右侧背景，设置padding拉伸，实现滑动门
 
 ### 负值
-![](CSS3加DIV的使用/fuzhi.png)
+![](fuzhi.png)
 利用margin负值让盒子边框相交的部分变细
 
 ```
@@ -339,6 +339,6 @@ margin-left: -1px
 > 如果要鼠标经历过突出边框，就要用到定位
 
 ### 三角形
-![](CSS3加DIV的使用/sanjiaoxing.png)
+![](sanjiaoxing.png)
 
 使用css边框模拟三角形，宽度高度要为0。四个边框都写，保留需要的边框颜色，其他位置边框颜色是透明（rransparent）。为了兼容性要设置font-size:0;line-height:0;

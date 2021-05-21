@@ -11,67 +11,67 @@ tags:
 	- oraclelinux
 ---
 Oracle Linux以对Oracle软件和硬件支持较好见长,安装Oracle数据库首选系统，最重要的是Oracle数据库跑在上Oracle Linux性能可以提升超过75%  
-![](OracleLinux环境搭建/20200522165409.png)
+![](20200522165409.png)
 
 <!-- more -->
 ## 一、安装操作系统
 
 选择第一个安装系统
-![1921_1.png](OracleLinux环境搭建/1921_1.png)
+![1921_1.png](1921_1.png)
 
 光驱检测选择第二个跳过
-![1923_1.png](OracleLinux环境搭建/1923_1.png)
+![1923_1.png](1923_1.png)
 
 语言选英文，中文会乱码
-![1925_1.png](OracleLinux环境搭建/1925_1.png)
+![1925_1.png](1925_1.png)
 
 选择第一个基本存储设备
-![1927_1.png](OracleLinux环境搭建/1927_1.png)
+![1927_1.png](1927_1.png)
 
 选择第一个“是，忽略数据”
-![1929_1.png](OracleLinux环境搭建/1929_1.png)
+![1929_1.png](1929_1.png)
 
 设置Hostname和网络配置
-![1939_1.png](OracleLinux环境搭建/1939_1.png)
+![1939_1.png](1939_1.png)
 
 选择时区
-![1933_1.png](OracleLinux环境搭建/1933_1.png)
+![1933_1.png](1933_1.png)
 
 设置root密码
-![1935_1.png](OracleLinux环境搭建/1935_1.png)
+![1935_1.png](1935_1.png)
 
 选择最后一个，创建自定义布局
-![1937_1.png](OracleLinux环境搭建/1937_1.png)
+![1937_1.png](1937_1.png)
 
 创建分区swap，大小是内存的两倍
-![1941_1.png](OracleLinux环境搭建/1941_1.png)
+![1941_1.png](1941_1.png)
 
 创建分区boot
-![1943_1.png](OracleLinux环境搭建/1943_1.png)
+![1943_1.png](1943_1.png)
 
 把剩余空间放到最后一个分区
-![1945_1.png](OracleLinux环境搭建/1945_1.png)
+![1945_1.png](1945_1.png)
 
 选择第二个格式化
-![1947_1.png](OracleLinux环境搭建/1947_1.png)
+![1947_1.png](1947_1.png)
 
 选择第二个，将修改写入磁盘
-![1949_1.png](OracleLinux环境搭建/1949_1.png)
+![1949_1.png](1949_1.png)
 
 选择桌面Desktop
-![1951_1.png](OracleLinux环境搭建/1951_1.png)
+![1951_1.png](1951_1.png)
 
 安装成功重启
-![1953_1.png](OracleLinux环境搭建/1953_1.png)
+![1953_1.png](1953_1.png)
 
 重启后进入欢迎页，注意在这里要选择No
-![1955_1.png](OracleLinux环境搭建/1955_1.png)
+![1955_1.png](1955_1.png)
 
 用户可以不创建，看个人情况
-![F3GG.png](OracleLinux环境搭建/F3GG.png)
+![F3GG.png](F3GG.png)
 
 内存大可以开启kdump,我没有开启
-![3KDJAM.png](OracleLinux环境搭建/3KDJAM.png)
+![3KDJAM.png](3KDJAM.png)
 
 ## 二、配置oracle安装环境
 
@@ -186,40 +186,40 @@ $ ./runInstaller  # 开始安装
 ## 三、安装oracle
 
 取消勾选
-![1957_1.png](OracleLinux环境搭建/1957_1.png)
+![1957_1.png](1957_1.png)
 
 选择跳过
-![1959_1.png](OracleLinux环境搭建/1959_1.png)
+![1959_1.png](1959_1.png)
 
 选择只安装软件
-![GW80.png](OracleLinux环境搭建/GW80.png)
+![GW80.png](GW80.png)
 
 选择创建单实例的数据库安装
-![JZ93U.png](OracleLinux环境搭建/JZ93U.png)
+![JZ93U.png](JZ93U.png)
 
 安装语言使用默认英文
-![VOMUK0.png](OracleLinux环境搭建/VOMUK0.png)
+![VOMUK0.png](VOMUK0.png)
 
 选择安装企业版
-![NWBN.png](OracleLinux环境搭建/NWBN.png)
+![NWBN.png](NWBN.png)
 
 Oracle安装路径自动识别到了配置的变量，下一步
-![NUQ.png](OracleLinux环境搭建/NUQ.png)
+![NUQ.png](NUQ.png)
 
 安装文件的路径文件目录，自动识别。下一步
-![QXUN.png](OracleLinux环境搭建/QXUN.png)
+![QXUN.png](QXUN.png)
 
 选择组的所属，下一步
-![FUP6557R.png](OracleLinux环境搭建/FUP6557R.png)
+![FUP6557R.png](FUP6557R.png)
 
 点击安装
-![LH8B.png](OracleLinux环境搭建/LH8B.png)
+![LH8B.png](LH8B.png)
 
 等待安装完成
-![7LYTP.png](OracleLinux环境搭建/7LYTP.png)
+![7LYTP.png](7LYTP.png)
 
 提示需要root用户执行以下的脚本
-![6IDDQR.png](OracleLinux环境搭建/6IDDQR.png)
+![6IDDQR.png](6IDDQR.png)
 
 打开命令窗口执行脚本
 ```sh
@@ -230,7 +230,7 @@ su               #切换到root用户
 执行完去安装窗口点确认
 
 安装完成，点击关闭
-![CWVU3.png](OracleLinux环境搭建/CWVU3.png)
+![CWVU3.png](CWVU3.png)
 
 ## 四、配置和使用
 
@@ -238,97 +238,97 @@ su               #切换到root用户
 $ dbca  # 配置数据库
 ```
 
-![1973_1.png](OracleLinux环境搭建/1973_1.png)
+![1973_1.png](1973_1.png)
 
 选择创建数据库
-![1979_1.png](OracleLinux环境搭建/1979_1.png)
+![1979_1.png](1979_1.png)
 
 这里选第一个和第二个都可以，第一个是一般事务数据，第二个是定制数据库。我这里选定制数据库
-![1977_1.png](OracleLinux环境搭建/1977_1.png)
+![1977_1.png](1977_1.png)
 
 填写数据库实例名称
-![1984_1.png](OracleLinux环境搭建/1984_1.png)
+![1984_1.png](1984_1.png)
 
 取消勾选然后下一步
-![1981_1.png](OracleLinux环境搭建/1981_1.png)
+![1981_1.png](1981_1.png)
 
 选择统一的密码，然后自己设置密码
-![1983_1.png](OracleLinux环境搭建/1983_1.png)
+![1983_1.png](1983_1.png)
 
 默认需要8位密码，不满8位也可以强制设置
-![6OX41.png](OracleLinux环境搭建/6OX41.png)
+![6OX41.png](6OX41.png)
 
 选择数据库文件类型和位置，我这里默认
-![1986_1.png](OracleLinux环境搭建/1986_1.png)
+![1986_1.png](1986_1.png)
 
 指定数据库快速恢复区，我不需要，取消勾选
-![1985_1.png](OracleLinux环境搭建/1985_1.png)
+![1985_1.png](1985_1.png)
 
 数据库组件，取消勾选
-![1982_1.png](OracleLinux环境搭建/1982_1.png)
+![1982_1.png](1982_1.png)
 
 根据需要配置内存，我的配置如图，取消勾选自动记录
-![1978_1.png](OracleLinux环境搭建/1978_1.png)
+![1978_1.png](1978_1.png)
 
 根据需要设置最大的连接进程数
-![SDFD.png](OracleLinux环境搭建/SDFD.png)
+![SDFD.png](SDFD.png)
 
 配置字符集，因为自己的数据库里用了中文，所以我配置了简体中文，下一步
-![1974_1.png](OracleLinux环境搭建/1974_1.png)
+![1974_1.png](1974_1.png)
 
 设置日志组大小等，下一步
-![1975_1.png](OracleLinux环境搭建/1975_1.png)
+![1975_1.png](1975_1.png)
 
 创建数据库，完成
-![1980_1.png](OracleLinux环境搭建/1980_1.png)
+![1980_1.png](1980_1.png)
 
 确定
-![1976_1.png](OracleLinux环境搭建/1976_1.png)
+![1976_1.png](1976_1.png)
 
 开始安装数据库
-![1999_1.png](OracleLinux环境搭建/1999_1.png)
+![1999_1.png](1999_1.png)
 
 点击退出，安装完成
-![1988_1.png](OracleLinux环境搭建/1988_1.png)
+![1988_1.png](1988_1.png)
 
 ```shell
 $ netca  # 配置监听及本地网络服务
 ```
 
-![1998_1.png](OracleLinux环境搭建/1998_1.png)
+![1998_1.png](1998_1.png)
 
-![1990_1.png](OracleLinux环境搭建/1990_1.png)
+![1990_1.png](1990_1.png)
 
-![1987_1.png](OracleLinux环境搭建/1987_1.png)
+![1987_1.png](1987_1.png)
 
-![1993_1.png](OracleLinux环境搭建/1993_1.png)
+![1993_1.png](1993_1.png)
 
-![1994_1.png](OracleLinux环境搭建/1994_1.png)
+![1994_1.png](1994_1.png)
 
-![2000_1.png](OracleLinux环境搭建/2000_1.png)
+![2000_1.png](2000_1.png)
 
-![2001_1.png](OracleLinux环境搭建/2001_1.png)
+![2001_1.png](2001_1.png)
 监听设置存储在\data\oracle\product\10.2.0\db_1\NETWORK\ADMIN\listener.ora
 
 接下来配置远程服务：
-![1997_1.png](OracleLinux环境搭建/1997_1.png)
+![1997_1.png](1997_1.png)
 
-![1989_1.png](OracleLinux环境搭建/1989_1.png)
+![1989_1.png](1989_1.png)
 
-![1995_1.png](OracleLinux环境搭建/1995_1.png)
+![1995_1.png](1995_1.png)
 
-![1996_1.png](OracleLinux环境搭建/1996_1.png)
+![1996_1.png](1996_1.png)
 
-![1992_1.png](OracleLinux环境搭建/1992_1.png)
+![1992_1.png](1992_1.png)
 
-![1991_1.png](OracleLinux环境搭建/1991_1.png)
+![1991_1.png](1991_1.png)
 
 注意：若测试不成功有可能是用户登录出错，点击 change login，用户名输入：system，密码输入前面创建数据库时设置的密码
-![2004_1.png](OracleLinux环境搭建/2004_1.png)
+![2004_1.png](2004_1.png)
 
-![2002_1.png](OracleLinux环境搭建/2002_1.png)
+![2002_1.png](2002_1.png)
 
-![2003_1.png](OracleLinux环境搭建/2003_1.png)
+![2003_1.png](2003_1.png)
 
 ## 五、启动数据库
 
