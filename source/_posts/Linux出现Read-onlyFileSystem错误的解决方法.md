@@ -1,5 +1,5 @@
 ---
-title: Linux出现Read-onlyFileSystem错误的解决方法方法
+title: Linux出现Read-onlyFileSystem错误的解决方法
 date: 2020-09-01 14:10:57
 categories: 
     - 程序开发

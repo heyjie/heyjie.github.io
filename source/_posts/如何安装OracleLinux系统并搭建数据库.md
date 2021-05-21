@@ -1,5 +1,5 @@
 ---
-title: OracleLinux环境搭建
+title: 如何安装OracleLinux系统并搭建数据库
 date: 2019-12-26 16:00:16
 categories: 
     - 程序开发

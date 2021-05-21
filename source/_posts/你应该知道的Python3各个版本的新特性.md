@@ -1,5 +1,5 @@
 ---
-title: 'Python3.6,7,8,9版本的新特性了解'
+title: '你应该知道的Python3各个版本的新特性'
 date: 2020-11-27 14:12:26
 categories: 
     - 程序开发
@@ -7,14 +7,14 @@ categories:
 tags:
     - python
 ---
+![](v2-418381fc7c194311c6981580e5626ddd_1440w.jpg)
+最近在使用python过程中，看到了一段提示文本。发现python3.5的使用寿命已于2020年9月13日结束，pip 21.0也将于2021年1月删除对Python 3.5的支持。导致很多第三方模块要求python的最低标准是python3.6。
 
-> 声明：Python 3.5的使用寿命已于2020年9月13日结束。请升级您的Python，因为不再维护Python 3.5。 pip 21.0将于2021年1月删除对Python 3.5的支持。pip 21.0将删除对该功能的支持。
-
-最近在使用python过程中，看到了这一段提示文本。发现python3.5即将停止维护，导致很多第三方模块也要求python的最低标准是python3.6。现在是时候升级你的python了，学习新版本python特性有助于提高对python的了解
+现在是时候升级你的python了，学习新版本python特性有助于提高对python的了解。
 
 <!-- more -->
 
-## Python3.6新的语法特性
+## 一、Python3.6新的语法特性
 
 ### 1、格式化字符串（Formatted string literals）
 
@@ -465,7 +465,7 @@ f 字符串格式说明符允许更细致地控制所要显示的表达式结果
 theta=30 cos(radians(theta))=0.866
 ```
 
-### 4、 typing 模块的改进
+### 4、typing 模块的改进
 
 Python 是动态类型语言，但可以通过 typing 模块添加类型提示，以便第三方工具验证 Python 代码。Python 3.8 给 typing 添加了一些新元素，因此它能够支持更健壮的检查：
 * final 修饰器和 Final 类型标注表明，被修饰或被标注的对象在任何时候都不应该被重写、继承，也不能被重新赋值。
@@ -480,7 +480,7 @@ multiprocessing 模块新增 SharedMemory 类，可以在不同的 Python 进城
 
 共享内存片段可以作为单纯的字节区域来分配，也可以作为不可修改的类似于列表的对象来分配，其中能保存数字类型、字符串、字节对象、None 对象等一小部分 Python 对象。
 
-### 6、 新版本的 pickle 协议
+### 6、新版本的 pickle 协议
 
 Python 的 pickle 模块提供了一种序列化和反序列化 Python 数据结构或实例的方法，可以将字典原样保存下来供以后读取。不同版本的 Python 支持的 pickle 协议不同，而 3.8 版本的支持范围更广、更强大、更有效的序列化。
 

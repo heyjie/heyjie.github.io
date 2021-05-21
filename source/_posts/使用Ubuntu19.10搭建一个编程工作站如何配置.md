@@ -1,5 +1,5 @@
 ---
-title: Ubuntu19.10编程工作站配置
+title: 使用Ubuntu19.10搭建一个编程工作站如何配置
 date: 2020-04-16 11:31:30
 categories: 
     - 程序开发

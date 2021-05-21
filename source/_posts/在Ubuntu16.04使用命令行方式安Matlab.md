@@ -1,5 +1,5 @@
 ---
-title: Ubuntu16.04命令行方式安Matlab
+title: 在Ubuntu16.04使用命令行方式安Matlab
 date: 2020-04-15 14:02:43
 categories: 
     - [程序开发,Matlab]

@@ -1,5 +1,5 @@
 ---
-title: 'SqlServer获取客户端信息'
+title: '如何使用SqlServer获取客户端的信息'
 date: 2020-04-15 13:43:56
 categories: 
     - 程序开发

@@ -1,5 +1,5 @@
 ---
-title: Ubuntu18和Centos7下的Hadoop2.6.5集群和伪集群搭建
+title: 如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群
 date: 2019-12-17 17:45:32
 updated: 2020-7-31 10:15:00
 categories: 

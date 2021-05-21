@@ -1,5 +1,5 @@
 ---
-title: Ubuntu18安装Matlab2018b
+title: 如何用Ubuntu18安装Matlab2018b
 date: 2020-01-08 11:50:42
 categories: 
     - [程序开发,Linux,Ubuntu]

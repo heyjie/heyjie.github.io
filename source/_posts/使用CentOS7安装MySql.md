@@ -1,5 +1,5 @@
 ---
-title: CentOS7安装MySql
+title: 使用CentOS7安装MySql
 date: 2020-08-05 09:29:05
 categories: 
     - 程序开发

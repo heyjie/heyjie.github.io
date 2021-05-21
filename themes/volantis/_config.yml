@@ -117,7 +117,7 @@ article:
     # show split line or not
     line_style: solid # hidden, solid, dashed, dotted
     # show author
-    author: false # true, false
+    author: true # true, false
     # show readmore button
     readmore: auto # auto, always
   # 文章详情页面的文章卡片本体布局方案
@@ -142,7 +142,7 @@ article:
       # 相关文章，需要安装插件 (for layout: post)
       # npm i hexo-related-popular-posts
       related_posts:
-        enable: false
+        enable: true
         title: 相关文章
         icon: fas fa-bookmark
         max_count: 5
@@ -171,9 +171,9 @@ article:
       # 默认文章作者（可在 _data/author.yaml 中增加其他作者，并在 front-matter 中设置）
       # https://volantis.js.org/advanced-settings/#多人协同
       author:
-        avatar:
-        name: 请设置文章作者
-        url: /
+        avatar: /images/head/def.gif
+        name: jeff
+        url: https://norhub.com.cn
       # 文章创建日期
       date:
         icon: fas fa-calendar-alt
@@ -396,6 +396,8 @@ sidebar:
       images:
         # - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
         # - https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/qrcode/github@volantis.png
+        - https://pic1.zhimg.com/50/v2-f654acca6acf3a7c97a96ec16549b756_hd.webp
+        - https://pic2.zhimg.com/50/v2-baff3b70f2b84e9b8c2291d01db42b6a_hd.webp
     # ---------------------------------------
     # webinfo widget
     webinfo:
@@ -411,7 +413,7 @@ sidebar:
           unit: '篇'
         runtime:
           enable: true
-          data: '2020/01/01' # 填写建站日期
+          data: '2019/12/17' # 填写建站日期
           text: '已运行时间：'
           unit: '天'
         wordcount:
