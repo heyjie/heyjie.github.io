@@ -3,6 +3,7 @@ title: 如何使用Ubuntu更换国内apt源
 date: 2020-02-16 19:49:11
 categories: 
     - 程序开发
+    - Linux
     - Ubuntu
 tags: 
     - ubuntu

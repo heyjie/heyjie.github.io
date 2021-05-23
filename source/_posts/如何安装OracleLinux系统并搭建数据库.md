@@ -6,9 +6,8 @@ categories:
     - 数据库
     - Oracle
 tags: 
-	- 数据库
 	- oracle
-	- oraclelinux
+	- linux
 ---
 Oracle Linux以对Oracle软件和硬件支持较好见长,安装Oracle数据库首选系统，最重要的是Oracle数据库跑在上Oracle Linux性能可以提升超过75%  
 ![](20200522165409.png)

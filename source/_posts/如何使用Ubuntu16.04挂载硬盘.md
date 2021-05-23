@@ -3,10 +3,11 @@ title: 如何使用Ubuntu16.04挂载硬盘
 date: 2020-04-15 13:47:36
 categories: 
     - 程序开发
-    - linux
+    - Linux
     - Ubuntu
 tags: 
     - ubuntu
+    - linux
 ---
 操作前先要添加一块硬盘
 

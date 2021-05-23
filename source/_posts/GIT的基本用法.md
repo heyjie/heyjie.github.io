@@ -1,7 +1,10 @@
 ---
 title: GIT的基本用法
 date: 2021-05-13 10:02:42
-tags:
+categories: 
+    - [程序开发,GIT]
+tags: 
+    - git
 ---
 
 ## 初始化
