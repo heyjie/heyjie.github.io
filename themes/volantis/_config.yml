@@ -671,7 +671,7 @@ plugins:
   # Tidio聊天功能
   # https://www.tidio.com/
   tidio:
-    enable: true
+    enable: false
     id: wsryhun2gmo2v2qdcyknfqufkutbdswi
 
 ############################### Plugins ############################### > end
