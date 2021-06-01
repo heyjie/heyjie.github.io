@@ -1,7 +1,10 @@
 ---
 title: VSCode有哪些常用的快捷键
 date: 2021-05-24 18:31:26
+categories:
+    - 程序开发
 tags:
+    - vscode
 ---
 
 ![](4d49f619f4ce40c8.png)
@@ -18,7 +21,6 @@ tags:
 *   \# 根据名字查找 symbol，也可以 Ctrl+T
 
 ## 编辑器与窗口管理
-------------
 
 ### 同时打开多个窗口（查看多个项目）
 
@@ -35,7 +37,6 @@ tags:
 *   编辑器换位置，Ctrl+k 然后按 Left 或 Right
 
 ## 代码编辑
---------
 
 ### 格式调整
 
@@ -99,7 +100,6 @@ tags:
 *   [] to declare a range of characters to match (e.g., example.[0-9] to match on example.0,example.1, …
 
 ## 显示相关
---------
 
 *   全屏：F11
 *   zoomIn/zoomOut：Ctrl + =/Ctrl + -
@@ -115,7 +115,6 @@ tags:
 *   预览 markdownCtrl+Shift+V
 
 ## 其他
-------
 
 * 自动保存：File -> AutoSave ，或者 Ctrl+Shift+P，输入 auto
 
