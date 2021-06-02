@@ -1,5 +1,5 @@
 ---
-title: HTML5加CSS3的使用方法
+title: HTML5和CSS3有哪些新增内容
 date: 2020-11-19 17:22:35
 categories: 
     - 程序开发
@@ -10,16 +10,15 @@ tags:
 ---
 html5是超文本标记语言（HTML）的第五次重大修改，有全新的元素，属性和行为
 
-<!-- more -->
 
 ## H5新增内容
 ### 语义化标签
-* <header> :头部标签
-* <nav> :导航标签
-* <article> :内容标签
-* <section> :块级标签
-* <aside> :侧边栏标签
-* <footer> :尾部标签
+* \<header> :头部标签
+* \<nav> :导航标签
+* \<article> :内容标签
+* \<section> :块级标签
+* \<aside> :侧边栏标签
+* \<footer> :尾部标签
 ![](yuyi.png)
 * 语义化标签主要针对搜索引擎
 * 可以在页面中使用多次
@@ -27,8 +26,8 @@ html5是超文本标记语言（HTML）的第五次重大修改，有全新的�
 * 移动端更喜欢用这些标签
 
 ### 多媒体标签
-* <audio> :音频
-* <video> :视频
+* \<audio> :音频
+* \<video> :视频
 
 ### 表单属性
 * type="email" :限制用户输入为email类型
