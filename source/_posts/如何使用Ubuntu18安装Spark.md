@@ -3,7 +3,7 @@ title: 如何使用Ubuntu18安装Spark
 date: 2020-07-21 11:17:21
 categories: 
     - 程序开发
-    - 大数据
+    - Linux
 tags: 
     - spark
     - ubuntu

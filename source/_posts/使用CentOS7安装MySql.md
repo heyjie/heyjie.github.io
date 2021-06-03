@@ -4,7 +4,6 @@ date: 2020-08-05 09:29:05
 categories: 
     - 程序开发
     - Linux
-    - Centos
 tags: 
     - linux
     - centos

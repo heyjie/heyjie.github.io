@@ -4,7 +4,6 @@ date: 2020-04-15 13:47:36
 categories: 
     - 程序开发
     - Linux
-    - Ubuntu
 tags: 
     - ubuntu
     - linux

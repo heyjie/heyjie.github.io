@@ -2,8 +2,8 @@
 title: 如何在Ubuntu18环境下安装MySql
 date: 2020-02-16 20:00:11
 categories: 
-    - [程序开发,Linux,Ubuntu]
-    - [程序开发,数据库,MySql]
+    - [程序开发,Linux]
+    - [程序开发,数据库]
 tags: 
     - mySql
     - ubuntu

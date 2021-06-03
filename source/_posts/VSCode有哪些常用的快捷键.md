@@ -3,6 +3,7 @@ title: VSCode有哪些常用的快捷键
 date: 2021-05-24 18:31:26
 categories:
     - 程序开发
+    - VSCode
 tags:
     - vscode
 ---

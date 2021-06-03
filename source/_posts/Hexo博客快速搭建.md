@@ -3,7 +3,6 @@ title: Hexo博客快速搭建
 date: 2020-04-15 14:19:06
 categories: 
     - 其他
-    - Hexo
 tags: 
     - hexo
 ---

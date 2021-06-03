@@ -4,7 +4,6 @@ date: 2019-12-26 16:00:16
 categories: 
     - 程序开发
     - 数据库
-    - Oracle
 tags: 
 	- oracle
 	- linux

@@ -2,7 +2,7 @@
 title: 如何解决文件系统类型为RAW
 date: 2021-06-01 10:18:41
 categories:
-    - 程序开发
+    - 其他
 tags:
     - cmd
 ---

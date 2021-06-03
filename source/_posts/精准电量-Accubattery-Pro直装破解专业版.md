@@ -2,7 +2,7 @@
 title: '精准电量[Accubattery]Pro直装破解专业版'
 date: 2020-07-15 17:56:59
 categories: 
-    - 软件分享
+    - 软件推荐
     - 安卓
 tags: 
     - 破解

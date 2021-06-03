@@ -7,62 +7,66 @@ tags:
     - git
 ---
 
-## 初始化
+## GIT本地更改操作
+### 初始化
 ```bash
-$ git config -global user.name <name> #设置提交者名字
-$ git config -global user.email <email> #设置提交者邮箱
-$ git config -global core.editor <editor> #设置默认文本编辑器
-$ git config -global merge.tool <tool> #设置解决合并冲突时差异分析工具
-$ git config -list #检查已有的配置信息
+git config -global user.name <name> #设置提交者名字
+git config -global user.email <email> #设置提交者邮箱
+git config -list #检查已有的配置信息
 ```
 
-## 创建新版本库
+### 创建新版本库
 ```bash
-$ git clone <url> #克隆远程版本库        
+git clone <url> #克隆远程版本库        
 # 如 git clone git@192.168.9.19:myproject.git  
 # git clone http://username:password@这里是ip:xx.git
 
-$ git init #初始化本地版本库
+git init #初始化本地版本库
 # 初始完之后需要clone 远程版本库下载新的数据
 ```
 
-## 基本操作
-常用操作
-```
+### 提交修改
+```bash
 git status #查看本次的修改、新建、删除等信息(new file:新建文件，modified:修改文件，deleted: 删除的文件)
 git pull #拉取代码；
 git add . #添加所有即将提交的文件，
 git add fileNamePath #添加某个文件
 git commit -m '提交的日志' #提交到本地，
 git push #提交到git服务器；
-```
-其他操作
-```
+
 git commit -a -m '提交的日志' #添加所有即将提交的文件并提交到本地，git commit -a -m 相当于git add . 和 git commi -' '命令的集合，当你使用git commit -a -m ' '命令时，就会执行上述两个操作
 git commit -m <file> # 提交指定文件
 git commit -amend # 修改最后一次提交
 git commit -C HEAD -a -amend #增补提交（不会产生新的提交历史纪录）
+```
+
+### 回退修改
+```bash
+git checkout -- <file> # 回退工作区的修改
+git checkout HEAD. # 撤消所有文件
+git revert <commit> # 撤消指定的提交
+git stash # 回退工作区的修改，但保存现场
+git stash pop # 恢复现场
+git stash list # 查看保存的现场
+git reset HEAD <file> # 回退暂存区的修改到工作区
+git reset <commit> # 或 git reset –-mixed <commit>回退版本库的修改到工作区
+git reset –-soft <commit> # 回退版本库的修改到暂存区
+git reflog # 查看命令历史，历史中记录了回退前的commit id
+git reset --hard <commit> # 回退版本库的修改,不保留修改
+git clean -df  # 回退所有未被跟踪的文件
+```
+
+### 文件操作
+```bash
 git mv <old> <new> #文件重命名
 git rm <file> #删除文件
 git rm -cached <file> #停止跟踪文件但不删除
 ```
 
-## 撤销操作
-```
-git reset -hard HEAD #撤消工作目录中所有未提交文件的修改内容  比如删除也可以撤销
-git checkout HEAD <file1> <file2> #撤消指定的未提交文件的修改内容
-git checkout HEAD. #撤消所有文件
-git revert <commit> #撤消指定的提交
-```
-删除恢复的例子
-``` 
-$ git rm eee
-     rm 'eee'     
-$ git reset --hard    //也可以加上 HEAD 恢复所有删除的文件
-      HEAD is now at 9d1df48 aaaaaaaa
-$ git checkout HEAD eee  //这样直接恢复单个文件，reset会将所有删除的文件都恢复
-$ git checkout HEAD .      //这样是恢复所有文件
-$ git revert    //这个不知道昨用
+### 跟踪文件
+```bash
+git update-index --no-assume-unchanged <file> # 强制跟踪指定文件：
+git update-index --assume-unchanged <file> # 强制不跟踪指定文件
 ```
 
 ## 查看提交历史
@@ -78,49 +82,16 @@ git status #查看当前状态
 git diff #查看变更内容
 ```
 
-## 暂存
-
-使用暂存的好处是，提交时不会产生类似
-
-> (Merge branch 'prd_v1.5' of http://...*/bb_ios/bbch**** into prd_v1.5)
-
-的日志，且安全可靠，会尽量避免将错误提交到服务器上面。
-
-git stash暂存（存储在本地，并将项目本次操作还原）
-git stash pop 使用上一次暂存，并将这个暂存删除，使用该命令后，如果有冲突，终端会显示，如果有冲突需要先解决冲突（这就避免了冲突提交服务器，将冲突留在本地，然后解决）
-git stash list 查看所有的暂存
-git stash clear 清空所有的暂存
-git stash drop [-q|--quiet] [<stash>] 删除某一个暂存，在中括号里面放置需要删除的暂存ID
-git stash apply 使用某个暂存，但是不会删除这个暂存
-
-### 暂存不小心清空，结果里面有需要的代码，也是有找回方法的
-git fsck --lost-found 命令找出刚才删除的分支里面的提交对象。
-然后使用 git show 命令查看是否正确，如果正确使用git merge命令找回
-
-举个栗子🌰：
-git fsck --lost-found
-终端显示
-```
-Checking object directories: 100% (256/256), done.
-Checking objects: 100% (109977/109977), done.
-dangling commit bb01f8dfaa14ea7960d294304c61c4b401eaf2c6
-dangling commit 0203281d5dee10835022ff6cfdcda5050a372762
-```
-然后查看那个版本
-git show bb01f8dfaa14ea7960d294304c61c4b401eaf2c6
-结果查看图1
-
-记录中会描述日期和摘要，日期是你git stash的日期，摘要会记录你是在哪一条commit 上进行git stash操作的，找到后将执行 git merge bb01f8dfaa14ea7960d294304c61c4b401eaf2c6
-
 ## 分支与标签
-```
-git branch #显示所有本地分支
-git checkout <branch/tagname> #切换到指定分支或标签
-git branch <new-branch> #创建新分支
-git branch -d <branch> #删除本地分支
-git tag #列出所有本地标签
-git tag <tagname> #基于最新提交创建标签
-git tag -d <tagname> #删除标签
+```bash
+git branch # 显示所有本地分支
+git checkout <branch/tagname> # 切换到指定分支或标签
+git checkout -b <name> # 于当前分支创建并切换到新分支
+git branch <new-branch> # 创建新分支
+git branch -d <branch> # 删除本地分支
+git tag # 列出所有本地标签
+git tag <tagname> # 基于最新提交创建标签
+git tag -d <tagname> # 删除标签
 ```
 创建分支并推送到远程例子
 ```bash
@@ -189,17 +160,7 @@ git push -tags #上传所有标签
 !*.zip
 !/mtk/one.txt
 ```
-如果你将文件加入到了.gitignore文件里面，但是没有说生效，为什么呢？因为之前你已经把这个文件push到过远程仓库了，请使用以下命令
-```
-git rm --cached `git ls-files -i --exclude-from=.gitignore`
-```
-经过我几次实验之后发现，上述命令在之前没有创建.gitignore文件但是已经向服务器push过代码的时候好使，但是在已经使用过这个命令后，由于其他分支并没有添加忽略文件，合并分支后，忽略文件失效，那么上述命令可能失效，那么先把本地缓存删除（改变成未track状态），然后再提交，方案如下
-```
-git rm -r --cached .
-git add .
-git commit -m '日志'
-```
-要记得，因为改变了一些东西，所以要从新pod install 然后提交代码，但是要使用git status查看状态，比如已经忽略了Podfile.lock，那么查看时没有Podfile.lock那就是好了。
+
 
 ## 重定向项目地址
 第一种方法
@@ -244,3 +205,16 @@ git config --list
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
+
+> .gitignore文件没有生效
+如果你将文件加入到了.gitignore文件里面，但是没有说生效，为什么呢？因为之前你已经把这个文件push到过远程仓库了，请使用以下命令
+```
+git rm --cached `git ls-files -i --exclude-from=.gitignore`
+```
+经过我几次实验之后发现，上述命令在之前没有创建.gitignore文件但是已经向服务器push过代码的时候好使，但是在已经使用过这个命令后，由于其他分支并没有添加忽略文件，合并分支后，忽略文件失效，那么上述命令可能失效，那么先把本地缓存删除（改变成未track状态），然后再提交，方案如下
+```
+git rm -r --cached .
+git add .
+git commit -m '日志'
+```
+要记得，因为改变了一些东西，所以要从新pod install 然后提交代码，但是要使用git status查看状态，比如已经忽略了Podfile.lock，那么查看时没有Podfile.lock那就是好了。

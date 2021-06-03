@@ -4,7 +4,7 @@ date: 2019-12-17 17:45:32
 updated: 2020-7-31 10:15:00
 categories: 
     - 程序开发
-    - 大数据
+    - Linux
 tags: 
     - hadoop
     - hdfs

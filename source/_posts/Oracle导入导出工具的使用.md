@@ -4,7 +4,6 @@ date: 2020-04-15 14:07:07
 categories: 
     - 程序开发
     - 数据库
-    - Oracle
 tags:
     - 数据库
     - oracle

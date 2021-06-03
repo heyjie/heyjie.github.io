@@ -2,7 +2,7 @@
 title: 科学上网一键搭建工具ProxySU
 date: 2021-05-19 22:08:45
 categories: 
-    - 软件分享
+    - 软件推荐
     - PC
 tags: 
     - 代理

@@ -3,7 +3,7 @@ title: 如何使用Ubuntu18安装Hive
 date: 2020-07-08 17:26:29
 categories: 
     - 程序开发
-    - 大数据
+    - Linux
 tags: 
     - hdfs
     - hive

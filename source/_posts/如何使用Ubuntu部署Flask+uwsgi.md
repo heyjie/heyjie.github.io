@@ -3,7 +3,7 @@ title: 如何使用Ubuntu部署Flask+uwsgi
 date: 2020-04-15 13:55:59
 categories: 
     - [程序开发,Python]
-    - [程序开发,Linux,Ubuntu]
+    - [程序开发,Linux]
 tags: 
     - python
     - flask
