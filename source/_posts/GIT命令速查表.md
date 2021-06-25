@@ -87,7 +87,7 @@ Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命�
 |`git rm <file>`|删除文件（将从磁盘中删除文件）|
 |`git rm -r <directory>`|递归删除指定目录下的文件|
 |`git rm --cached <file>`|停止跟踪文件，不会从磁盘中删除|
-| `git mv <old> <new>`|文件重命名|
+|`git mv <old> <new>`|文件重命名|
 
 ### 合并和衍合 Merge & Rebase
 
