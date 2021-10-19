@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>如何使用CSS3加DIV布局 - Jeffのblog</title>
+  
+    <meta name="keywords" content="css,div">
+  
+
+  
+    <meta name="description" content="css基础知识
+引入css的三种方法：
+
+行类样式：&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;
+内部样式表：任意位置的&lt;style&gt;标签,推荐在头部定义
+外部样式表：&lt;link rel=&quot;stylesheet&qu...">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Jeffのblog" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+    
+      <meta name='theme-color' content='#FFFFFF'>
+    
+      <meta name='msapplication-TileColor' content='#1BC3FB'>
+    
+      <meta name='msapplication-config' content='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml'>
+    
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+  
+  <link rel='shortcut icon' type='image/x-icon' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon.ico'>
+  <link rel='icon' type='image/x-icon' sizes='32x32' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-32x32.png'>
+  <link rel='apple-touch-icon' type='image/png' sizes='180x180' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/apple-touch-icon.png'>
+  <link rel='mask-icon' color='#1BC3FB' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/safari-pinned-tab.svg'>
+  <link rel='manifest' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/site.webmanifest'>
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+                <li>
+                  <a class="menuitem flat-box">
+                    <i class='fas fa-compact-disc fa-fw music'></i>背景音乐
+                  </a>
+                  <ul class="list-v">
+                    <li>
+                      <div class="aplayer-container">
+                        
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+                      </div>
+                    </li>
+                  </ul>
+                <li>
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Jeffのblog</p>
+    
+    
+      <p class="subtitle">热爱可抵岁月漫长</p>
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-book fa-fw'></i><p>文档</p>
+            </a>
+          
+            <a href="/about/"
+              
+              
+              id="about">
+              <i class='fas fa-info-circle fa-fw'></i><p>关于</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow floatable article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        如何使用CSS3加DIV布局
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="https://norhub.com.cn" rel="nofollow">
+    <img no-lazy src="/images/head/def.gif">
+    <p>jeff</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">程序开发</a><span class="sep"></span><a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/HTML/">HTML</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Oct 31, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="如何使用CSS3加DIV布局" data-path="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h2 id="css基础知识">css基础知识</h2>
+<p>引入css的三种方法：</p>
+<ul>
+<li>行类样式：<code>&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;</code></li>
+<li>内部样式表：任意位置的<code>&lt;style&gt;</code>标签,推荐在头部定义</li>
+<li>外部样式表：<code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;</code></li>
+</ul>
+<span id="more"></span>
+<p>css特性:</p>
+<ul>
+<li>层叠性：样式就近原则，那个样式进就应用</li>
+<li>继承性：子标签会继承父标签的某些样式</li>
+<li>优先级：继承或* 0,0,0,0; 标签选择器 0,0,0,1; 类 0,0,1,0; ID 0,1,0,0; 行内样式：1,0,0,0; limportant 无穷大</li>
+</ul>
+<p>css选择器：</p>
+<ul>
+<li>标签选择器：p {}</li>
+<li>类选择器：.class {}</li>
+<li>id选择器： #id {}</li>
+<li>通配符选择器：* {}</li>
+</ul>
+<p>复合选择器：</p>
+<ul>
+<li>后代选择器：.nav a {}</li>
+<li>子元素选择器： div&gt;strong {}</li>
+<li>交集选择器：p.red {}</li>
+<li>并集选择器：p,span,.red {}</li>
+<li>链接伪类选择器：a:hover {}表示鼠标经过a标签</li>
+</ul>
+<p>标签的显示模式：</p>
+<ul>
+<li>块级元素：独占一行，高宽边距可控制，宽度默认是父级的100%，是容器里面能放行内和块元素</li>
+<li>行内元素：一行多个，高宽不能设置，默认宽度就是它本身的宽度，行内元素只能放文本或者其他行内元素</li>
+<li>行内块元素：一行多个，高宽边距可控制，默认宽度就是他本身内容的宽度</li>
+</ul>
+<p>标签显示模式切换：</p>
+<ul>
+<li>块转行：display:inline</li>
+<li>行转块：display:block;</li>
+<li>块和行转行内块：display:inline-block;</li>
+</ul>
+<p>emmet语法:</p>
+<ul>
+<li>生成标签直接输入标签名，然后按tab</li>
+<li>生成多个标签加*，div*3就是三个div标签</li>
+<li>生成父子关系标签，ul&gt;li</li>
+<li>生成兄弟关系标签，div+p</li>
+<li>生成带类名或者带id的标签，.demo或者#two然后按tab键</li>
+<li>生成自增顺序的类名标签，.demo$*3</li>
+</ul>
+<h2 id="样式说明">样式说明</h2>
+<p>外观：</p>
+<ul>
+<li>color: 颜色</li>
+<li>line-height: 行高</li>
+<li>text-align: center; 文字水平居中对齐</li>
+<li>text-align: right; 文字右对齐</li>
+<li>text-indent: 首行缩进，2em是首行缩进两字符</li>
+<li>text-decoration: 文本修饰，下划线underline,取消下划线none</li>
+</ul>
+<p>字体：</p>
+<ul>
+<li>font-size: 字号</li>
+<li>font-family: 字体</li>
+<li>font-weight: 字体粗细，700或bold是加粗，400或normal是不加粗细，数字后面没有单位</li>
+<li>font-style: 字体样式，italic是倾斜，normal是不倾斜</li>
+<li>font:字体连写，字体连写有顺序，字号和字体必须同时出现</li>
+</ul>
+<p>背景：</p>
+<ul>
+<li>background-color:背景颜色</li>
+<li>background-image:none|url(url) 背景图片</li>
+<li>background-repeat: repeal 背景平铺</li>
+<li>background-repeat: no-repeal 背景不平铺</li>
+<li>background-repeat: repeal-x 背景横向平铺</li>
+<li>background-repeat: repeal-y 背景纵向平铺</li>
+<li>background-position: right top; 背景位置右上角</li>
+<li>background-position: x坐标 y坐标; 背景位置</li>
+<li>background-position: left bottom; 背景位置左下角</li>
+<li>background-position: center center; 背景位置水平垂直居中</li>
+<li>background-position: center left; 如果是方位词，背景位置值的顺序无关</li>
+<li>background-position: top; 只指定一个值，另一个默认居中</li>
+<li>background-position: center 10px; 水平居中，垂直10</li>
+<li>background-atachment: fixed; 背景固定</li>
+<li>background-atachment: scoll; 背景滚动</li>
+<li>backgroud: 背景颜色 背景图片 背景平铺 背景滚动 背景位置; 背景简写方式</li>
+<li>backgroud: rgba(0,0,0,0.3); 背景透明</li>
+</ul>
+<p>列表：</p>
+<ul>
+<li>list-style: none;去掉列表样式</li>
+<li>float:left;浮动在一行</li>
+</ul>
+<blockquote>
+<p>子元素不写样式也会继承父元素的一些样式，可以被继承的样式 font,line,text,color。</p>
+</blockquote>
+<h3 id="单行文本垂直居中">单行文本垂直居中</h3>
+<p>文字分为顶线中线和基线,上行基线到下行基线的距离就是行号。中文没有基线，就测两行底线之间的距离
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/hanggao.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/hanggao.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt>
+盒子里的行高就是上距离加内容距离加下距离，行高等于盒子的高度就能实现文本垂直居中
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/hanggao2.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/hanggao2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<h2 id="盒子模型">盒子模型</h2>
+<p>边框样式</p>
+<ul>
+<li>border-width: 5px; 边框宽度</li>
+<li>border-style: dashed; 边框样式</li>
+<li>border-color: pink; 边框颜色</li>
+<li>border: 5px dotted pinkp; 边框简写</li>
+<li>border: none; 边框去掉</li>
+<li>border-top: 宽度 样式 颜色; 上边框</li>
+<li>border-bottom: 宽度 样式 颜色; 下边框</li>
+<li>border-left: 宽度 样式 颜色; 左边框</li>
+<li>border-right: 宽度 样式 颜色; 右边框</li>
+<li>border-collapse:collapse; 合并边框，表格边框会叠加，合并后就是细线表格</li>
+<li>border-radius:50%; 高度的一半,圆角边框</li>
+</ul>
+<p>圆角边框</p>
+<ul>
+<li>border-radius: 20px 20px 20px 20px; 圆角边框简写，左上 右上 右下 左下</li>
+<li>border-top-left-radius:20px; 按顺序设置可以分别设置四个角，左上 右上 左下 右下</li>
+<li>border-top-right-radius:20px;</li>
+<li>border-bottom-left-radius:20px;</li>
+<li>border-bottom-right-radius:20px;</li>
+</ul>
+<p>内边距</p>
+<ul>
+<li>padding-left: 左内边距</li>
+<li>padding-right: 右内边距</li>
+<li>padding-top: 上内边距</li>
+<li>padding-bottom: 下内边距</li>
+<li>padding: 10px 10px 10px 10px;上右下左的内边距简写</li>
+<li>padding: 10px;上右下左的内边距简写</li>
+<li>padding: 10px 10px;上下和左右内边距简写</li>
+<li>padding: 10px 10px;上和左右和下内边距简写</li>
+</ul>
+<blockquote>
+<p>内边距会撑大盒子增加盒子宽度，没有宽度的盒子指定内边距则不会撑开盒子。比如父盒子指定了宽度子盒子不指定宽度设置内边距是和父盒子一样宽的，如果子盒子指定了宽度再给内边距则会撑破父盒子（比父盒子宽）</p>
+</blockquote>
+<p>外边距</p>
+<ul>
+<li>margin: 10px;</li>
+<li>marrgin-top: 50px;</li>
+<li>margin: 0 auto; 块级盒子居中对齐，注意盒子要设置宽度</li>
+</ul>
+<p>盒子阴影</p>
+<ul>
+<li>box-shadow: 水平阴影 垂直阴影 模糊 影子大小 阴影颜色 内/外阴影;</li>
+<li>box-shadow: 0 15px 30px rgb(0,0,0,.3);</li>
+</ul>
+<p>元素默认就有内外边距，清除内外边距：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    padding:0;</span><br><span class="line">    margin:0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>行内元素为了兼容性，尽量只设置左右内外边距</p>
+</blockquote>
+<h3 id="外边距的合并">外边距的合并</h3>
+<p>两个上下相邻的盒子设置了外边距，则取两个值中的较大者合并，这叫外边距塌陷现象
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/taxian.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/taxian.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<p>垂直的外边距合并，两个嵌套关系的块元素，如果父元素没有上内边距及边框。父元素的上外边距会与子元素的上外边距合并，合并为两者中的较大值
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/taxian2.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/taxian2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<blockquote>
+<p>盒子有浮动或者绝对定位（固定定位）属性也能解决外边距合并的问题</p>
+</blockquote>
+<h3 id="盒子模型的稳定性">盒子模型的稳定性</h3>
+<p>根据盒子模型稳定性，建议优先使用宽度，其次内边距，再次外边距</p>
+<ul>
+<li>width &gt; padding &gt; margin</li>
+</ul>
+<h2 id="布局">布局</h2>
+<h3 id="浮动">浮动</h3>
+<p>css布局的三种机制</p>
+<ol>
+<li>普通流（标准流）
+<ul>
+<li>块级元素会独占一行，从上往下排列
+<ul>
+<li>常用元素：div,hr,p,h1~h6,ul,ol,dl,form,table</li>
+</ul>
+</li>
+<li>行类元素按照顺序从左到右排列
+<ul>
+<li>常用元素：span,a,i,em</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>浮动
+<ul>
+<li>让盒子从普通流中浮起来，主要用于让多个块级盒子一行显示</li>
+</ul>
+</li>
+<li>定位
+<ul>
+<li>将盒子定在浏览器的某一位置</li>
+</ul>
+</li>
+</ol>
+<p>浮动的作用</p>
+<ol>
+<li>让多个盒子水平排列成一行，使浮动成为布局重要手段。</li>
+<li>可以实现盒子的左右对齐等</li>
+<li>浮动控制图片，实现文字环绕</li>
+</ol>
+<ul>
+<li>float: none/left/right; 不浮动和左浮动右浮动</li>
+</ul>
+<p>浮动列表元素</p>
+<blockquote>
+<p>实际使用的导航栏中，我们不会用标签a而是用li包含连接(li+a)的做法</p>
+</blockquote>
+<ol>
+<li>li+a语义清晰，一看就是有条理的列表型内容</li>
+<li>如果直接用a,搜索引擎容易辨别为有堆砌关键字的嫌疑（故意堆砌关键字容易被搜索引擎有降权的风险），从而影响网站排名</li>
+</ol>
+<h3 id="清除浮动">清除浮动</h3>
+<p>父级盒子很多情况下，不方便给高度，但是子盒子浮动就不占有位置，最后父盒子高度为0，就影响了下面的标准流盒子
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt>
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu2.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt>
+清除浮动就是为了解决父级元素因为子级浮动引起的内部高度为0的问题。清除后父级就会根据浮动盒子自动检测高度。父级有了高度就不会影响下面的标准流了</p>
+<ol>
+<li>额外标签法清除浮动，在最后一个浮动标签后面添加一个不浮动的div标签,样式写clear:both</li>
+<li>浮动标签的父级样式添加:overflow:hidden|auto|scroll 都可以实现清除浮动，该样式是溢出样式隐藏</li>
+<li>使用after伪元素清除浮动，给父级添加以下样式就能清除浮动
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu3.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></li>
+<li>使用双伪元素清除浮动，给父级添加以下样式就能清除浮动
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu4.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/qingchu4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></li>
+</ol>
+<p>什么时候清除浮动</p>
+<ul>
+<li>父级没高度</li>
+<li>子盒子浮动了</li>
+<li>影响下面布局了</li>
+</ul>
+<h3 id="CSS属性书写顺序">CSS属性书写顺序</h3>
+<ol>
+<li>布局定位属性： display/position/float/clear/visibility/overflow (display第一个写，关系到模式)</li>
+<li>自身属性：width/height/margin/padding/border/background</li>
+<li>文本属性：color/font/text-decoration/text-align/vertical-align/white-space/break-word</li>
+<li>其他属性（CSS3）：content/cursor/border-radius/box-shadow/text-shadow/background:linear-gradiennt ...</li>
+</ol>
+<h3 id="布局流程">布局流程</h3>
+<ol>
+<li>必须确定页面的版心（可视区），我们测量可知。</li>
+<li>分析页面中的行模块，以及每个行模块中的列模块。其实页面布局，就是一行一行罗列而成</li>
+<li>制作HTML结构，要遵循现有结构后有样式的原则。结构永远最重要。</li>
+<li>开始运用盒子模型的原理，通过DIV+CSS布局来控制网页的各个模块。</li>
+</ol>
+<h2 id="定位">定位</h2>
+<h3 id="边偏移">边偏移</h3>
+<p>定位的盒子要通过边偏移来移动位置，定位的盒子有边偏移才有价值，一般有定位的地方就有边偏移</p>
+<ul>
+<li>top:80px; 顶端偏移量，定义元素相对于其父元素上边线的距离</li>
+<li>bottom:80px; 底部偏移量，定义元素相对于其父元素下边线的距离</li>
+<li>left:80px; 左侧偏移量，定义元素相对于其父元素左边线的距离</li>
+<li>right:80px; 右侧偏移量，定义元素相对于其父元素右边线的距离</li>
+</ul>
+<h3 id="定位模式">定位模式</h3>
+<p>在不同情况下要用到不同的定位模式</p>
+<ul>
+<li>position: static; 静态定位,默认模式相当于none,不要定位的时候用</li>
+<li>position: relative; 相对定位，相对于原来在标准流中的位置来移动，在原有标准流的区域继续占有（保留位置）</li>
+<li>position: absolute; 绝对定位，绝对定位以父级位置来移动，父级没有定位就以浏览器为准（不保留位置）</li>
+<li>position: fixed; 固定定位，以浏览器可视窗口为准固定位置，不随滚动条滚动而滚动，不保留原位置</li>
+</ul>
+<blockquote>
+<p>父级要占有位置，子级要任意摆放，所以经常要使父级相对定位，子级绝对定位（子绝父相）</p>
+</blockquote>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<p>绝对定位居中对齐，先让盒子左侧移动到父级的水平中心位置，再让盒子向左移动自身宽度的一半
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei2.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<blockquote>
+<p>固定定位居中对齐，<code>width:100%</code>加<code>text-align:center</code>是通栏居中对齐</p>
+</blockquote>
+<p>堆叠顺序<code>z-index</code>，在使用定位时可能会出现盒子重叠，加了定位的盒子后面的盒子会压住前面的盒子，可以用<code>z-index</code>层叠等级改变盒子的堆叠顺序
+<img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei3.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/dingwei3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<ul>
+<li>z-index 取值可以是正负数或0，数值越大，盒子越靠上</li>
+<li>如果取值相同，则按书写顺序，后来居上</li>
+<li>取值后面没有单位</li>
+</ul>
+<p>定位会改变display属性，display是显示模式，可以改变显示模式的方法有</p>
+<ul>
+<li>可以用inline-block转换为行内块</li>
+<li>可以用浮动float默认转换行内块（类似行内块，并不完全一样，因为浮动是脱标的）</li>
+<li>绝对定位和固定定位也和浮动类似，默认转换为行内块</li>
+</ul>
+<h2 id="css高级技巧">css高级技巧</h2>
+<h3 id="元素的显示与隐藏">元素的显示与隐藏</h3>
+<p>display设置或检索对象如何显示，不保留位置
+display:nono; 隐藏对象
+display:block; 除了转换为块元素，同时还有显示元素的意思</p>
+<p>visibility设置对象隐藏,保留位置
+visibility:hidden; 隐藏
+visibility:visible; 显示</p>
+<p>overflow检索或设置对象超出其指定高宽时如何管理内容
+overflow:visible; 不隐藏内容也不显示滚动条
+overflow:hidden; 超出部分隐藏
+overflow:scroll; 不管内容是否超出，总是显示滚动条
+overflow:auto; 超出自动显示滚动条</p>
+<blockquote>
+<p>overflow可以清除浮动，可以保证盒子的内容不会超出盒子</p>
+</blockquote>
+<h3 id="css用户界面样式">css用户界面样式</h3>
+<p>鼠标样式cursor,属性：default 默认、pointer 小手、move 移动、text 文本、not-allowed 禁止</p>
+<p>轮廓线outline
+用于绘制元素周围的一条线，在边框的外围，可起到突出元素的作用。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">outline: outline-color | outline-style | outline-width;</span><br></pre></td></tr></table></figure>
+<p>常用的方式是：outline:0; 或者 outline:none</p>
+<p>防止拖拽文本域，让textarea标签右下角不可拖拽
+resize:none;</p>
+<h3 id="垂直居中">垂直居中</h3>
+<p>vertical-align垂直对齐，只针对于行内元素和行内块元素</p>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt>
+基于文本的四条线设置垂直对齐</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vertical-align:baseline | top | middle | bottom</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>主要用于控制文字和图片和表单之间垂直对齐关系</p>
+</blockquote>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi2.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<blockquote>
+<p>文字和图片默认是基线对齐，所以图片底侧会产生空白,改成其他对齐方式就能去除图片底侧空白，或者把图片转换成块元素也能去除</p>
+</blockquote>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi3.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/chuizhi3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<h3 id="文本溢出省略">文本溢出省略</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/*先强制一行内显示文本*/</span><br><span class="line">white-space: nowrap;</span><br><span class="line">/*超出部分隐藏*/</span><br><span class="line">overflow: hidden;</span><br><span class="line">/*用省略号替代超出部分*/</span><br><span class="line">text-overflow: ellipsis;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/shenglue.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/shenglue.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<h3 id="精灵技术">精灵技术</h3>
+<p>精灵是将网页中的多个背景图像整合到一张图中，减少服务器请求图片次数。网页中只需要精灵图中的某个小图。</p>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/jingling.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/jingling.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="精灵图"></p>
+<blockquote>
+<p>精确测量图标在精灵图的位置和大小，先设置盒子宽高，然后利用背景位置（background-position）确定精灵图位置</p>
+</blockquote>
+<p>滑动门技术，可以让特殊形状的背景图自适应元素内容，使背景图可以自由拉伸滑动。</p>
+<blockquote>
+<p>利用精灵图设置文本的左侧背景和右侧背景，设置padding拉伸，实现滑动门</p>
+</blockquote>
+<h3 id="负值">负值</h3>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/fuzhi.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/fuzhi.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt>
+利用margin负值让盒子边框相交的部分变细</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float: left;</span><br><span class="line">margin-left: -1px</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果要鼠标经历过突出边框，就要用到定位</p>
+</blockquote>
+<h3 id="三角形">三角形</h3>
+<p><img src="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/sanjiaoxing.png" class="lazyload" data-srcset="/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/sanjiaoxing.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<p>使用css边框模拟三角形，宽度高度要为0。四个边框都写，保留需要的边框颜色，其他位置边框颜色是透明（rransparent）。为了兼容性要设置font-size:0;line-height:0;</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="\2020\11\19\HTML5和CSS3有哪些新增内容\" title="HTML5和CSS3有哪些新增内容" rel="bookmark "><img src="/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/yuyi.png" class="lazyload" data-srcset="/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/yuyi.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">HTML5和CSS3有哪些新增内容</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/>http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-03T11:40:21+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jun 3, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/css/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>css</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/div/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>div</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/&title=如何使用CSS3加DIV布局 - Jeffのblog&summary=css基础知识
+引入css的三种方法：
+
+行类样式：&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;
+内部样式表：任意位置的&lt;style&gt;标签,推荐在头部定义
+外部样式表：&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/&title=如何使用CSS3加DIV布局 - Jeffのblog&summary=css基础知识
+引入css的三种方法：
+
+行类样式：&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;
+内部样式表：任意位置的&lt;style&gt;标签,推荐在头部定义
+外部样式表：&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/&title=如何使用CSS3加DIV布局 - Jeffのblog&summary=css基础知识
+引入css的三种方法：
+
+行类样式：&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;
+内部样式表：任意位置的&lt;style&gt;标签,推荐在头部定义
+外部样式表：&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>HTML5和CSS3有哪些新增内容</p>
+          <p class='content'>html5是超文本标记语言（HTML）的第五次重大修改，有全新的元素，属性和行为
+H5新增内容
+语义化标签
+
+&lt;header&gt; :头部标签
+&lt;nav&gt; :导航标签
+&lt...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/10/07/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+          <p class='title'>Linux基础命令的使用<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>终端的使用
+终端使用快捷键:
+
+ctrl + shift + = 放大字体
+ctrl + - 缩小字体
+
+终端使用技巧:
+tab键: 自动补全
+上下键: 切换曾经使用的命令
+终端命令格式:com...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow floatable" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">css基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E8%AF%B4%E6%98%8E"><span class="toc-text">样式说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%96%87%E6%9C%AC%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">单行文本垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-text">盒子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-text">外边距的合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-text">盒子模型的稳定性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80"><span class="toc-text">布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8"><span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="toc-text">清除浮动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS%E5%B1%9E%E6%80%A7%E4%B9%A6%E5%86%99%E9%A1%BA%E5%BA%8F"><span class="toc-text">CSS属性书写顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E6%B5%81%E7%A8%8B"><span class="toc-text">布局流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D"><span class="toc-text">定位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E5%81%8F%E7%A7%BB"><span class="toc-text">边偏移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E6%A8%A1%E5%BC%8F"><span class="toc-text">定位模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7"><span class="toc-text">css高级技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84%E6%98%BE%E7%A4%BA%E4%B8%8E%E9%9A%90%E8%97%8F"><span class="toc-text">元素的显示与隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E6%A0%B7%E5%BC%8F"><span class="toc-text">css用户界面样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">垂直居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E7%9C%81%E7%95%A5"><span class="toc-text">文本溢出省略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%81%B5%E6%8A%80%E6%9C%AF"><span class="toc-text">精灵技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E5%80%BC"><span class="toc-text">负值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="toc-text">三角形</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="如何使用CSS3加DIV布局";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '633400201';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"FbCJpVwMMe8GC1N7WD8cV4bO-gzGzoHsz","appKey":"MtjQGjzKPqBBjRzVC5eCIEXV","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://norhub.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

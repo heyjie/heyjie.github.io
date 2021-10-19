@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群 - Jeffのblog</title>
+  
+    <meta name="keywords" content="ubuntu,hdfs,hadoop">
+  
+
+  
+    <meta name="description" content="hadoop伪集群搭建，创建hadoop用户，安装jdk，配置hadoop">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Jeffのblog" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+    
+      <meta name='theme-color' content='#FFFFFF'>
+    
+      <meta name='msapplication-TileColor' content='#1BC3FB'>
+    
+      <meta name='msapplication-config' content='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml'>
+    
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+  
+  <link rel='shortcut icon' type='image/x-icon' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon.ico'>
+  <link rel='icon' type='image/x-icon' sizes='32x32' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-32x32.png'>
+  <link rel='apple-touch-icon' type='image/png' sizes='180x180' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/apple-touch-icon.png'>
+  <link rel='mask-icon' color='#1BC3FB' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/safari-pinned-tab.svg'>
+  <link rel='manifest' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/site.webmanifest'>
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+                <li>
+                  <a class="menuitem flat-box">
+                    <i class='fas fa-compact-disc fa-fw music'></i>背景音乐
+                  </a>
+                  <ul class="list-v">
+                    <li>
+                      <div class="aplayer-container">
+                        
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+                      </div>
+                    </li>
+                  </ul>
+                <li>
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Jeffのblog</p>
+    
+    
+      <p class="subtitle">热爱可抵岁月漫长</p>
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-book fa-fw'></i><p>文档</p>
+            </a>
+          
+            <a href="/about/"
+              
+              
+              id="about">
+              <i class='fas fa-info-circle fa-fw'></i><p>关于</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow floatable article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="https://norhub.com.cn" rel="nofollow">
+    <img no-lazy src="/images/head/def.gif">
+    <p>jeff</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">程序开发</a><span class="sep"></span><a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/">Linux</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Dec 17, 2019</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群" data-path="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/20200522160349.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/20200522160349.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<span id="more"></span>
+<h2 id="一、准备">一、准备</h2>
+<h3 id="1-1创建Hadoop用户">1.1创建Hadoop用户</h3>
+<p>在操作过程中，ubuntu系统和centos系统不同的执行的命令我都做了说明，没有说明的命令则两种系统都能执行</p>
+<blockquote>
+<p>ubuntu命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m hadoop -s /bin/bash     <span class="comment"># 创建hadoop用户，并使用/bin/bash作为shell</span></span><br><span class="line">sudo passwd hadoop                      <span class="comment"># 为hadoop用户设置密码，之后需要连续输入两次密码</span></span><br><span class="line">sudo adduser hadoop sudo                <span class="comment"># 为hadoop用户增加管理员权限</span></span><br><span class="line">su - hadoop                             <span class="comment"># 切换当前用户为用户hadoop</span></span><br><span class="line">sudo apt-get update                     <span class="comment"># 更新软件包信息</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m hadoop -s /bin/bash     <span class="comment"># 创建hadoop用户，并使用/bin/bash作为shell</span></span><br><span class="line">sudo passwd hadoop                      <span class="comment"># 设置密码</span></span><br><span class="line">sudo visudo                             <span class="comment"># 设置管理员，找到root ALL=(ALL) ALL这行，在下面增加一行hadoop ALL=(ALL) ALL</span></span><br><span class="line">su - hadoop                             <span class="comment"># 切换当前用户为用户hadoop</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2设置SSH无密码登录">1.2设置SSH无密码登录</h3>
+<blockquote>
+<p>ubuntu命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server     <span class="comment"># 安装SSH server</span></span><br><span class="line">ssh localhost                           <span class="comment"># 登陆SSH，第一次登陆输入yes</span></span><br><span class="line"><span class="built_in">exit</span>                                    <span class="comment"># 退出登录的ssh localhost</span></span><br><span class="line"><span class="built_in">cd</span> ~/.ssh/                              <span class="comment"># 如果没法进入该目录，执行一次ssh localhost</span></span><br><span class="line">ssh-keygen -t rsa                       <span class="comment"># 产生秘钥进行后续身份验证，需三次回车确认</span></span><br><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys   <span class="comment"># 将产生的Key放到许可证文件中</span></span><br><span class="line">ssh localhost                           <span class="comment"># 此时已不需密码即可登录localhost</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos命令</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep ssh                      # 查看ssh是否安装，如果包含了SSH client跟SSH server，则不需要再安装</span><br><span class="line">sudo yum install openssh-clients        # 安装ssh</span><br><span class="line">sudo yum install openssh-server</span><br><span class="line">ssh localhost                           # 登陆SSH，输入yes,然后按提示输入hadoop密码</span><br><span class="line">exit                                    # 退出刚才的 ssh localhost</span><br><span class="line">cd ~/.ssh/                              # 若没有该目录，请先执行一次ssh localhost</span><br><span class="line">ssh-keygen -t rsa                       # 会有提示，都按回车就可以</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys       # 加入授权</span><br><span class="line">chmod 600 ./authorized_keys             # 修改文件权限</span><br></pre></td></tr></table></figure>
+<h2 id="二、安装JDK">二、安装JDK</h2>
+<blockquote>
+<p>ubuntu命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -version                           <span class="comment"># 查看当前java版本，未出现版本信息代表未安装</span></span><br><span class="line">sudo apt-get install default-jdk        <span class="comment"># 使用apt-get安装openJDK</span></span><br><span class="line">java -version                           <span class="comment"># 再次查询Java版本，查看是否安装成功</span></span><br></pre></td></tr></table></figure>
+<p>查询java安装路径路径，记住该路径，下面步骤中的配置要用到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">update-alternatives --display java</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1847_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1847_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1847_1.png"></p>
+<blockquote>
+<p>centos命令
+安装openJDK</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-devel.x86_64</span><br></pre></td></tr></table></figure>
+<p>jdk路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/lib/jvm/java-1.8.0-openjdk</span><br></pre></td></tr></table></figure>
+<h2 id="三、下载安装Hadoop">三、下载安装Hadoop</h2>
+<blockquote>
+<p>ubuntu命令</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install wget</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos命令</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+<p>下载安装hadoop</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://archive.apache.org/dist/hadoop/core/hadoop-2.6.4/hadoop-2.6.5.tar.gz     <span class="comment"># 下载hadoop</span></span><br><span class="line">sudo tar -zxvf hadoop-2.6.5.tar.gz      <span class="comment"># 解压缩</span></span><br><span class="line">sudo mv hadoop-2.6.5 /usr/<span class="built_in">local</span>/hadoop  <span class="comment"># 将hadoop移动到/usr/local/hadoop</span></span><br><span class="line">ll  /usr/<span class="built_in">local</span>/hadoop                   <span class="comment"># 查看hadoop安装目录</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1849_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1849_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1849_1.png"></p>
+<ul>
+<li>bin是运行文件目录，包括Hadoop、HDFS和YARN</li>
+<li>sbin是shell文件目录，<a target="_blank" rel="noopener" href="http://xn--start-all-zp6on31l.sh">包括start-all.sh</a>、<a target="_blank" rel="noopener" href="http://stop-all.sh">stop-all.sh</a></li>
+<li>etc/hadoop目录包含hadoop配置文件</li>
+<li>lib是hadoop函数库目录</li>
+<li>logs系统日志目录</li>
+</ul>
+<h2 id="四、设置Hadoop环境变量">四、设置Hadoop环境变量</h2>
+<p>在终端输入命令打开编辑器
+使用vim编辑器，点击键盘&quot;i&quot;, 就能开始编辑。输入配置文件内容后，点击键盘&quot;esc&quot;键，然后输入<code>:wq</code>来保存退出</p>
+<blockquote>
+<p>ubuntu命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim --version                      <span class="comment"># 检查是否安装vim</span></span><br><span class="line">sudo apt-get install vim                <span class="comment"># 安装vim</span></span><br><span class="line">sudo vim ~/.bashrc                      <span class="comment"># 编辑.bashrc</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rpm -qa|grep vim                   <span class="comment"># 检查是否安装vim</span></span><br><span class="line">sudo yum install vim -y                 <span class="comment"># 安装vim</span></span><br><span class="line">sudo vim ~/.bashrc                      <span class="comment"># 编辑.bashrc</span></span><br></pre></td></tr></table></figure>
+<p>在编辑器中输入下面内容</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置jdk安装路径，参考安装jdk的部分输出的路径</span></span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-<span class="number">8</span>-openjdk-amd64</span><br><span class="line"><span class="comment"># centos的jdk路径，使用cento时取消下面注释</span></span><br><span class="line"><span class="comment"># export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk</span></span><br><span class="line"><span class="comment"># 设置HADOOP_HOME为安装路径</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line"><span class="comment"># 设置PATH</span></span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/<span class="built_in">bin</span></span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin</span><br><span class="line"><span class="comment"># 其他环境变量</span></span><br><span class="line">export CLASSPATH=$($HADOOP_HOME/<span class="built_in">bin</span>/hadoop classpath):$CLASSPATH</span><br><span class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</span><br><span class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</span><br><span class="line">export YARN_HOME=$HADOOP_HOME</span><br><span class="line"><span class="comment"># 连接库相关设置</span></span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</span><br><span class="line">export HADOOP_OPTS=<span class="string">&quot;-DJava.library.path=$HADOOP_HOME/lib&quot;</span></span><br><span class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native:$JAVA_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
+<p>或者图形界面可以使用<code>sudo gedit ~/.bashrc</code>命令编辑，在编辑器中输入后，然后按ctrl+s保存，再关闭编辑器
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1851_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1851_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1851_1.png"></p>
+<p>让设置立即生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1853_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1853_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1853_1.png"></p>
+<h2 id="五、修改Hadoop配置文件">五、修改Hadoop配置文件</h2>
+<p><a target="_blank" rel="noopener" href="http://xn--hadoop-env-0840as06l.sh">编辑hadoop-env.sh</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></table></figure>
+<p>设置JAVA_HOME的路径，参考安装jdk的部分输出的路径，编辑完成保存退出
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1855_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1855_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1855_1.png"></p>
+<p>修改core-site.xml文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入以下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hadoop_data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一个节点是临时目录，第二个节点是HDFS默认名称
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1857_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1857_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1857_1.png"></p>
+<p>编辑yarn-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入以下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services.mapreduce.shuffle.class<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1867_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1867_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1867_1.png"></p>
+<p>编辑mapred-site.xml，mapred-site.xml用于监控Map与Reduce程序的JobTracker任务分配情况以及TaskTracker任务运行情况</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cp /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/mapred-site.xml.template /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/mapred-site.xml    <span class="comment">#复制模板文件</span></span><br><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入以下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个节点是设置mapreduce框架为yarn
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1865_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1865_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1865_1.png"></p>
+<p>编辑 hdfs-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入下面内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hadoop_data/hdfs/namenode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hadoop_data/hdfs/datanode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一个节点是设置blocks副本备份数量，第二个是NameNode数据存储目录，第三个是DataNode数据存储目录
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1863_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1863_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1863_1.png"></p>
+<h2 id="六、创建并格式化HDFS目录">六、创建并格式化HDFS目录</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/namenode   <span class="comment">#创建namenode数据存储目录</span></span><br><span class="line">sudo mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/datanode   <span class="comment">#创建datanode数据存储目录</span></span><br><span class="line">sudo chown -R hadoop /usr/<span class="built_in">local</span>/hadoop                      <span class="comment">#修改Hadoop目录所有者为hadoop</span></span><br><span class="line">hadoop namenode -format                                     <span class="comment">#格式化HDFS</span></span><br></pre></td></tr></table></figure>
+<h2 id="七、启动Hadoop">七、启动Hadoop</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start-dfs.sh                       <span class="comment">#启动HDFS</span></span><br><span class="line">start-yarn.sh                      <span class="comment">#启动Hadoop MapReduce框架Yarn</span></span><br></pre></td></tr></table></figure>
+<p>或者同时启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+<p>输入<code>jps</code>查看进程是否启动
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1869_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1869_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1869_1.png"></p>
+<p>查看Hadoop ResourceManager Web页面，打开浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:8088/">http://localhost:8088/</a>
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1871_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1871_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1871_1.png"></p>
+<p>查看NameNode HDFS Web页面，打开浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:50070/">http://localhost:50070/</a>
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1873_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/1873_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="1873_1.png"></p>
+<h2 id="八、搭建hadoop集群">八、搭建hadoop集群</h2>
+<p>Hadoop 的运行方式是由配置文件决定的（运行 Hadoop 时会读取配置文件），因此如果需要从伪分布式模式切换回分布式模式，需要修改配置文件，先按照上面一二三四步骤搭建环境，再进行下面的步骤</p>
+<p>准备四台计算机，其中有一台namenode和三台datanode</p>
+<h3 id="8-1-配置第一台datanode服务器">8.1 配置第一台datanode服务器</h3>
+<p>先把ip改成固定ip</p>
+<blockquote>
+<p>ubuntu改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces                <span class="comment">#改ip,</span></span><br><span class="line">sudo /etc/init.d/networking restart             <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens192 <span class="comment">#改ip,</span></span><br><span class="line">service network restart                         <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<p>修改主机名为data1</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hostname</span><br></pre></td></tr></table></figure>
+<p>编辑hosts文件，每台ip对应一个主机</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+<p>编辑core-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/<span class="built_in">local</span>/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入以下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编辑yarn-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/local/hadoop/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入下面内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services.mapreduce.shuffle.class<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8025<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8030<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:8050<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上设置说明：</p>
+<ul>
+<li>ResourceManager主机与NodeManager的连接地址为8025</li>
+<li>ResourceManager与ApplicationMater的连接地址为8030</li>
+<li>ResourceManager与客户端的连接地址为8050</li>
+</ul>
+<p>编辑mapred-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/local/hadoop/etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入下面内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:54311<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编辑hdfs-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入下面内容,设置datanode目录</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hadoop_data/hdfs/datanode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重复以上步骤再建立3台主机，如果是VM虚拟机则复制3台虚拟机</p>
+<h3 id="8-2-配置第二台datanode服务器">8.2 配置第二台datanode服务器</h3>
+<p>先把ip改成固定ip</p>
+<blockquote>
+<p>ubuntu改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces                <span class="comment">#改ip,</span></span><br><span class="line">sudo /etc/init.d/networking restart             <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens192 <span class="comment">#改ip,</span></span><br><span class="line">service network restart                         <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<p>改主机名为data2</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hostname</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-配置第三台datanode服务器">8.3 配置第三台datanode服务器</h3>
+<p>先把ip改成固定ip</p>
+<blockquote>
+<p>ubuntu改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces                <span class="comment">#改ip,</span></span><br><span class="line">sudo /etc/init.d/networking restart             <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens192 <span class="comment">#改ip,</span></span><br><span class="line">service network restart                         <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<p>改主机名为data3</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hostname</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-配置一台namenode服务器">8.4 配置一台namenode服务器</h3>
+<p>先把ip改成固定ip</p>
+<blockquote>
+<p>ubuntu改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces                <span class="comment">#改ip,</span></span><br><span class="line">sudo /etc/init.d/networking restart             <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>centos改ip命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens192 <span class="comment">#改ip,</span></span><br><span class="line">service network restart                         <span class="comment">#重启网卡</span></span><br></pre></td></tr></table></figure>
+<p>改主机名为master</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hostname</span><br></pre></td></tr></table></figure>
+<p>编辑hdfs-site.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+<p>输入下面内容,设置datanode目录</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hadoop_data/hdfs/namenode<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>编辑masters文件,主要是告诉hadoop哪一台服务器是namenode</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/local/hadoop/etc/hadoop/masters   # 设置master</span><br></pre></td></tr></table></figure>
+<p>编辑slaves文件,主要是告诉hadoop哪一台服务器是datanode</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/local/hadoop/etc/hadoop/slaves    #设置data1,data2,data3</span><br></pre></td></tr></table></figure>
+<p>手动重启所有服务器</p>
+<h3 id="8-5-mater连接data1、data2、data3，创建HDFS目录">8.5 mater连接data1、data2、data3，创建HDFS目录</h3>
+<p>使用master主机连接data1进行配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh data1                                               <span class="comment"># ssh连接到data1</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs          <span class="comment"># 删除HDFS所有目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/datanode    <span class="comment"># 创建DataNode存储目录</span></span><br><span class="line">sudo chown -R hadoop:hadoop /usr/<span class="built_in">local</span>/hadoop           <span class="comment"># 更改目录所有者</span></span><br><span class="line"><span class="built_in">exit</span>                                                    <span class="comment"># 中断连接回到master</span></span><br></pre></td></tr></table></figure>
+<p>使用master主机连接data2进行配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh data2                                               <span class="comment"># ssh连接到data1</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs          <span class="comment"># 删除HDFS所有目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/datanode    <span class="comment"># 创建DataNode存储目录</span></span><br><span class="line">sudo chown -R hadoop:hadoop /usr/<span class="built_in">local</span>/hadoop           <span class="comment"># 更改目录所有者</span></span><br><span class="line"><span class="built_in">exit</span>                                                    <span class="comment"># 中断连接回到master</span></span><br></pre></td></tr></table></figure>
+<p>使用master主机连接data3进行配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh data3                                               <span class="comment"># ssh连接到data1</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs          <span class="comment"># 删除HDFS所有目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/datanode    <span class="comment"># 创建DataNode存储目录</span></span><br><span class="line">sudo chown -R hadoop:hadoop /usr/<span class="built_in">local</span>/hadoop           <span class="comment"># 更改目录所有者</span></span><br><span class="line"><span class="built_in">exit</span>                                                    <span class="comment"># 中断连接回到master</span></span><br></pre></td></tr></table></figure>
+<p>创建并格式化namenode HDFS目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">su - hadoop                                             <span class="comment"># 切换hadoop用户</span></span><br><span class="line">sudo rm -rf /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs          <span class="comment"># 删除HDFS所有目录</span></span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/hadoop/hadoop_data/hdfs/namenode    <span class="comment"># 创建DataNode存储目录</span></span><br><span class="line">sudo chown -R hadoop:hadoop /usr/<span class="built_in">local</span>/hadoop           <span class="comment"># 更改目录所有者</span></span><br><span class="line">hadoop namenode -format                                 <span class="comment"># 格式化namenode HDFS目录</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-6-启动集群">8.6 启动集群</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start-dfs.sh                       <span class="comment"># 启动HDFS，第一次会询问，输入yes</span></span><br><span class="line">start-yarn.sh                      <span class="comment"># 启动Hadoop MapReduce框架Yarn</span></span><br></pre></td></tr></table></figure>
+<p>或者同时启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+<p>如果要停止可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">stop-all.sh</span><br></pre></td></tr></table></figure>
+<p>查看master启动的进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jsp</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/Snipaste_2020-07-30_16-57-15.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/Snipaste_2020-07-30_16-57-15.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<p>查看data1启动的进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh data1                       <span class="comment"># ssh连接data1</span></span><br><span class="line">jps                             <span class="comment"># 查看data1的进程</span></span><br><span class="line"><span class="built_in">exit</span>                            <span class="comment"># 退出连接</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/Snipaste_2020-07-30_16-59-51.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/Snipaste_2020-07-30_16-59-51.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt></p>
+<h3 id="8-7-端口开放说明">8.7 端口开放说明</h3>
+<p>集群启动后由于存在防火墙，所以hadoop无法访问，可以按需开放以下端口。或者直接关闭，一劳永逸</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>节点</th>
+<th>默认端口</th>
+<th>配置</th>
+<th>用途说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HDFS</td>
+<td>DataNode</td>
+<td>50010</td>
+<td>dfs.datanode.address</td>
+<td>datanode服务端口，用于数据传输</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>DataNode</td>
+<td>50075</td>
+<td>dfs.datanode.http.address</td>
+<td>http服务的端口</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>DataNode</td>
+<td>50475</td>
+<td>dfs.datanode.https.address</td>
+<td>https服务的端口</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>DataNode</td>
+<td>50020</td>
+<td>dfs.datanode.ipc.address</td>
+<td>ipc服务的端口</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>NameNode</td>
+<td>50070</td>
+<td>dfs.namenode.http-address</td>
+<td>http服务的端口</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>NameNode</td>
+<td>50470</td>
+<td>dfs.namenode.https-address</td>
+<td>https服务的端口</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>NameNode</td>
+<td>8020</td>
+<td>fs.defaultFS</td>
+<td>接收Client连接的RPC端口，用于获取文件系统metadata信息。</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>journalnode</td>
+<td>8485</td>
+<td>dfs.journalnode.rpc-address</td>
+<td>RPC服务</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>journalnode</td>
+<td>8480</td>
+<td>dfs.journalnode.http-address</td>
+<td>HTTP服务</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>ZKFC</td>
+<td>8019</td>
+<td>dfs.ha.zkfc.port</td>
+<td>ZooKeeper FailoverController，用于NN HA</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>8032</td>
+<td>yarn.resourcemanager.address</td>
+<td>RM的applications manager(ASM)端口</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>8030</td>
+<td>yarn.resourcemanager.scheduler.address</td>
+<td>scheduler组件的IPC端口</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>8031</td>
+<td>yarn.resourcemanager.resource-tracker.address</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>8033</td>
+<td>yarn.resourcemanager.admin.address</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>8088</td>
+<td>yarn.resourcemanager.webapp.address</td>
+<td>http服务端口</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>NodeManager</td>
+<td>8040</td>
+<td>yarn.nodemanager.localizer.address</td>
+<td>localizer IPC</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>NodeManager</td>
+<td>8042</td>
+<td>yarn.nodemanager.webapp.address</td>
+<td>http服务端口</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>NodeManager</td>
+<td>8041</td>
+<td>yarn.nodemanager.address</td>
+<td>NM中container manager的端口</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>JobHistory Server</td>
+<td>10020</td>
+<td>mapreduce.jobhistory.address</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>JobHistory Server</td>
+<td>19888</td>
+<td>mapreduce.jobhistory.webapp.address</td>
+<td>http服务端口</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>Master</td>
+<td>60000</td>
+<td>hbase.master.port</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>Master</td>
+<td>60010</td>
+<td>hbase.master.info.port</td>
+<td>http服务端口</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>RegionServer</td>
+<td>60020</td>
+<td>hbase.regionserver.port</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>RegionServer</td>
+<td>60030</td>
+<td>hbase.regionserver.info.port</td>
+<td>http服务端口</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>HQuorumPeer</td>
+<td>2181</td>
+<td>hbase.zookeeper.property.clientPort</td>
+<td>HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>HQuorumPeer</td>
+<td>2888</td>
+<td>hbase.zookeeper.peerport</td>
+<td>HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。</td>
+</tr>
+<tr>
+<td>HBase</td>
+<td>HQuorumPeer</td>
+<td>3888</td>
+<td>hbase.zookeeper.leaderport</td>
+<td>HBase-managed ZK mode，使用独立的ZooKeeper集群则不会启用该端口。</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td>Metastore</td>
+<td>9083</td>
+<td>/etc/default/hive-metastore中export PORT=<port>来更新默认端口</port></td>
+<td></td>
+</tr>
+<tr>
+<td>Hive</td>
+<td>HiveServer</td>
+<td>10000</td>
+<td>/etc/hive/conf/hive-env.sh中export HIVE_SERVER2_THRIFT_PORT=<port>来更新默认端口</port></td>
+<td></td>
+</tr>
+<tr>
+<td>ZooKeeper</td>
+<td>Server</td>
+<td>2181</td>
+<td>/etc/zookeeper/conf/zoo.cfg中clientPort=<port></port></td>
+<td>对客户端提供服务的端口</td>
+</tr>
+<tr>
+<td>ZooKeeper</td>
+<td>Server</td>
+<td>2888</td>
+<td>/etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分</td>
+<td>follower用来连接到leader，只在leader上监听该端口。</td>
+</tr>
+<tr>
+<td>ZooKeeper</td>
+<td>Server</td>
+<td>3888</td>
+<td>/etc/zookeeper/conf/zoo.cfg中server.x=[hostname]:nnnnn[:nnnnn]，标蓝部分</td>
+<td>用于leader选举的。只在electionAlg是1,2或3(默认)时需要。</td>
+</tr>
+</tbody>
+</table>
+<p>例如开放8025端口</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8025/tcp</span><br></pre></td></tr></table></figure>
+<p>其他防火墙命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --state                       <span class="comment"># 运行状态</span></span><br><span class="line">sudo firewall-cmd --list-all                    <span class="comment"># 查看防火墙规则</span></span><br><span class="line">sudo firewall-cmd --zone=public --list-ports    <span class="comment"># 已经开放的端口</span></span><br><span class="line">sudo systemctl stop firewalld.service           <span class="comment"># 停止防火墙</span></span><br><span class="line">sudo systemctl start firewalld.service          <span class="comment"># 运行防火墙</span></span><br><span class="line">sudo systemctl restart firewalld.service        <span class="comment"># 重启防火墙</span></span><br><span class="line">sudo firewall-cmd --zone=public --remove-port=5672/tcp --permanent  <span class="comment"># 关闭5672端口</span></span><br><span class="line">netstat -lnpt <span class="comment"># 查看监听的端口</span></span><br><span class="line">netstat -lnpt | grep 5672 <span class="comment"># 查看端口被哪个进程占用</span></span><br></pre></td></tr></table></figure>
+<h2 id="九、Hadoop常用的HDFS命令">九、Hadoop常用的HDFS命令</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hadoop fs -mkdir</td>
+<td>创建HDFS目录</td>
+</tr>
+<tr>
+<td>hadoop fs -ls</td>
+<td>列出HDFS目录</td>
+</tr>
+<tr>
+<td>hadoop fs -copyFromLocal</td>
+<td>使用copyFromLocal复制本地文件到HDFS</td>
+</tr>
+<tr>
+<td>hadoop fs -put</td>
+<td>使用put复制本地文件到HDFS</td>
+</tr>
+<tr>
+<td>hadoop fs -cat</td>
+<td>列出HDFS目录下的文件内容</td>
+</tr>
+<tr>
+<td>hadoop fs -copyToLocal</td>
+<td>使用copyToLocal将HDFS上的文件复制到本地</td>
+</tr>
+<tr>
+<td>hadoop fs -cp</td>
+<td>复制HDFS文件</td>
+</tr>
+<tr>
+<td>hadoop fs -rm</td>
+<td>删除HDFS文件</td>
+</tr>
+</tbody>
+</table>
+<p>操作示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hadoop fs -mkdir -p /usr/hadoop/<span class="built_in">test</span>            <span class="comment"># 创建/usr/hadoop/test目录</span></span><br><span class="line">hadoop fs -copyFromLocal /home/hadoop/data.txt /usr/hadoop/<span class="built_in">test</span>/test.txt <span class="comment"># 复制本地文件到hdfs目录</span></span><br><span class="line">hadoop fs -cat /home/hadoop/data.txt|more       <span class="comment"># 查看文件内容，如果内容较大|more是分页显示</span></span><br><span class="line">hadoop fs -put /home/hadoop/data.txt /usr/hadoop/<span class="built_in">test</span>/test.txt <span class="comment"># put可以直接覆盖文件，copyFromLocal则需要-f命令</span></span><br><span class="line"><span class="comment"># put和copyFromLocal的区别是put可以接受标准输入</span></span><br><span class="line"><span class="built_in">echo</span> abc | hadoop fs -put - /usr/hadoop/<span class="built_in">test</span>/test.txt   <span class="comment"># 输入abc到hdfs文件内容</span></span><br><span class="line">ls /home/hadoop | hadoop fs -put - /usr/hadoop/<span class="built_in">test</span>/hadooplist.txt   <span class="comment"># 将本地目录列表存储到hdfs文件</span></span><br><span class="line">hadoop fs -copyToLocal /usr/hadoop/<span class="built_in">test</span>/hadooplist.txt  <span class="comment"># 复制hdfs文件到本地</span></span><br><span class="line">hadoop fs -get /usr/hadoop/<span class="built_in">test</span>/hadooplist.txt local.txt        <span class="comment"># 使用get复制hdfs文件到本地</span></span><br><span class="line">hadoop fs -cp /usr/hadoop/<span class="built_in">test</span>/hadooplist.txt /usr/hadoop       <span class="comment"># 复制hdfs文件到其他目录</span></span><br><span class="line">hadoop fs -rm /usr/hadoop/<span class="built_in">test</span>/hadooplist.txt           <span class="comment"># 删除hdfs文件</span></span><br><span class="line">hadoop fs -rm -R /usr/hadoop/<span class="built_in">test</span>                       <span class="comment"># 删除hdfs目录</span></span><br><span class="line">hadoop fs -ls -R /                                      <span class="comment"># 查看所有hdfs目录,-R表示子目录也要看</span></span><br></pre></td></tr></table></figure>
+<h2 id="十、遇到的问题和解决办法">十、遇到的问题和解决办法</h2>
+<p>在安装完成后发现namenode进程没有启动，打不开 <a target="_blank" rel="noopener" href="http://localhost:50070/">http://localhost:50070/</a> 页面。首先去查看日志</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/hadoop/logs               <span class="comment">#进入日志目录</span></span><br><span class="line">sz hadoop-hadoop-namenode-csubuntu.log  <span class="comment">#下载日志</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2006_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2006_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="2006_1.png"></p>
+<p>发现是9000端口被占用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo netstat -lnp | grep 9000           <span class="comment">#查看9000端口占用</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2010_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2010_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="2010_1.png"></p>
+<p>看到是nginx占用了9000端口,把nginx停止就能重新启动hadoop</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep nginx                     <span class="comment">#查看nginx主进程</span></span><br><span class="line">sudo <span class="built_in">kill</span> -9 主进程号                   <span class="comment">#强制停止Nginx</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2012_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2012_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="2012_1.png"></p>
+<p>启动hadoop守护进程
+<img src="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2014_1.png" class="lazyload" data-srcset="/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/2014_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="2014_1.png"></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="\2020\07\08\如何使用Ubuntu18安装Hive\" title="如何使用Ubuntu18安装Hive" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">如何使用Ubuntu18安装Hive</span><span class="excerpt">hive是基于hadoop的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表并提供类sql查询功能</span></a><a class="item" href="\2020\04\15\在Ubuntu16.04使用命令行方式安Matlab\" title="在Ubuntu16.04使用命令行方式安Matlab" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">在Ubuntu16.04使用命令行方式安Matlab</span><span class="excerpt">Linux服务器命令行模式安装Matlab</span></a><a class="item" href="\2020\04\16\使用Ubuntu19.10搭建一个编程工作站如何配置\" title="使用Ubuntu19.10搭建一个编程工作站如何配置" rel="bookmark "><img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_250,h_250/https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg" class="lazyload" data-srcset="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_250,h_250/https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">使用Ubuntu19.10搭建一个编程工作站如何配置</span><span class="excerpt">ubuntu在个人工作站与服务器领域都表现的非常稳定优秀，工程师使用ubuntu做为个人开发电脑完全没有问题，功能齐全性能...</span></a><a class="item" href="\2020\04\15\如何使用Ubuntu16.04挂载硬盘\" title="如何使用Ubuntu16.04挂载硬盘" rel="bookmark "><img src="/2020/04/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu16.04%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/1261_1.png" class="lazyload" data-srcset="/2020/04/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu16.04%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/1261_1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">如何使用Ubuntu16.04挂载硬盘</span><span class="excerpt">操作前先要添加一块硬盘
+查看硬盘位置
+sudo fdisk -l
+
+根据磁盘大小，我挂的是40g的，所以很明显是 /dev...</span></a><a class="item" href="\2020\09\01\Linux出现Read-onlyFileSystem错误的解决方法\" title="Linux出现Read-onlyFileSystem错误的解决方法" rel="bookmark "><img src="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" class="lazyload" data-srcset="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">Linux出现Read-onlyFileSystem错误的解决方法</span><span class="excerpt">造成这个问题的原因大多数是因为非正常关机后导致文件系统受损引起的，在系统重启之后，
+受损分区就会被Linux自动挂载为只读...</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://norhub.com.cn/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/>http://norhub.com.cn/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-31T10:15:00+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jul 31, 2020</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ubuntu/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>ubuntu</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hdfs/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>hdfs</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hadoop/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>hadoop</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://norhub.com.cn/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/&title=如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群 - Jeffのblog&summary=Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://norhub.com.cn/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/&title=如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群 - Jeffのblog&summary=Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://norhub.com.cn/2019/12/17/%E5%A6%82%E4%BD%95%E5%9C%A8Ubuntu18%E5%92%8CCentos7%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop2.6.5%E9%9B%86%E7%BE%A4%E5%92%8C%E4%BC%AA%E9%9B%86%E7%BE%A4/&title=如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群 - Jeffのblog&summary=Hadoop被公认是一套行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力。单节点集群是利用一台主机模拟Hadoop运行环境，可以使用Hadoop所有模块
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2019/12/26/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85OracleLinux%E7%B3%BB%E7%BB%9F%E5%B9%B6%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>如何安装OracleLinux系统并搭建数据库</p>
+          <p class='content'>Oracle Linux以对Oracle软件和硬件支持较好见长,安装Oracle数据库首选系统，最重要的是Oracle数据库跑在上Oracle Linux性能可以提升超过75%
+
+
+一、安装操作...</p>
+        </a>
+      
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow floatable" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87"><span class="toc-text">一、准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%88%9B%E5%BB%BAHadoop%E7%94%A8%E6%88%B7"><span class="toc-text">1.1创建Hadoop用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E8%AE%BE%E7%BD%AESSH%E6%97%A0%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-text">1.2设置SSH无密码登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85JDK"><span class="toc-text">二、安装JDK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Hadoop"><span class="toc-text">三、下载安装Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AEHadoop%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">四、设置Hadoop环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BF%AE%E6%94%B9Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">五、修改Hadoop配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%88%9B%E5%BB%BA%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%96HDFS%E7%9B%AE%E5%BD%95"><span class="toc-text">六、创建并格式化HDFS目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%90%AF%E5%8A%A8Hadoop"><span class="toc-text">七、启动Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%90%AD%E5%BB%BAhadoop%E9%9B%86%E7%BE%A4"><span class="toc-text">八、搭建hadoop集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%80%E5%8F%B0datanode%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">8.1 配置第一台datanode服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%BA%8C%E5%8F%B0datanode%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">8.2 配置第二台datanode服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E9%85%8D%E7%BD%AE%E7%AC%AC%E4%B8%89%E5%8F%B0datanode%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">8.3 配置第三台datanode服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E9%85%8D%E7%BD%AE%E4%B8%80%E5%8F%B0namenode%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">8.4 配置一台namenode服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-mater%E8%BF%9E%E6%8E%A5data1%E3%80%81data2%E3%80%81data3%EF%BC%8C%E5%88%9B%E5%BB%BAHDFS%E7%9B%AE%E5%BD%95"><span class="toc-text">8.5 mater连接data1、data2、data3，创建HDFS目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-%E5%90%AF%E5%8A%A8%E9%9B%86%E7%BE%A4"><span class="toc-text">8.6 启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-7-%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%E8%AF%B4%E6%98%8E"><span class="toc-text">8.7 端口开放说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Hadoop%E5%B8%B8%E7%94%A8%E7%9A%84HDFS%E5%91%BD%E4%BB%A4"><span class="toc-text">九、Hadoop常用的HDFS命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">十、遇到的问题和解决办法</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="如何在Ubuntu18和Centos7下搭建Hadoop2.6.5集群和伪集群";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '633400201';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"FbCJpVwMMe8GC1N7WD8cV4bO-gzGzoHsz","appKey":"MtjQGjzKPqBBjRzVC5eCIEXV","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://norhub.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

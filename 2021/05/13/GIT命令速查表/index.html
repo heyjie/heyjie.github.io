@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Git 命令速查表 - Jeffのblog</title>
+  
+    <meta name="keywords" content="git">
+  
+
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Jeffのblog" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+    
+      <meta name='theme-color' content='#FFFFFF'>
+    
+      <meta name='msapplication-TileColor' content='#1BC3FB'>
+    
+      <meta name='msapplication-config' content='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml'>
+    
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+  
+  <link rel='shortcut icon' type='image/x-icon' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon.ico'>
+  <link rel='icon' type='image/x-icon' sizes='32x32' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-32x32.png'>
+  <link rel='apple-touch-icon' type='image/png' sizes='180x180' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/apple-touch-icon.png'>
+  <link rel='mask-icon' color='#1BC3FB' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/safari-pinned-tab.svg'>
+  <link rel='manifest' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/site.webmanifest'>
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+                <li>
+                  <a class="menuitem flat-box">
+                    <i class='fas fa-compact-disc fa-fw music'></i>背景音乐
+                  </a>
+                  <ul class="list-v">
+                    <li>
+                      <div class="aplayer-container">
+                        
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+                      </div>
+                    </li>
+                  </ul>
+                <li>
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Jeffのblog</p>
+    
+    
+      <p class="subtitle">热爱可抵岁月漫长</p>
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-book fa-fw'></i><p>文档</p>
+            </a>
+          
+            <a href="/about/"
+              
+              
+              id="about">
+              <i class='fas fa-info-circle fa-fw'></i><p>关于</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow floatable article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Git 命令速查表
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="https://norhub.com.cn" rel="nofollow">
+    <img no-lazy src="/images/head/def.gif">
+    <p>jeff</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">程序开发</a><span class="sep"></span><a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/GIT/">GIT</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：May 13, 2021</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Git 命令速查表" data-path="/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命令的速查功能，以及相关的术语参考，是程序开发人员必备的参考工具。</p>
+<h2 id="Git-常用命令">Git 常用命令</h2>
+<h3 id="创建命令-Create">创建命令 Create</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git clone &lt;url&gt;</code></td>
+<td>克隆远程仓库</td>
+</tr>
+<tr>
+<td><code>git init</code></td>
+<td>初始化本地 git 仓库（即创建新的本地仓库）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="本地更改-Local-Changes">本地更改 Local Changes</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git status</code></td>
+<td>查看当前分支状态</td>
+</tr>
+<tr>
+<td><code>git diff</code></td>
+<td>查看已跟踪文件的变更</td>
+</tr>
+<tr>
+<td><code>git add &lt;file&gt;</code></td>
+<td>将指定的文件添加到暂存区</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>将所有有变更的文件添加到暂存区</td>
+</tr>
+<tr>
+<td><code>git commit -a</code></td>
+<td>提交所有本地修改</td>
+</tr>
+<tr>
+<td><code>git commit -m &quot;xxx&quot;</code></td>
+<td>把已添加至暂存区的文件执行提交，并以 xxx 作为本次提交的描述</td>
+</tr>
+<tr>
+<td><code>git commit --amend -m &quot;xxx&quot;</code></td>
+<td>修改上一次提交（请勿用该命令修改已发布的提交）</td>
+</tr>
+<tr>
+<td><code>git commit -am &quot;xxx&quot;</code></td>
+<td>该命令是 <code>git add .</code> 和 <code>git commit -m &quot;xxx&quot;</code> 的快捷方式</td>
+</tr>
+<tr>
+<td><code>git commit -C HEAD -a -amend</code></td>
+<td>增补提交（不会产生新的提交历史纪录）</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>拉取代码及快速合并</td>
+</tr>
+<tr>
+<td><code>git pull -r &lt;branch&gt;</code></td>
+<td>拉取远程代码及快速合并</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>提交到git服务器</td>
+</tr>
+<tr>
+<td><code>git push origin branchName:branchName</code></td>
+<td>推送本地的branchName(冒号前面的)分支到远程origin的branchName(冒号后面的)分支(没有会自动创建)</td>
+</tr>
+<tr>
+<td><code>git stash</code></td>
+<td>暂存当前修改，将所有置为 HEAD 状态</td>
+</tr>
+<tr>
+<td><code>git stash list</code></td>
+<td>查看所有暂存列表</td>
+</tr>
+<tr>
+<td><code>git stash push</code></td>
+<td>把当前工作区的文件暂存到临时空间</td>
+</tr>
+<tr>
+<td><code>git stash pop</code></td>
+<td>把文件从临时空间中恢复到当前工作区</td>
+</tr>
+</tbody>
+</table>
+<h3 id="提交历史-Commit-History">提交历史 Commit History</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git log</code></td>
+<td>查看提交日志</td>
+</tr>
+<tr>
+<td><code>git log -n</code></td>
+<td>显示 n 行日志，n 为整数</td>
+</tr>
+<tr>
+<td><code>git log --stat</code></td>
+<td>查看本地提交日志</td>
+</tr>
+<tr>
+<td><code>git show &lt;commit&gt;</code></td>
+<td>查看提交日志及相关变动文件</td>
+</tr>
+<tr>
+<td><code>git show HEAD</code></td>
+<td>查看 HEAD 提交日志</td>
+</tr>
+<tr>
+<td><code>git show HEAD^</code></td>
+<td>查看 HEAD 的上一个版本提交日志。另外，<code>git show HEAD^^</code> 是查看上 2 个版本的提交日志；<code>git show HEAD^5</code> 是查看上 5 个版本的提交日志</td>
+</tr>
+<tr>
+<td><code>git blame &lt;file&gt;</code></td>
+<td>对于指定文件，逐行显示提交的哈希ID、提交者、提交日期以及修改的内容</td>
+</tr>
+<tr>
+<td><code>git whatchanged</code></td>
+<td>显示提交历史，以及每次提交变更的文件</td>
+</tr>
+<tr>
+<td><code>gitk</code></td>
+<td>查看当前分支历史纪录</td>
+</tr>
+<tr>
+<td><code>gitk &lt;branch&gt;</code></td>
+<td>查看某分支历史纪录</td>
+</tr>
+<tr>
+<td><code>gitk --all</code></td>
+<td>查看所有分支历史纪录</td>
+</tr>
+</tbody>
+</table>
+<h3 id="分支和标签-Branches-Tags">分支和标签 Branches &amp; Tags</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git branch</code></td>
+<td>查看本地分支</td>
+</tr>
+<tr>
+<td><code>git branch -r</code></td>
+<td>查看远程分支</td>
+</tr>
+<tr>
+<td><code>git branch -a</code></td>
+<td>查看所有分支（本地和远程）</td>
+</tr>
+<tr>
+<td><code>git branch -v</code></td>
+<td>每个分支最后的提交</td>
+</tr>
+<tr>
+<td><code>git branch --merged</code></td>
+<td>查看所有分支已合并到当前分支的分支</td>
+</tr>
+<tr>
+<td><code>git branch --no-merged</code></td>
+<td>查看所有分支未合并到当前分支的分支</td>
+</tr>
+<tr>
+<td><code>git branch -m &lt;new-branch&gt;</code></td>
+<td>把当前分支的名称改成 <code>new-branch</code>；如果 <code>new-branch</code> 已存在，将不会执行改名</td>
+</tr>
+<tr>
+<td><code>git branch -M &lt;new-branch&gt;</code></td>
+<td>强制把当前分支的名称改成 <code>new-branch</code>（即使 <code>new-branch</code> 已存在）</td>
+</tr>
+<tr>
+<td><code>git branch -m &lt;old-branch&gt; &lt;new-branch&gt;</code></td>
+<td>把分支 <code>old-branch</code> 的名称改成 <code>new-branch</code>，如果 <code>new-branch</code> 已存在，将不会执行改名</td>
+</tr>
+<tr>
+<td><code>git branch -M &lt;old-branch&gt; &lt;new-branch&gt;</code></td>
+<td>强制把分支 <code>old-branch</code> 的名称改成 <code>new-branch</code>（即使 <code>new-branch</code> 已存在）</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;branch-name&gt;</code></td>
+<td>切换到 <code>branch-name</code> 分支</td>
+</tr>
+<tr>
+<td><code>git checkout -b &lt;branch-name&gt;</code></td>
+<td>于当前分支创建并切换到新分支</td>
+</tr>
+<tr>
+<td><code>git branch &lt;new-branch&gt;</code></td>
+<td>新建分支（也可以用 <code>git checkout -b &lt;new-branch&gt;</code>）</td>
+</tr>
+<tr>
+<td><code>git branch --track &lt;new&gt; &lt;remote&gt;</code></td>
+<td>基于远程分支创建一个新分支，同 <code>git checkout --track &lt;remote/branch&gt;</code></td>
+</tr>
+<tr>
+<td><code>git branch -d &lt;branch-name&gt;</code></td>
+<td>删除本地分支</td>
+</tr>
+<tr>
+<td><code>git push origin --delete &lt;branch-name&gt;</code></td>
+<td>删除远程分支</td>
+</tr>
+<tr>
+<td><code>git tag</code></td>
+<td>列出所有本地标签</td>
+</tr>
+<tr>
+<td><code>git tag &lt;tag-name&gt;</code></td>
+<td>基于最新的提交创建标签</td>
+</tr>
+<tr>
+<td><code>git tag -d &lt;tag-name&gt;</code></td>
+<td>删除标签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除命令-Remove">删除命令 Remove</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git rm &lt;file&gt;</code></td>
+<td>删除文件（将从磁盘中删除文件）</td>
+</tr>
+<tr>
+<td><code>git rm -r &lt;directory&gt;</code></td>
+<td>递归删除指定目录下的文件</td>
+</tr>
+<tr>
+<td><code>git rm --cached &lt;file&gt;</code></td>
+<td>停止跟踪文件，不会从磁盘中删除</td>
+</tr>
+<tr>
+<td><code>git mv &lt;old&gt; &lt;new&gt;</code></td>
+<td>文件重命名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="合并和衍合-Merge-Rebase">合并和衍合 Merge &amp; Rebase</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git merge &lt;branch&gt;</code></td>
+<td>合并指定分支到当前分支，保留两个</td>
+</tr>
+<tr>
+<td><code>git rebase &lt;branch&gt;</code></td>
+<td>合并指定分支到当前分支，只保留一个</td>
+</tr>
+<tr>
+<td><code>git rebase --abort</code></td>
+<td>终止 rebase 操作，即回到执行 rebase 之前的状态</td>
+</tr>
+<tr>
+<td><code>git rebase --continue</code></td>
+<td>解决冲突后继续执行 rebase</td>
+</tr>
+<tr>
+<td><code>git mergetool</code></td>
+<td>使用配置文件指定的 mergetool 解决冲突</td>
+</tr>
+<tr>
+<td><code>git add &lt;resolved-file&gt;</code><br><code>git rm &lt;resolved-file&gt;</code></td>
+<td>使用编辑器手动解决文件冲突，并在冲突解决后，把文件标记为 resolved</td>
+</tr>
+</tbody>
+</table>
+<h3 id="撤销命令-Undo">撤销命令 Undo</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git reset --hard HEAD</code></td>
+<td>将当前版本重置为 HEAD（用于 merge 失败的时候）</td>
+</tr>
+<tr>
+<td><code>git reflog</code></td>
+<td>查看命令历史，历史中记录了回退前的commit id</td>
+</tr>
+<tr>
+<td><code>git reset &lt;commit&gt;</code></td>
+<td>将当前版本重置为某一个提交状态，代码不变</td>
+</tr>
+<tr>
+<td><code>git reset --hard &lt;commit&gt;</code></td>
+<td>强制将当前版本重置为某一个提交状态，并丢弃那个状态之后的所有修改（请谨慎使用该命令）</td>
+</tr>
+<tr>
+<td><code>git reset --merge &lt;commit&gt;</code></td>
+<td>将当前版本重置为某一个提交状态，并保留版本库中不同的文件</td>
+</tr>
+<tr>
+<td><code>git reset --keep &lt;commit&gt;</code></td>
+<td>将当前版本重置为某一个提交状态，并保留未提交的本地修改</td>
+</tr>
+<tr>
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>撤销提交</td>
+</tr>
+<tr>
+<td><code>git restore &lt;file&gt;</code></td>
+<td>丢弃指定文件的修改信息，即恢复到文件修改前的状态</td>
+</tr>
+<tr>
+<td><code>git checkout -- &lt;file&gt;</code></td>
+<td>同 <code>git restore &lt;file&gt;</code> 命令</td>
+</tr>
+<tr>
+<td><code>git checkout HEAD &lt;file&gt;</code></td>
+<td>对于指定文件，丢弃该文件的本地修改信息</td>
+</tr>
+<tr>
+<td><code>git clean</code></td>
+<td>清除工作目录中未跟踪的文件</td>
+</tr>
+<tr>
+<td><code>git clean -n</code></td>
+<td>列出哪些文件将从工作目录中删除</td>
+</tr>
+<tr>
+<td><code>git clean -df</code></td>
+<td>回退所有未被跟踪的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跟踪文件">跟踪文件</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git update-index --no-assume-unchanged &lt;file&gt;</code></td>
+<td>强制跟踪指定文件</td>
+</tr>
+<tr>
+<td><code>git update-index --assume-unchanged &lt;file&gt;</code></td>
+<td>强制不跟踪指定文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="远程命令-Remote">远程命令 Remote</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git remote -v</code></td>
+<td>查看远程版本库信息</td>
+</tr>
+<tr>
+<td><code>git remote show &lt;remote&gt;</code></td>
+<td>查看指定远程版本库信息</td>
+</tr>
+<tr>
+<td><code>git remote add &lt;remote&gt; &lt;url&gt;</code></td>
+<td>添加远程版本库</td>
+</tr>
+<tr>
+<td><code>git fetch &lt;remote&gt;</code></td>
+<td>从远程库获取代码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="配置命令-Git-Configuration">配置命令 Git Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git config --list</code></td>
+<td>列出当前 Git 配置</td>
+</tr>
+<tr>
+<td><code>git config --global user.name &lt;name&gt;</code></td>
+<td>把参数 <code>name</code> 设置为当前用户使用的提交者的姓名；如果未指定 <code>name</code> 参数，则显示当前用户使用的提交者姓名</td>
+</tr>
+<tr>
+<td><code>git config --global user.email &lt;email&gt;</code></td>
+<td>把参数 <code>email</code> 设置为当前用户使用的提交者的邮箱；如果未指定 <code>email</code> 参数，则显示当前用户使用的提交者邮箱</td>
+</tr>
+<tr>
+<td><code>git config --global alias.&lt;alias&gt; &lt;command&gt;</code></td>
+<td>为 Git 命令创建全局的别名。比如，执行 <code>alias.glog log --graph --oneline --decorate</code> 命令后，<code>git glog</code> 就相当于 <code>git log --graph --oneline --decorate</code>。</td>
+</tr>
+<tr>
+<td><code>git config --system core.editor &lt;editor&gt;</code></td>
+<td>对于本机的所有用户，设置命令使用的编辑器（比如 <code>vim</code>）</td>
+</tr>
+<tr>
+<td><code>git config --global --edit</code></td>
+<td>在编辑器中打开全局配置文件（用于手动修改）</td>
+</tr>
+<tr>
+<td><code>git config --global color.ui auto</code></td>
+<td>使用不同的颜色渲染 Git 命令的输出结果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他命令-Other">其他命令 Other</h3>
+<table>
+<thead>
+<tr>
+<th>Git</th>
+<th>命令命令说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git var -l</code></td>
+<td>列出 Git 环境变量</td>
+</tr>
+<tr>
+<td><code>git help &lt;command&gt;</code></td>
+<td>显示指定命令的帮助（将呼出该命令的 man 文件）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="相关术语">相关术语</h2>
+<p>下面列出了 Git 常见的术语，通过这些术语，可以更好地了解 Git 版本控制系统。</p>
+<ul>
+<li><strong>git</strong>：一个开源的、分布式的版本控制系统</li>
+<li><strong>commit</strong>：提交，指一个 Git 对象，该对象是整个仓库以 SHA 表示的快照</li>
+<li><strong>branch</strong>：分支，一个轻量的、可移动的指向一个 commit 的指针</li>
+<li><strong>clone</strong>：克隆，指在本地创建一份远程仓库的副本</li>
+<li><strong>remote</strong>：远程仓库，是指托管在 GitHub、GitLab 等地方的公共（或私有）仓库，团队所有成员均可向该仓库提交修改</li>
+<li><strong>fork</strong>：创建一个其他用户的仓库的副本</li>
+<li><strong>pull request</strong>：简称 PR，指针对某个仓库，请求别人拉取并合并你的修改。通常，发起 pull request 的人都是从被请求人那里 clone 代码</li>
+<li><strong>HEAD</strong>：表示当前工作区，使用 <code>git checkout</code>命令，可以把 HEAD 指针切换到不同的分支、标签和 commit 上</li>
+</ul>
+<h2 id="常见问题">常见问题</h2>
+<blockquote>
+<p>Failed to connect to <a target="_blank" rel="noopener" href="http://github.com">github.com</a> port 443: Operation timed out</p>
+</blockquote>
+<p>如果您使用代理进行网络连接，则必须将代理添加到git config文件中。 您需要通过在终端或命令行中运行此命令来配置Git以使用代理设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080</span><br></pre></td></tr></table></figure>
+<p>其中proxyuser和proxypwd是您的凭据，proxy.server.com:8080是您连接到的服务器名称和端口。</p>
+<blockquote>
+<p>Unsupported proxy syntax in '127.0.0.1:8118'
+首先查看git的配置列表</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<p>可以看到有两个代理配置，http.proxy和https.proxy，就是这两个配置的原因</p>
+<p>删除这两项</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.prox</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从单个文件历史记录中搜索</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rev-list --all build_scripts/campaign/client/Security/TGL/security_L2.xml | (</span><br><span class="line">    while read revision; do</span><br><span class="line">        git grep -F &#x27;CSS-IVE-122226&#x27; $revision build_scripts/campaign/client/Security/TGL/security_L2.xml</span><br><span class="line">    done</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/>http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-10-19T10:55:35+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Oct 19, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/git/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>git</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/&title=Git 命令速查表 - Jeffのblog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/&title=Git 命令速查表 - Jeffのblog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/&title=Git 命令速查表 - Jeffのblog&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/05/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA%E5%B7%A5%E5%85%B7ProxySU/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>科学上网一键搭建工具ProxySU</p>
+          <p class='content'>介绍
+ProxySU是一款windows科学上网搭建软件，支持一键搭建V2ray，Trojan，NaiveProxy, Trojan-Go, ShadowsocksR(SSR),Shadowso...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/11/27/%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84Python3%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/'>
+          <p class='title'>你应该知道的Python3各个版本的新特性<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+最近在使用python过程中，看到了一段提示文本。发现python3.5的使用寿命已于2020年9月13日结束，pip 21.0也将于2021年1月删除对Python 3.5的支持。导致很多第...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow floatable" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Git 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%91%BD%E4%BB%A4-Create"><span class="toc-text">创建命令 Create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%9B%B4%E6%94%B9-Local-Changes"><span class="toc-text">本地更改 Local Changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2-Commit-History"><span class="toc-text">提交历史 Commit History</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%92%8C%E6%A0%87%E7%AD%BE-Branches-Tags"><span class="toc-text">分支和标签 Branches &amp; Tags</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4-Remove"><span class="toc-text">删除命令 Remove</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%92%8C%E8%A1%8D%E5%90%88-Merge-Rebase"><span class="toc-text">合并和衍合 Merge &amp; Rebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E5%91%BD%E4%BB%A4-Undo"><span class="toc-text">撤销命令 Undo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-text">跟踪文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4-Remote"><span class="toc-text">远程命令 Remote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4-Git-Configuration"><span class="toc-text">配置命令 Git Configuration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4-Other"><span class="toc-text">其他命令 Other</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="toc-text">相关术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">常见问题</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Git 命令速查表";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '633400201';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"FbCJpVwMMe8GC1N7WD8cV4bO-gzGzoHsz","appKey":"MtjQGjzKPqBBjRzVC5eCIEXV","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://norhub.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>

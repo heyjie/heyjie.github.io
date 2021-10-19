@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>Oracle导入导出工具的使用 - Jeffのblog</title>
+  
+    <meta name="keywords" content="数据库,oracle">
+  
+
+  
+    <meta name="description" content="迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Jeffのblog" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+    
+      <meta name='theme-color' content='#FFFFFF'>
+    
+      <meta name='msapplication-TileColor' content='#1BC3FB'>
+    
+      <meta name='msapplication-config' content='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml'>
+    
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+  
+  <link rel='shortcut icon' type='image/x-icon' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon.ico'>
+  <link rel='icon' type='image/x-icon' sizes='32x32' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-32x32.png'>
+  <link rel='apple-touch-icon' type='image/png' sizes='180x180' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/apple-touch-icon.png'>
+  <link rel='mask-icon' color='#1BC3FB' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/safari-pinned-tab.svg'>
+  <link rel='manifest' href='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/site.webmanifest'>
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+                <li>
+                  <a class="menuitem flat-box">
+                    <i class='fas fa-compact-disc fa-fw music'></i>背景音乐
+                  </a>
+                  <ul class="list-v">
+                    <li>
+                      <div class="aplayer-container">
+                        
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+                      </div>
+                    </li>
+                  </ul>
+                <li>
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/gallery/
+                  
+                  
+                  
+                    id="gallery"
+                  >
+                  相册
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-clock fa-fw'></i>近期
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li class='header'>
+                <i class='fas fa-fire fa-fw'></i>热门文章
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-27-prohud/
+                  
+                  
+                  
+                    id="blog2019-08-27-prohud"
+                  >
+                  ProHUD 开源库的设计思路
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-08-29-valuex/
+                  
+                  
+                  
+                    id="blog2019-08-29-valuex"
+                  >
+                  ValueX：实用的安全对象类型转换库
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/blog/2019-07-23-heartmate/
+                  
+                  
+                  
+                    id="blog2019-07-23-heartmate"
+                  >
+                  心率管家 App 的设计与开发
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper post search' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Jeffのblog</p>
+    
+    
+      <p class="subtitle">热爱可抵岁月漫长</p>
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-rss fa-fw'></i><p>博文</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-archive fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-book fa-fw'></i><p>文档</p>
+            </a>
+          
+            <a href="/about/"
+              
+              
+              id="about">
+              <i class='fas fa-info-circle fa-fw'></i><p>关于</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow floatable article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        Oracle导入导出工具的使用
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="https://norhub.com.cn" rel="nofollow">
+    <img no-lazy src="/images/head/def.gif">
+    <p>jeff</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">程序开发</a><span class="sep"></span><a class="category-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：Apr 15, 2020</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Oracle导入导出工具的使用" data-path="/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <p>迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单</p>
+<span id="more"></span>
+<h2 id="导用户">导用户</h2>
+<p>导出用户MDM_P到当前文件夹（导出文件为testDb.dmp）
+<code>exp MDM_P/8888@192.168.134.9:1521/ora11g file='./testDb.dmp' owner=MDM_P</code><br>
+从当前文件夹导入MDM_P用户
+<code>imp MDM_P/8888@192.168.135.10/orcl  file=./testDb.dmp fromuser=MDM_P</code></p>
+<h2 id="导数据库">导数据库</h2>
+<p>将数据库ORCL完全导出到D盘（导出文件为testDb.dmp）其中full=y表示全库导出：<br>
+<code>exp scott/tiger@192.168.1.1:1521/ORCL file='d:/testDb.dmp' full=y</code><br>
+将D:\example.dmp文件中的库导入到mydb下的system用户中<br>
+<code>imp system/123456@213.234.12.32/mydb file=D:\example.dmp full=y ignore=y</code><br>
+如果表已经存在，则会报错，在后面加上igonre=y（忽略创建错误，继续后面操作）。</p>
+<h2 id="导表">导表</h2>
+<p>将数据库的表table1,table2导到D盘（导出文件为testDb.dmp）：<br>
+<code>exp scott/tiger@192.168.1.1:1521/ORCL file='d:/testDb.dmp' tables=(table1,table2)</code></p>
+<h2 id="exp方式导出数据">exp方式导出数据</h2>
+<p>相关参数项如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">关键字</th>
+<th style="text-align:right">说明</th>
+<th style="text-align:center">默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">USERID                    	用户名/口令</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FULL                        	导出整个文件 	(N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">BUFFER                   	数据缓冲区的大小</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">OWNER                    	导出指定的所有者用户名列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FILE                          	输出文件	(EXPDAT.DMP)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TABLES                   	导出指定的表名列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">COMPRESS             	是否压缩导出的文件	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RECORDLENGTH  	IO 记录的长度</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">GRANTS                  	导出权限	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INCTYPE                 	增量导出类型</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INDEXES                 	导出索引 	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RECORD                  	跟踪增量导出	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">ROWS                       	导出数据行	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">PARFILE                  	参数文件名</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTRAINTS       	导出限制 	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">CONSISTENT          	交叉表一致性</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">LOG                          	屏幕输出的日志文件</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">STATISTICS             	分析对象(ESTIMATE)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">DIRECT                    	直接路径	(N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TRIGGERS               	导出触发器	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FEEDBACK             	显示每 x 行 (0) 的进度</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FILESIZE                 	各转储文件的最大尺寸</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">QUERY                     	选定导出表子集的子句</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TRANSPORT_TABLESPACE	导出可传输的表空间元数据	(N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TABLESPACES	导出指定的表空间列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="imp方式导入数据">imp方式导入数据</h2>
+<p>相关参数项如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">关键字</th>
+<th style="text-align:right">说明</th>
+<th style="text-align:center">默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">USERID</td>
+<td style="text-align:right">用户名/口令</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FULL</td>
+<td style="text-align:right">导入整个文件</td>
+<td style="text-align:center">(N)</td>
+</tr>
+<tr>
+<td style="text-align:left">BUFFER	数据缓冲区大小</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FROMUSER	所有人用户名列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FILE	输入文件	  (EXPDAT.DMP)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TOUSER	用户名列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">SHOW 	只列出文件内容	(N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TABLES	表名列表</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">IGNORE	忽略创建错误	(N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RECORDLENGTH 	IO记录的长度</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">GRANTS	导入权限	(Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INCTYPE	增量导入类型</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INDEXES	导入索引 	 (Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">COMMIT 	提交数组插入	 (N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">ROWS	导入数据行	 (Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">PARFILE	参数文件名</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">LOG	屏幕输出的日志文件</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">CONSTRAINTS 	导入限制	 (Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">DESTROY	覆盖表空间数据文件	 (N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INDEXFILE	将表/索引信息写入指定的文件</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">SKIP_UNUSABLE_INDEXES	跳过不可用索引的维护	  (N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FEEDBACK	每 x 行显示进度</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TOID_NOVALIDATE 	跳过指定类型 ID 的验证</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">FILESIZE 	每个转储文件的最大大小</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">STATISTICS	始终导入预计算的统计信息</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RESUMABLE	在遇到有关空间的错误时挂起</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RESUMABLE_NAME	用来标识可恢复语句的文本字符串</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RESUMABLE_TIMEOUT	RESUMABLE 的等待时间</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">COMPILE	编译过程, 程序包和函数	 (Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">STREAMS_CONFIGURATION	导入 Streams 的一般元数据	 (Y)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">STREAMS_INSTANITATION 	导入 Streams 的实例化元数据	 (N)</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TRANSPORT_TABLESPACE	导入可传输的表空间元数据</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TABLESPACES 	将要传输到数据库的表空间</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">DATAFILES	将要传输到数据库的数据文件</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TTS_OWNERS	拥有可传输表空间集中数据的用户</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="交互命令方式导入导出">交互命令方式导入导出</h2>
+<h3 id="导出工具-exp">导出工具 exp</h3>
+<ol>
+<li>
+<p>它是操作系统下一个可执行的文件 存放目录/ORACLE_HOME/bin</p>
+<p>exp导出工具将数据库中数据备份压缩成一个二进制系统文件.可以在不同OS间迁移</p>
+<p>它有三种模式：
+a.  用户模式： 导出用户所有对象以及对象中的数据；
+b.  表模式： 导出用户所有表或者指定的表；
+c.  整个数据库： 导出数据库中所有对象。</p>
+</li>
+<li>
+<p>导出工具exp交互式命令行方式的使用的例子</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$exp</span> <span class="built_in">test</span>/test123@appdb</span><br><span class="line">Enter array fetch buffer size: 4096 &gt; 回车</span><br><span class="line">Export file: expdat.dmp &gt; m.dmp  生成导出的文件名 </span><br><span class="line">(1)E(ntire database), (2)U(sers), or (3)T(ables): (2)U &gt; 3</span><br><span class="line">Export table data (yes/no): yes &gt; 回车</span><br><span class="line">Compress extents (yes/no): yes &gt; 回车</span><br><span class="line">Export <span class="keyword">done</span> <span class="keyword">in</span> ZHS16GBK character <span class="built_in">set</span> and ZHS16GBK NCHAR character <span class="built_in">set</span></span><br><span class="line">About to <span class="built_in">export</span> specified tables via Conventional Path ...</span><br><span class="line">Table(T) or Partition(T:P) to be exported: (RETURN to quit) &gt; cmamenu  要导出的表名</span><br><span class="line">. . exporting table                        CMAMENU       4336 rows exported</span><br><span class="line">Table(T) or Partition(T:P) to be exported: (RETURN to quit) &gt;要导出的表名n</span><br><span class="line">Table(T) or Partition(T:P) to be exported: (RETURN to quit) &gt; 回车</span><br><span class="line">Export terminated successfully without warnings. </span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>导出工具exp非交互式命令行方式的例子</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$exp</span> scott/tiger tables=(emp,dept) file=/directory/scott.dmp grants=y </span><br><span class="line"></span><br><span class="line"><span class="comment"># 说明:把scott用户里两个表emp,dept导出到文件/directory/scott.dmp</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$exp</span> scott/tiger tables=emp query=\&quot;<span class="built_in">where</span> job=\<span class="string">&#x27;salesman\&#x27;</span> and sal\&lt;1600\&quot; file=/directory/scott2.dmp </span><br><span class="line"></span><br><span class="line"><span class="comment"># 说明:在exp里面加上导出emp的查询条件job=&#x27;salesman&#x27; and sal&lt;1600 (但我个人很少这样用,还是把满足条件的记录生成临时表后,再exp会方便一些)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$exp</span> parfile=username.par file=/directory1/username_1.dmp,/directory1/username_2.dmp filesize=2000M <span class="built_in">log</span>=/directory2/username_exp.log</span><br></pre></td></tr></table></figure>
+<p>参数文件username.par内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userid=username/userpassword</span><br><span class="line">buffer=8192000</span><br><span class="line">compress=n</span><br><span class="line">grants=y</span><br></pre></td></tr></table></figure>
+<p>说明:username.par为导出工具exp用的参数文件,里面具体参数可以根据需要去修改</p>
+<pre><code> filesize指定生成的二进制备份文件的最大字节数
+ 
+ (可用来解决某些OS下2G物理文件的限制及加快压缩速度和方便刻历史数据光盘等)
+</code></pre>
+<h3 id="导入工具-imp">导入工具 imp</h3>
+<ol>
+<li>它是操作系统下一个可执行的文件 存放目录/ORACLE_HOME/bin</li>
+</ol>
+<p>imp导入工具将EXP形成的二进制系统文件导入到数据库中.</p>
+<p>它有三种模式：
+a.  用户模式： 导出用户所有对象以及对象中的数据；
+b.  表模式： 导出用户所有表或者指定的表；
+c.  整个数据库： 导出数据库中所有对象。</p>
+<p>只有拥有IMP_FULL_DATABASE和DBA权限的用户才能做整个数据库导入</p>
+<p>imp步骤：
+(1) create table  (2) insert data  (3) create index (4) create triggers,constraints</p>
+<p>2.导入工具imp交互式命令行方式的例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ imp</span><br><span class="line">Import: Release 8.1.6.0.0 - Production on 星期五 12月 7 17:01:08 2001</span><br><span class="line">(c) Copyright 1999 Oracle Corporation.  All rights reserved.</span><br><span class="line">用户名:  <span class="built_in">test</span></span><br><span class="line">口令:****</span><br><span class="line">连接到: Oracle8i Enterprise Edition Release 8.1.6.0.0 - 64bit Production</span><br><span class="line">With the Partitioning option</span><br><span class="line">JServer Release 8.1.6.0.0 - Production</span><br><span class="line">导入文件: expdat.dmp&gt; /tmp/m.dmp</span><br><span class="line">输入插入缓冲区大小（最小为 8192 ) 30720&gt;</span><br><span class="line">经由常规路径导出由EXPORT:V08.01.06创建的文件</span><br><span class="line">警告: 此对象由 TEST 导出, 而不是当前用户</span><br><span class="line">已经完成ZHS16GBK字符集和ZHS16GBK NCHAR 字符集中的导入</span><br><span class="line">只列出导入文件的内容(yes/no)：no&gt;</span><br><span class="line">由于对象已存在, 忽略创建错误(yes/no)：no&gt; yes</span><br><span class="line">导入权限(yes/no)：yes&gt;</span><br><span class="line">导入表数据(yes/no)：yes&gt;</span><br><span class="line">导入整个导出文件(yes/no)：no&gt; yes</span><br><span class="line">. 正在将TEST的对象导入到 SCOTT</span><br><span class="line">. . 正在导入表                       <span class="string">&quot;CMAMENU&quot;</span>       4336行被导入</span><br><span class="line">成功终止导入，但出现警告。 </span><br></pre></td></tr></table></figure>
+<p>3.导入工具imp非交互式命令行方式的例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ imp system/manager fromuser=jones tables=(accts) </span><br><span class="line">$ imp system/manager fromuser=scott tables=(emp,dept) </span><br><span class="line">$ imp system/manager fromuser=scott touser=joe tables=emp </span><br><span class="line">$ imp scott/tiger file = expdat.dmp full=y </span><br><span class="line">$ imp scott/tiger file = /mnt1/t1.dmp show=n buffer=2048000 ignore=n commit=y grants=y full=y <span class="built_in">log</span>=/oracle_backup/<span class="built_in">log</span>/imp_scott.log</span><br><span class="line">$ imp system/manager parfile=params.dat </span><br><span class="line">params.dat 内容 </span><br><span class="line">file=dba.dmp show=n ignore=n grants=y fromuser=scott tables=(dept,emp) </span><br></pre></td></tr></table></figure>
+<p>4.导入工具imp可能出现的问题</p>
+<p>(1) 数据库对象已经存在
+一般情况, 导入数据前应该彻底删除目标数据下的表, 序列, 函数/过程,触发器等;<br>
+数据库对象已经存在, 按缺省的imp参数, 则会导入失败
+如果用了参数ignore=y, 会把exp文件内的数据内容导入
+如果表有唯一关键字的约束条件, 不合条件将不被导入
+如果表没有唯一关键字的约束条件, 将引起记录重复</p>
+<p>(2) 数据库对象有主外键约束
+不符合主外键约束时, 数据会导入失败
+解决办法: 先导入主表, 再导入依存表
+disable目标导入对象的主外键约束, 导入数据后, 再enable它们
+(3)  权限不够
+如果要把A用户的数据导入B用户下, A用户需要有imp_full_database权限</p>
+<p>(4)  导入大表( 大于80M ) 时, 存储分配失败
+默认的EXP时, compress = Y, 也就是把所有的数据压缩在一个数据块上.
+导入时, 如果不存在连续一个大数据块, 则会导入失败.
+导出80M以上的大表时, 记得compress= N, 则不会引起这种错误.</p>
+<p>(5) imp和exp使用的字符集不同
+如果字符集不同, 导入会失败, 可以改变unix环境变量或者NT注册表里NLS_LANG相关信息.
+导入完成后再改回来.</p>
+<p>(6) imp和exp版本不能往上兼容
+imp可以成功导入低版本exp生成的文件, 不能导入高版本exp生成的文件
+根据情况我们可以用
+$ imp username/password@connect_string
+说明: connect_string 是在/ORACLE_HOME/network/admin/tnsnames.ora
+定义的本地或者远端数据库的名称
+注意事项:
+UNIX: /etc/hosts           要定义本地或者远端数据库服务器的主机名
+win98:    windows\hosts             和IP地址的对应关系</p>
+<p>win2000:  winnt\system32\drivers\etc\hosts</p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+        
+  <div class="related_posts">
+    <section class='header'>
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
+    </section>
+    <section class='body'>
+      <div class="vlts-rps"><a class="item" href="\2019\12\31\统计学校各班男女人数该怎么写SQL\" title="统计学校各班男女人数该怎么写SQL" rel="bookmark "><img src="/2019/12/31/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A0%A1%E5%90%84%E7%8F%AD%E7%94%B7%E5%A5%B3%E4%BA%BA%E6%95%B0%E8%AF%A5%E6%80%8E%E4%B9%88%E5%86%99SQL/20191231124326.png" class="lazyload" data-srcset="/2019/12/31/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E6%A0%A1%E5%90%84%E7%8F%AD%E7%94%B7%E5%A5%B3%E4%BA%BA%E6%95%B0%E8%AF%A5%E6%80%8E%E4%B9%88%E5%86%99SQL/20191231124326.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">统计学校各班男女人数该怎么写SQL</span><span class="excerpt">首先统计各班级人数，学生表一条数据代表一个学生，
+已经知道学生表有“管理院系，专业，班级名称，班级代码，年级，性别”等信息...</span></a><a class="item" href="\2019\12\26\如何安装OracleLinux系统并搭建数据库\" title="如何安装OracleLinux系统并搭建数据库" rel="bookmark "><img src="/2019/12/26/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85OracleLinux%E7%B3%BB%E7%BB%9F%E5%B9%B6%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/20200522165409.png" class="lazyload" data-srcset="/2019/12/26/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85OracleLinux%E7%B3%BB%E7%BB%9F%E5%B9%B6%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93/20200522165409.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">如何安装OracleLinux系统并搭建数据库</span><span class="excerpt">Oracle Linux以对Oracle软件和硬件支持较好见长,安装Oracle数据库首选系统，最重要的是Oracle数据...</span></a><a class="item" href="\2020\04\15\如何使用SqlServer获取客户端的信息\" title="如何使用SqlServer获取客户端的信息" rel="bookmark "><img src="/2020/04/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8SqlServer%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BF%A1%E6%81%AF/20200522154113.png" class="lazyload" data-srcset="/2020/04/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8SqlServer%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BF%A1%E6%81%AF/20200522154113.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /><span class="title">如何使用SqlServer获取客户端的信息</span><span class="excerpt">用Sql获取操作的数据库名,计算机名,用户名,网卡物理地址,IP地址,程序名
+</span></a></div></section></div>
+      
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=http://norhub.com.cn/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/>http://norhub.com.cn/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-06-03T11:32:35+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：Jun 3, 2021</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/oracle/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>oracle</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://norhub.com.cn/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/&title=Oracle导入导出工具的使用 - Jeffのblog&summary=迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://norhub.com.cn/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/&title=Oracle导入导出工具的使用 - Jeffのblog&summary=迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=http://norhub.com.cn/2020/04/15/Oracle%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/&title=Oracle导入导出工具的使用 - Jeffのblog&summary=迁移Oracle数据库需要用到导入导出工具exp和imp,可直接跨平台系统导入导出数据,速度较慢，操作简单"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2020/04/15/Hexo%E5%8D%9A%E5%AE%A2%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hexo博客快速搭建</p>
+          <p class='content'>新建仓库
+github 新建一个仓库，仓库名必须为 .github.io 格式，其中  是你 github 的昵称
+全局安装hexo
+npm install hexo-cli -g
+初始化项目
+...</p>
+        </a>
+      
+      
+        <a class='next' href='/2020/04/15/%E5%9C%A8Ubuntu16.04%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F%E5%AE%89Matlab/'>
+          <p class='title'>在Ubuntu16.04使用命令行方式安Matlab<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Linux服务器命令行模式安装Matlab
+
+安装jdk
+java -version                #查看当前java版本，未出现版本信息代表未安装sudo apt-get in...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow floatable" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E7%94%A8%E6%88%B7"><span class="toc-text">导用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">导数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%A1%A8"><span class="toc-text">导表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exp%E6%96%B9%E5%BC%8F%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="toc-text">exp方式导出数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#imp%E6%96%B9%E5%BC%8F%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">imp方式导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4%E6%96%B9%E5%BC%8F%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA"><span class="toc-text">交互命令方式导入导出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7-exp"><span class="toc-text">导出工具 exp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%B7%A5%E5%85%B7-imp"><span class="toc-text">导入工具 imp</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Oracle导入导出工具的使用";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='633400201'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css", window.volantis.loadcss);
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "10000",
+            fade: "1500"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '633400201';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+</script>
+
+
+
+
+  
+  
+<script src="/js/valine.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"FbCJpVwMMe8GC1N7WD8cV4bO-gzGzoHsz","appKey":"MtjQGjzKPqBBjRzVC5eCIEXV","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+		document.addEventListener("pjax:success", listenSearch);
+	
+}
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+volantis.pjax.push(()=>{
+	document.querySelectorAll('pre code').forEach((block) => {
+	  hljs.highlightBlock(block);
+	});
+},"highlightjs")
+</script>
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://norhub.com.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://norhub.com.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
