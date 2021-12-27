@@ -184,3 +184,12 @@ git config --list
 git config --global --unset http.proxy
 git config --global --unset https.prox
 ```
+
+> 从单个文件历史记录中搜索
+```
+git rev-list --all build_scripts/campaign/client/Security/TGL/security_L2.xml | (
+    while read revision; do
+        git grep -F 'CSS-IVE-122226' $revision build_scripts/campaign/client/Security/TGL/security_L2.xml
+    done
+)
+```
