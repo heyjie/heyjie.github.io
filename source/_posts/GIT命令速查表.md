@@ -36,9 +36,16 @@ Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命�
 |`git push`|提交到git服务器|
 |`git push origin branchName:branchName`|推送本地的branchName(冒号前面的)分支到远程origin的branchName(冒号后面的)分支(没有会自动创建)|
 |`git stash`|暂存当前修改，将所有置为 HEAD 状态|
+|`git stash save`|作用等同于git stash，区别是可以加一些注释|
 |`git stash list`|查看所有暂存列表|
 |`git stash push`|把当前工作区的文件暂存到临时空间|
 |`git stash pop`|把文件从临时空间中恢复到当前工作区|
+|`git stash clear`|清除堆栈中的所有内容|
+|`git stash drop + 名称`|从堆栈中移除某个指定的stash|
+|`git stash show`|查看堆栈中最新保存的stash和当前目录的差异|
+|`git stash branch`|从最新的stash创建分支|
+|`git stash apply`|将堆栈中的内容应用到当前目录，不同于git stash pop，该命令不会将内容从堆栈中删除，也就说该命令能够将堆栈的内容多次应用到工作目录中，适应于多个分支的情况|
+
 
 ### 提交历史 Commit History
 
