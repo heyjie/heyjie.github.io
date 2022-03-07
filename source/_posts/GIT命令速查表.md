@@ -34,6 +34,7 @@ Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命�
 |`git pull`|拉取代码及快速合并|
 |`git pull -r <branch>`|拉取远程代码及快速合并|
 |`git push`|提交到git服务器|
+|`git push -f`|强制提交到git服务器|
 |`git push origin branchName:branchName`|推送本地的branchName(冒号前面的)分支到远程origin的branchName(冒号后面的)分支(没有会自动创建)|
 |`git stash`|暂存当前修改，将所有置为 HEAD 状态|
 |`git stash save`|作用等同于git stash，区别是可以加一些注释|
