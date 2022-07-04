@@ -138,6 +138,7 @@ Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命�
 |`git remote -v`|查看远程版本库信息|
 |`git remote show <remote>`|查看指定远程版本库信息|
 |`git remote add <remote> <url>`|添加远程版本库|
+|`git remote update`|更新远程版本库|
 |`git fetch <remote>`|从远程库获取代码|
 
 ### 配置命令 Git Configuration
