@@ -1,3 +1,12 @@
+---
+title: Go语言快速入门
+date: 2023-04-07 15:18:42
+categories: 
+    - 程序开发
+    - Go
+tags:
+    - Go
+---
 
 ## go语言的优势
 
