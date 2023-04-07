@@ -97,15 +97,15 @@ theme: volantis
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-# deploy:
-#   type: git
-#   repo: https://github.com/Eugene9656/Eugene9656.github.io.git
-#   branch: master
-
 deploy:
   type: git
-  repo: https://e.coding.net/norhub/coding-demo/rnazoro.git
+  repo: https://github.com/Eugene9656/Eugene9656.github.io.git
   branch: master
+
+# deploy:
+#   type: git
+#   repo: https://e.coding.net/norhub/coding-demo/rnazoro.git
+#   branch: master
 
 search:
   path: search.xml
