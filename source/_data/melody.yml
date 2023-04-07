@@ -53,9 +53,9 @@ code_word_wrap: true
 # And you need to add the `fa` or `fab` prefix by your self.
 # ---------------
 social:
-  github fab: https://github.com/Eugene9656
+  github fab: https://github.com/heyjie
   weibo fab: http://weibo.com/
-  rss fas: https://norhub.xyz/atom.xml
+  rss fas: https://heyjie.github.io/atom.xml
 
 # Algolia search
 # ---------------
@@ -266,7 +266,7 @@ links:
 # Follow Me Button
 follow:
   enable: true
-  url: 'https://github.com/Eugene9656'
+  url: 'https://github.com/heyjie'
   text: 'Follow Me'
 
 # Ads

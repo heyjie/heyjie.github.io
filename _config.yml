@@ -99,7 +99,7 @@ theme: volantis
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Eugene9656/Eugene9656.github.io.git
+  repo: https://github.com/heyjie/heyjie.github.io.git
   branch: master
 
 # deploy:
