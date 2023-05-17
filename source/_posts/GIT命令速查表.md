@@ -140,6 +140,7 @@ Git 是一款流行的代码版本管理工具，本页提供了常用 Git 命�
 |`git remote add <remote> <url>`|添加远程版本库|
 |`git remote update`|更新远程版本库|
 |`git fetch <remote>`|从远程库获取代码|
+|`git fetch origin pull/<ID ex:504>/head:<branch>`|从远程库的pull request获取代码到本地分支，然后切换到本地分支`git checkout <branch>`|
 
 ### 配置命令 Git Configuration
 
