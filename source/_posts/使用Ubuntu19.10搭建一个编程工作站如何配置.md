@@ -122,6 +122,32 @@ ubuntu在个人工作站与服务器领域都表现的非常稳定优秀，工�
 使用tweaks工具设置主题和图标
 ![](Ubuntu19-10编程工作站配置/MDPR3K8.jpg)
 
+【可选】如果你想要一个类似 macOS 风格的应用坞，可以尝试使用 Docky。在 Ubuntu 中打开终端，并按顺序运行以下命令以安装 Docky。
+```sh
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/g/gnome-sharp2/libgconf2.0-cil_2.24.2-4_all.deb
+wget -c http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/multiarch-support_2.27-3ubuntu1_amd64.deb
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/libg/libgnome-keyring/libgnome-keyring-common_3.12.0-1build1_all.deb
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/libg/libgnome-keyring/libgnome-keyring0_3.12.0-1build1_amd64.deb
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/g/gnome-keyring-sharp/libgnome-keyring1.0-cil_1.0.0-5_amd64.deb
+
+sudo apt install *.deb
+
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/d/docky/docky_2.2.1.1-1_all.deb
+sudo apt install ./docky_2.2.1.1-1_all.deb
+```
+安装之后，你可以在应用菜单中找到它。
+
+关闭系统自带的dock，输入如下命令
+```sh
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+```
+若要恢复系统dock，把上述命令的false换位true即可。
+
+> 其他主题设置：安装 [扩展管理器](https://www.debugpoint.com/how-to-install-and-use-gnome-shell-extensions-in-ubuntu/)
+，[安装插件](https://zhuanlan.zhihu.com/p/71588449)
+
 ## 安装vscode
 安装vscode,选择下载deb
 ![](Ubuntu19-10编程工作站配置/HPNQU.png)
