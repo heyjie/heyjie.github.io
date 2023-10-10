@@ -3,11 +3,11 @@
   <title>Jeffのblog</title>
   
   <subtitle>热爱可抵岁月漫长</subtitle>
-  <link href="http://norhub.com.cn/atom.xml" rel="self"/>
+  <link href="https://blog.norhub.com.cn/atom.xml" rel="self"/>
   
-  <link href="http://norhub.com.cn/"/>
-  <updated>2023-04-07T07:20:50.048Z</updated>
-  <id>http://norhub.com.cn/</id>
+  <link href="https://blog.norhub.com.cn/"/>
+  <updated>2023-04-26T06:07:02.764Z</updated>
+  <id>https://blog.norhub.com.cn/</id>
   
   <author>
     <name>Jeff</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Go语言快速入门</title>
-    <link href="http://norhub.com.cn/2023/04/07/Go%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
-    <id>http://norhub.com.cn/2023/04/07/Go%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</id>
+    <link href="https://blog.norhub.com.cn/2023/04/07/Go%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    <id>https://blog.norhub.com.cn/2023/04/07/Go%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</id>
     <published>2023-04-07T07:18:42.000Z</published>
-    <updated>2023-04-07T07:20:50.048Z</updated>
+    <updated>2023-04-26T06:07:02.764Z</updated>
     
     
       
@@ -42,19 +42,19 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Go" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Go/"/>
+    <category term="Go" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Go/"/>
     
     
-    <category term="Go" scheme="http://norhub.com.cn/tags/Go/"/>
+    <category term="Go" scheme="https://blog.norhub.com.cn/tags/Go/"/>
     
   </entry>
   
   <entry>
     <title>普陀山Vlog</title>
-    <link href="http://norhub.com.cn/2021/07/20/%E6%99%AE%E9%99%80%E5%B1%B1Vlog/"/>
-    <id>http://norhub.com.cn/2021/07/20/%E6%99%AE%E9%99%80%E5%B1%B1Vlog/</id>
+    <link href="https://blog.norhub.com.cn/2021/07/20/%E6%99%AE%E9%99%80%E5%B1%B1Vlog/"/>
+    <id>https://blog.norhub.com.cn/2021/07/20/%E6%99%AE%E9%99%80%E5%B1%B1Vlog/</id>
     <published>2021-07-20T05:25:43.000Z</published>
     <updated>2021-07-20T05:47:11.000Z</updated>
     
@@ -72,8 +72,8 @@
   
   <entry>
     <title>正则表达式速查表</title>
-    <link href="http://norhub.com.cn/2021/07/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
-    <id>http://norhub.com.cn/2021/07/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</id>
+    <link href="https://blog.norhub.com.cn/2021/07/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
+    <id>https://blog.norhub.com.cn/2021/07/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/</id>
     <published>2021-07-12T08:19:14.000Z</published>
     <updated>2021-07-12T08:50:08.000Z</updated>
     
@@ -96,17 +96,17 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
     
-    <category term="正则" scheme="http://norhub.com.cn/tags/%E6%AD%A3%E5%88%99/"/>
+    <category term="正则" scheme="https://blog.norhub.com.cn/tags/%E6%AD%A3%E5%88%99/"/>
     
   </entry>
   
   <entry>
     <title>[转]用Python解数独</title>
-    <link href="http://norhub.com.cn/2021/06/01/%E8%BD%AC-%E7%94%A8Python%E8%A7%A3%E6%95%B0%E7%8B%AC/"/>
-    <id>http://norhub.com.cn/2021/06/01/%E8%BD%AC-%E7%94%A8Python%E8%A7%A3%E6%95%B0%E7%8B%AC/</id>
+    <link href="https://blog.norhub.com.cn/2021/06/01/%E8%BD%AC-%E7%94%A8Python%E8%A7%A3%E6%95%B0%E7%8B%AC/"/>
+    <id>https://blog.norhub.com.cn/2021/06/01/%E8%BD%AC-%E7%94%A8Python%E8%A7%A3%E6%95%B0%E7%8B%AC/</id>
     <published>2021-06-01T15:15:47.000Z</published>
     <updated>2021-06-02T07:58:26.000Z</updated>
     
@@ -120,19 +120,19 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Python" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
+    <category term="Python" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
     
     
-    <category term="python" scheme="http://norhub.com.cn/tags/python/"/>
+    <category term="python" scheme="https://blog.norhub.com.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>如何解决文件系统类型为RAW</title>
-    <link href="http://norhub.com.cn/2021/06/01/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E4%B8%BARAW/"/>
-    <id>http://norhub.com.cn/2021/06/01/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E4%B8%BARAW/</id>
+    <link href="https://blog.norhub.com.cn/2021/06/01/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E4%B8%BARAW/"/>
+    <id>https://blog.norhub.com.cn/2021/06/01/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E4%B8%BARAW/</id>
     <published>2021-06-01T02:18:41.000Z</published>
     <updated>2021-06-03T03:28:10.000Z</updated>
     
@@ -145,41 +145,41 @@
     
     
     
-    <category term="其他" scheme="http://norhub.com.cn/categories/%E5%85%B6%E4%BB%96/"/>
+    <category term="其他" scheme="https://blog.norhub.com.cn/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-    <category term="cmd" scheme="http://norhub.com.cn/tags/cmd/"/>
+    <category term="cmd" scheme="https://blog.norhub.com.cn/tags/cmd/"/>
     
   </entry>
   
   <entry>
     <title>VSCode有哪些常用的快捷键</title>
-    <link href="http://norhub.com.cn/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
-    <id>http://norhub.com.cn/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/</id>
+    <link href="https://blog.norhub.com.cn/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>https://blog.norhub.com.cn/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/</id>
     <published>2021-05-24T10:31:26.000Z</published>
     <updated>2021-06-03T03:40:00.000Z</updated>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/4d49f619f4ce40c8.png&quot; class</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2021/05/24/VSCode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE/4d49f619f4ce40c8.png&quot; alt&gt;&lt;</summary>
       
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="VSCode" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/VSCode/"/>
+    <category term="VSCode" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/VSCode/"/>
     
     
-    <category term="vscode" scheme="http://norhub.com.cn/tags/vscode/"/>
+    <category term="vscode" scheme="https://blog.norhub.com.cn/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>科学上网一键搭建工具ProxySU</title>
-    <link href="http://norhub.com.cn/2021/05/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA%E5%B7%A5%E5%85%B7ProxySU/"/>
-    <id>http://norhub.com.cn/2021/05/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA%E5%B7%A5%E5%85%B7ProxySU/</id>
+    <link href="https://blog.norhub.com.cn/2021/05/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA%E5%B7%A5%E5%85%B7ProxySU/"/>
+    <id>https://blog.norhub.com.cn/2021/05/19/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E4%B8%80%E9%94%AE%E6%90%AD%E5%BB%BA%E5%B7%A5%E5%85%B7ProxySU/</id>
     <published>2021-05-19T14:08:45.000Z</published>
     <updated>2021-06-03T02:01:42.000Z</updated>
     
@@ -192,21 +192,21 @@
     
     
     
-    <category term="软件推荐" scheme="http://norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
+    <category term="软件推荐" scheme="https://blog.norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
     
-    <category term="PC" scheme="http://norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/PC/"/>
+    <category term="PC" scheme="https://blog.norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/PC/"/>
     
     
-    <category term="代理" scheme="http://norhub.com.cn/tags/%E4%BB%A3%E7%90%86/"/>
+    <category term="代理" scheme="https://blog.norhub.com.cn/tags/%E4%BB%A3%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>Git 命令速查表</title>
-    <link href="http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
-    <id>http://norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/</id>
+    <link href="https://blog.norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
+    <id>https://blog.norhub.com.cn/2021/05/13/GIT%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8/</id>
     <published>2021-05-13T02:02:42.000Z</published>
-    <updated>2022-07-04T02:31:37.758Z</updated>
+    <updated>2023-05-26T03:01:10.127Z</updated>
     
     
       
@@ -218,19 +218,19 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="GIT" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/GIT/"/>
+    <category term="GIT" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/GIT/"/>
     
     
-    <category term="git" scheme="http://norhub.com.cn/tags/git/"/>
+    <category term="git" scheme="https://blog.norhub.com.cn/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>你应该知道的Python3各个版本的新特性</title>
-    <link href="http://norhub.com.cn/2020/11/27/%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84Python3%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/"/>
-    <id>http://norhub.com.cn/2020/11/27/%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84Python3%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <link href="https://blog.norhub.com.cn/2020/11/27/%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84Python3%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://blog.norhub.com.cn/2020/11/27/%E4%BD%A0%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84Python3%E5%90%84%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/</id>
     <published>2020-11-27T06:12:26.000Z</published>
     <updated>2021-05-21T04:01:22.000Z</updated>
     
@@ -241,19 +241,19 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Python" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
+    <category term="Python" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
     
     
-    <category term="python" scheme="http://norhub.com.cn/tags/python/"/>
+    <category term="python" scheme="https://blog.norhub.com.cn/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>HTML5和CSS3有哪些新增内容</title>
-    <link href="http://norhub.com.cn/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/"/>
-    <id>http://norhub.com.cn/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/</id>
+    <link href="https://blog.norhub.com.cn/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/"/>
+    <id>https://blog.norhub.com.cn/2020/11/19/HTML5%E5%92%8CCSS3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%A2%9E%E5%86%85%E5%AE%B9/</id>
     <published>2020-11-19T09:22:35.000Z</published>
     <updated>2021-06-03T03:39:26.000Z</updated>
     
@@ -270,21 +270,21 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="HTML" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/HTML/"/>
+    <category term="HTML" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/HTML/"/>
     
     
-    <category term="css" scheme="http://norhub.com.cn/tags/css/"/>
+    <category term="css" scheme="https://blog.norhub.com.cn/tags/css/"/>
     
-    <category term="html" scheme="http://norhub.com.cn/tags/html/"/>
+    <category term="html" scheme="https://blog.norhub.com.cn/tags/html/"/>
     
   </entry>
   
   <entry>
     <title>如何使用CSS3加DIV布局</title>
-    <link href="http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/"/>
-    <id>http://norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/</id>
+    <link href="https://blog.norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/"/>
+    <id>https://blog.norhub.com.cn/2020/10/31/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8CSS3%E5%8A%A0DIV%E5%B8%83%E5%B1%80/</id>
     <published>2020-10-31T10:31:59.000Z</published>
     <updated>2021-06-03T03:40:21.000Z</updated>
     
@@ -299,21 +299,21 @@
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="HTML" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/HTML/"/>
+    <category term="HTML" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/HTML/"/>
     
     
-    <category term="css" scheme="http://norhub.com.cn/tags/css/"/>
+    <category term="css" scheme="https://blog.norhub.com.cn/tags/css/"/>
     
-    <category term="div" scheme="http://norhub.com.cn/tags/div/"/>
+    <category term="div" scheme="https://blog.norhub.com.cn/tags/div/"/>
     
   </entry>
   
   <entry>
     <title>Linux基础命令的使用</title>
-    <link href="http://norhub.com.cn/2020/10/07/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://norhub.com.cn/2020/10/07/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://blog.norhub.com.cn/2020/10/07/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://blog.norhub.com.cn/2020/10/07/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-10-07T03:49:29.000Z</published>
     <updated>2022-02-24T05:09:09.330Z</updated>
     
@@ -337,19 +337,19 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Linux" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
+    <category term="Linux" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
     
     
-    <category term="linux" scheme="http://norhub.com.cn/tags/linux/"/>
+    <category term="linux" scheme="https://blog.norhub.com.cn/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>使用Docker安装常用数据库</title>
-    <link href="http://norhub.com.cn/2020/09/07/%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    <id>http://norhub.com.cn/2020/09/07/%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93/</id>
+    <link href="https://blog.norhub.com.cn/2020/09/07/%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://blog.norhub.com.cn/2020/09/07/%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93/</id>
     <published>2020-09-07T08:51:05.000Z</published>
     <updated>2021-04-30T02:53:19.000Z</updated>
     
@@ -360,19 +360,19 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Docker" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Docker/"/>
+    <category term="Docker" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Docker/"/>
     
     
-    <category term="docker" scheme="http://norhub.com.cn/tags/docker/"/>
+    <category term="docker" scheme="https://blog.norhub.com.cn/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title>Linux出现Read-onlyFileSystem错误的解决方法</title>
-    <link href="http://norhub.com.cn/2020/09/01/Linux%E5%87%BA%E7%8E%B0Read-onlyFileSystem%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>http://norhub.com.cn/2020/09/01/Linux%E5%87%BA%E7%8E%B0Read-onlyFileSystem%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
+    <link href="https://blog.norhub.com.cn/2020/09/01/Linux%E5%87%BA%E7%8E%B0Read-onlyFileSystem%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://blog.norhub.com.cn/2020/09/01/Linux%E5%87%BA%E7%8E%B0Read-onlyFileSystem%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
     <published>2020-09-01T06:10:57.000Z</published>
     <updated>2021-05-21T05:36:20.000Z</updated>
     
@@ -382,19 +382,19 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Linux" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
+    <category term="Linux" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
     
     
-    <category term="linux" scheme="http://norhub.com.cn/tags/linux/"/>
+    <category term="linux" scheme="https://blog.norhub.com.cn/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>使用CentOS7安装MySql</title>
-    <link href="http://norhub.com.cn/2020/08/05/%E4%BD%BF%E7%94%A8CentOS7%E5%AE%89%E8%A3%85MySql/"/>
-    <id>http://norhub.com.cn/2020/08/05/%E4%BD%BF%E7%94%A8CentOS7%E5%AE%89%E8%A3%85MySql/</id>
+    <link href="https://blog.norhub.com.cn/2020/08/05/%E4%BD%BF%E7%94%A8CentOS7%E5%AE%89%E8%A3%85MySql/"/>
+    <id>https://blog.norhub.com.cn/2020/08/05/%E4%BD%BF%E7%94%A8CentOS7%E5%AE%89%E8%A3%85MySql/</id>
     <published>2020-08-05T01:29:05.000Z</published>
     <updated>2021-06-03T03:32:04.000Z</updated>
     
@@ -407,21 +407,21 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Linux" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
+    <category term="Linux" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
     
     
-    <category term="linux" scheme="http://norhub.com.cn/tags/linux/"/>
+    <category term="linux" scheme="https://blog.norhub.com.cn/tags/linux/"/>
     
-    <category term="centos" scheme="http://norhub.com.cn/tags/centos/"/>
+    <category term="centos" scheme="https://blog.norhub.com.cn/tags/centos/"/>
     
   </entry>
   
   <entry>
     <title>如何使用Ubuntu18安装Spark</title>
-    <link href="http://norhub.com.cn/2020/07/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Spark/"/>
-    <id>http://norhub.com.cn/2020/07/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Spark/</id>
+    <link href="https://blog.norhub.com.cn/2020/07/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Spark/"/>
+    <id>https://blog.norhub.com.cn/2020/07/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Spark/</id>
     <published>2020-07-21T03:17:21.000Z</published>
     <updated>2021-06-03T01:16:10.000Z</updated>
     
@@ -431,21 +431,21 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Linux" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
+    <category term="Linux" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
     
     
-    <category term="ubuntu" scheme="http://norhub.com.cn/tags/ubuntu/"/>
+    <category term="ubuntu" scheme="https://blog.norhub.com.cn/tags/ubuntu/"/>
     
-    <category term="spark" scheme="http://norhub.com.cn/tags/spark/"/>
+    <category term="spark" scheme="https://blog.norhub.com.cn/tags/spark/"/>
     
   </entry>
   
   <entry>
     <title>Python模块psutil库的使用</title>
-    <link href="http://norhub.com.cn/2020/07/17/Python%E6%A8%A1%E5%9D%97psutil%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://norhub.com.cn/2020/07/17/Python%E6%A8%A1%E5%9D%97psutil%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://blog.norhub.com.cn/2020/07/17/Python%E6%A8%A1%E5%9D%97psutil%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://blog.norhub.com.cn/2020/07/17/Python%E6%A8%A1%E5%9D%97psutil%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-07-17T08:44:47.000Z</published>
     <updated>2021-04-30T02:53:19.000Z</updated>
     
@@ -454,21 +454,21 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Python" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
+    <category term="Python" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
     
     
-    <category term="python" scheme="http://norhub.com.cn/tags/python/"/>
+    <category term="python" scheme="https://blog.norhub.com.cn/tags/python/"/>
     
-    <category term="psutil" scheme="http://norhub.com.cn/tags/psutil/"/>
+    <category term="psutil" scheme="https://blog.norhub.com.cn/tags/psutil/"/>
     
   </entry>
   
   <entry>
     <title>精准电量[Accubattery]Pro直装破解专业版</title>
-    <link href="http://norhub.com.cn/2020/07/15/%E7%B2%BE%E5%87%86%E7%94%B5%E9%87%8F-Accubattery-Pro%E7%9B%B4%E8%A3%85%E7%A0%B4%E8%A7%A3%E4%B8%93%E4%B8%9A%E7%89%88/"/>
-    <id>http://norhub.com.cn/2020/07/15/%E7%B2%BE%E5%87%86%E7%94%B5%E9%87%8F-Accubattery-Pro%E7%9B%B4%E8%A3%85%E7%A0%B4%E8%A7%A3%E4%B8%93%E4%B8%9A%E7%89%88/</id>
+    <link href="https://blog.norhub.com.cn/2020/07/15/%E7%B2%BE%E5%87%86%E7%94%B5%E9%87%8F-Accubattery-Pro%E7%9B%B4%E8%A3%85%E7%A0%B4%E8%A7%A3%E4%B8%93%E4%B8%9A%E7%89%88/"/>
+    <id>https://blog.norhub.com.cn/2020/07/15/%E7%B2%BE%E5%87%86%E7%94%B5%E9%87%8F-Accubattery-Pro%E7%9B%B4%E8%A3%85%E7%A0%B4%E8%A7%A3%E4%B8%93%E4%B8%9A%E7%89%88/</id>
     <published>2020-07-15T09:56:59.000Z</published>
     <updated>2021-06-03T02:01:32.000Z</updated>
     
@@ -478,19 +478,19 @@ tab键: 自动补全
     
     
     
-    <category term="软件推荐" scheme="http://norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
+    <category term="软件推荐" scheme="https://blog.norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
     
-    <category term="安卓" scheme="http://norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/%E5%AE%89%E5%8D%93/"/>
+    <category term="安卓" scheme="https://blog.norhub.com.cn/categories/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/%E5%AE%89%E5%8D%93/"/>
     
     
-    <category term="破解" scheme="http://norhub.com.cn/tags/%E7%A0%B4%E8%A7%A3/"/>
+    <category term="破解" scheme="https://blog.norhub.com.cn/tags/%E7%A0%B4%E8%A7%A3/"/>
     
   </entry>
   
   <entry>
     <title>如何使用Ubuntu18安装Hive</title>
-    <link href="http://norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Hive/"/>
-    <id>http://norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Hive/</id>
+    <link href="https://blog.norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Hive/"/>
+    <id>https://blog.norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Ubuntu18%E5%AE%89%E8%A3%85Hive/</id>
     <published>2020-07-08T09:26:29.000Z</published>
     <updated>2021-06-03T03:28:47.000Z</updated>
     
@@ -499,23 +499,23 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Linux" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
+    <category term="Linux" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Linux/"/>
     
     
-    <category term="ubuntu" scheme="http://norhub.com.cn/tags/ubuntu/"/>
+    <category term="ubuntu" scheme="https://blog.norhub.com.cn/tags/ubuntu/"/>
     
-    <category term="hdfs" scheme="http://norhub.com.cn/tags/hdfs/"/>
+    <category term="hdfs" scheme="https://blog.norhub.com.cn/tags/hdfs/"/>
     
-    <category term="hive" scheme="http://norhub.com.cn/tags/hive/"/>
+    <category term="hive" scheme="https://blog.norhub.com.cn/tags/hive/"/>
     
   </entry>
   
   <entry>
     <title>如何使用Docker部署Flask应用</title>
-    <link href="http://norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Flask%E5%BA%94%E7%94%A8/"/>
-    <id>http://norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Flask%E5%BA%94%E7%94%A8/</id>
+    <link href="https://blog.norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Flask%E5%BA%94%E7%94%A8/"/>
+    <id>https://blog.norhub.com.cn/2020/07/08/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Flask%E5%BA%94%E7%94%A8/</id>
     <published>2020-07-08T01:58:09.000Z</published>
     <updated>2021-05-21T05:32:43.000Z</updated>
     
@@ -524,16 +524,16 @@ tab键: 自动补全
     
     
     
-    <category term="程序开发" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+    <category term="程序开发" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
     
-    <category term="Python" scheme="http://norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
+    <category term="Python" scheme="https://blog.norhub.com.cn/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/Python/"/>
     
     
-    <category term="docker" scheme="http://norhub.com.cn/tags/docker/"/>
+    <category term="docker" scheme="https://blog.norhub.com.cn/tags/docker/"/>
     
-    <category term="python" scheme="http://norhub.com.cn/tags/python/"/>
+    <category term="python" scheme="https://blog.norhub.com.cn/tags/python/"/>
     
-    <category term="flask" scheme="http://norhub.com.cn/tags/flask/"/>
+    <category term="flask" scheme="https://blog.norhub.com.cn/tags/flask/"/>
     
   </entry>
   
