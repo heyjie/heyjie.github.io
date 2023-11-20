@@ -1,13 +1,14 @@
 ---
-title: Go语言快速入门
-date: 2023-04-07 15:18:42
-categories: 
-    - 程序开发
-    - Go
+abbrlink: ''
+categories:
+- 程序开发
+- Go
+date: '2023-04-07T15:18:42+08:00'
 tags:
-    - Go
+- Go
+title: Go语言快速入门
+updated: 2023-11-20T16:57:36.254+8:0
 ---
-
 ## go语言的优势
 
 1. 极其简单的部署方式
@@ -39,14 +40,17 @@ tags:
 ## 安装go语言
 
 解压源码包
+
 ```bash
 sudo tar -zxvf gox.xx.x.linux-amd64.tar.gz -C /usr/local/
 ```
 
 配置环境变量
+
 ```bash
 vim ~/.bashrc
 ```
+
 ```bash
 #设置go语言路径
 export GOTOOT=/usr/local/go
@@ -55,11 +59,13 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 #启动Go Modules
 export GO11MODULE=on
 ```
+
 ```bash
 source ~/.bashrc
 ```
 
 检查开发环境
+
 ```bash
 go version
 go --help
@@ -68,6 +74,7 @@ go --help
 ## 基本语法
 
 ### 第一个go程序
+
 ```golang
 package main //程序的包名
 
@@ -87,6 +94,7 @@ func main() { //函数的左花括号必须和函数名在同一行
 ```
 
 ### 变量的声明方式
+
 ```golang
 func main() {
    //声明一个变量，默认值是0
@@ -105,6 +113,7 @@ func main() {
 ```
 
 ### 常量和枚举
+
 ```golang
 //const 来定义枚举类型
 const (
@@ -124,6 +133,7 @@ func main() {
 ```
 
 ### 函数返回值
+
 ```golang
 //返回一个值
 func fool(a string, b int) int { //a和b表示形参，最后一个int是返回值类型，没有返回值可以不写
@@ -146,6 +156,7 @@ func fool(a string, b int) (r1 int, r2 int) { //r1和r2是同一个类型还可�
 ### init函数
 
 init是初始化函数，在导入包时被调用
+
 ```golang
 package lib
 
@@ -162,6 +173,7 @@ func init() {
 ```
 
 在主函数导入lib包，就会执行lib的init函数
+
 ```golang
 package main
 
@@ -172,9 +184,10 @@ func main() {
 }
 ```
 
-### import导包
+### import 导包
 
 在导入其他包时，如果不使用该包的api则会报错，使用匿名导入则不会报错
+
 ```golang
 package main
 
@@ -193,6 +206,7 @@ func main() {
 ### 指针
 
 指针可以传递内存地址
+
 ```golang
 package main
 
@@ -216,6 +230,7 @@ func main() {
 ```
 
 二级指针可以找到一级指针的内存地址，依次类推
+
 ```golang
 package main
 
@@ -249,9 +264,10 @@ func main() {
 }
 ```
 
-### defer语句
+### defer 语句
 
 defer在函数最后执行，相当于析构函数
+
 ```golang
 package main
 
@@ -266,6 +282,7 @@ func main() {
 ```
 
 注意rerun不是原子操作，它分三步，第一步赋值，第二步执行defer，第三步才是真正的return
+
 ```golang
 package main
 
@@ -296,6 +313,7 @@ func main() {
 ### 数组
 
 动态数组比固定数组传参更方便
+
 ```golang
 package main
 
@@ -327,13 +345,12 @@ func main() {
 }
 ```
 
-
-
-### 切片slice
+### 切片 slice
 
 #### 切片声明
 
 声明切片时可以声明容量cap和长度len
+
 ```golang
 package main
 
@@ -359,6 +376,7 @@ func main() {
 #### 切片容量的追加
 
 当切片的容量超过时，会重新申请内存然后拷贝
+
 ```golang
 package main
 
@@ -380,6 +398,7 @@ func main() {
 #### 切片截取
 
 截取元素和python一致，但是截取后的元素属于浅拷贝，修改会影响原始切片
+
 ```golang
 package main
 
@@ -395,6 +414,7 @@ func main() {
 ```
 
 深拷贝修改不会影响原始切片
+
 ```golang
 package main
 
@@ -406,8 +426,9 @@ func main() {
 }
 ```
 
-### 字典map
-#### map的声明方式
+### 字典 map
+
+#### map 的声明方式
 
 ```golang
 package main
@@ -429,7 +450,7 @@ func main() {
 }
 ```
 
-#### map的使用方式
+#### map 的使用方式
 
 ```golang
 package main
@@ -464,7 +485,7 @@ func main() {
 }
 ```
 
-### 结构体struct
+### 结构体 struct
 
 ```golang
 package main
@@ -498,9 +519,11 @@ func main() {
 ```
 
 ### 面向对象
+
 #### 面向对象的表示和封装
 
 这段代码使用SetName修改属性并不能成功，因为this关键字相当于hero的值拷贝
+
 ```golang
 package main
 
@@ -536,6 +559,7 @@ func main() {
 ```
 
 要修改属性，那么指针用起来
+
 ```golang
 package main
 
@@ -616,6 +640,7 @@ func main() {
 #### 面向对象多态
 
 go语言通过接口interface实现多态
+
 ```golang
 package main
 
@@ -669,9 +694,10 @@ func main() {
 }
 ```
 
-#### 万能类型interface
+#### 万能类型 interface
 
 接口是一种通用的万能类型
+
 ```golang
 package main
 
@@ -708,6 +734,7 @@ func main() {
 ### 反射
 
 go语言的变量类型分为静态类型和具体类型，反射就是通过变量得到当前变量的具体类型
+
 ```golang
 package main
 
@@ -727,6 +754,7 @@ func main() {
 ```
 
 无论怎么传值变量的类型都不会变
+
 ```golang
 package main
 
@@ -756,6 +784,7 @@ func main() {
 ```
 
 不同的接口type是一致的
+
 ```golang
 package main
 
@@ -796,9 +825,10 @@ func main() {
 }
 ```
 
-#### reflect包
+#### reflect 包
 
 通过reflect包的接口可以获取类型
+
 ```golang
 package main
 
@@ -851,6 +881,7 @@ func main() {
 #### 结构体标签
 
 标签可以对结构体说明，是可以用反射获取到的信息
+
 ```golang
 package main
 
@@ -880,6 +911,7 @@ func main() {
 ```
 
 结构体标签在json中的应用
+
 ```golang
 package main
 
@@ -917,6 +949,7 @@ func main() {
 ## 并发
 
 在讲解并发概念时，总会涉及另外一个概念并行。下面让我们来了解并发和并行之间的区别。
+
 * 并发（concurrency）：把任务在不同的时间点交给处理器进行处理。在同一时间点，任务并不会同时运行。
 * 并行（parallelism）：把每一个任务分配给每一个处理器独立完成。在同一时间点，任务一定是同时运行。
 
@@ -924,15 +957,16 @@ func main() {
 
 在很多情况下，并发的效果比并行好，因为操作系统和硬件的总资源一般很少，但能支持系统同时做很多事情。这种“使用较少的资源做更多的事情”的哲学，也是指导 Go语言设计的哲学。
 
-### 协程goroutine
+### 协程 goroutine
 
 goroutine 是一种非常轻量级的实现，可在单个进程里执行成千上万的并发任务，它是Go语言并发设计的核心。
 
 说到底 goroutine 其实就是线程，但是它比线程更小，十几个 goroutine 可能体现在底层就是五六个线程，而且Go语言内部也实现了 goroutine 之间的内存共享。
 
-#### 创建goroutine
+#### 创建 goroutine
 
 在普通函数前使用关键字go来创建goroutine。
+
 ```golang
 func main() {
    go newTask()
@@ -940,6 +974,7 @@ func main() {
 ```
 
 匿名函数创建goroutine。
+
 ```golang
 func main() {
    go func() {
@@ -958,11 +993,12 @@ func main() {
 }
 ```
 
-### 通道channel
+### 通道 channel
 
 channel 是Go语言在语言级别提供的 goroutine 间的通信方式。我们可以使用 channel 在两个或多个 goroutine 之间传递消息。
 
 channel有同步效果，会在等待返回值时阻塞。
+
 ```golang
 func main() {
    //定义一个channel
@@ -979,9 +1015,10 @@ func main() {
 }
 ```
 
-#### 有缓冲的channel
+#### 有缓冲的 channel
 
 无缓冲通道保证收发过程同步，在无缓冲通道的基础上，为通道增加一个有限大小的存储空间形成带缓冲通道。带缓冲通道在发送时无需等待接收方接收即可完成发送过程，并且不会发生阻塞，只有当存储空间满时才会发生阻塞。同理，如果缓冲通道中有数据，接收时将不会发生阻塞，直到通道中没有数据可读时，通道将会再度阻塞。
+
 ```golang
 func main() {
    c := make(chan int, 3) //带有缓冲的channel,大小超过3个时会阻塞
@@ -1002,13 +1039,14 @@ func main() {
 }
 ```
 
-#### 关闭channel
+#### 关闭 channel
 
 channel 不像文件一样需要经常关闭，只有当你确实没有发送任何数据了，或者你想显式结束range循环之类的，才去关闭channel。
 
 关闭channel后，无法向channel再发数据，可以继续接收channel数据。
 
 对于nil channel（没有用make初始化）,无论收发都会被阻塞。
+
 ```golang
 func main() {
    c := make(chan int)
@@ -1032,6 +1070,7 @@ func main() {
 ```
 
 可以使用range来迭代操作channel
+
 ```golang
 /*
 for {
@@ -1052,6 +1091,7 @@ for data := range c {
 #### 多路复用
 
 单流程下go只能监控一个channel的状态，select可以完成监控多个channel的状态
+
 ```golang
 select {
    case <- chan1:
@@ -1064,6 +1104,7 @@ select {
 ```
 
 用法实例
+
 ```golang
 func fibonacii(c, quit chan int) {
    x, y := 1, 1
@@ -1096,25 +1137,28 @@ func main() {
 ## Go Modules
 
 GOPATH 模式下没有版本控制的概念，具有致命的缺陷，至少会造成以下问题：
+
 * 在执行go get的时候，你无法传达任何的版本信息的期望，也就是说你也无法知道自己当前更新的是哪一个版本，也无法通过指定来拉取自己所期望的具体版本。
 * 在运行 Go 应用程序的时候，你无法保证其它人与你所期望依赖的第三方库是相同的版本，也就是说在项目依赖库的管理上，你无法保证所有人的依赖版本都一致。
 * 你没办法处理 v1、v2、v3 等等不同版本的引用问题，因为 GOPATH 模式下的导入路径都是一样的，都是github.com/foo/bar。
 
 Go 语言官方从 Go1.11 起开始推进 Go modules（前身vgo），Go1.13 起不再推荐使用 GOPATH 的使用模式，Go modules 也渐趋稳定，因此新项目也没有必要继续使用GOPATH模式。
 
-### go mod命令
+### go mod 命令
+
 在 Go modules 中，我们能够使用如下命令进行操作：
 
-|命令| 作用|
-|---|---|
-|go mod init| 生成 go.mod 文件|
-|go mod download| 下载 go.mod 文件中指明的所有依赖|
-|go mod tidy| 整理现有的依赖|
-|go mod graph| 查看现有的依赖结构|
-|go mod edit| 编辑 go.mod 文件|
-|go mod vendor| 导出项目所有的依赖到vendor目录|
-|go mod verify| 校验一个模块是否被篡改过|
-|go mod why| 查看为什么需要依赖某模块|
+
+| 命令            | 作用                             |
+| --------------- | -------------------------------- |
+| go mod init     | 生成 go.mod 文件                 |
+| go mod download | 下载 go.mod 文件中指明的所有依赖 |
+| go mod tidy     | 整理现有的依赖                   |
+| go mod graph    | 查看现有的依赖结构               |
+| go mod edit     | 编辑 go.mod 文件                 |
+| go mod vendor   | 导出项目所有的依赖到vendor目录   |
+| go mod verify   | 校验一个模块是否被篡改过         |
+| go mod why      | 查看为什么需要依赖某模块         |
 
 ### 环境变量
 
@@ -1123,24 +1167,26 @@ Go 语言官方从 Go1.11 起开始推进 Go modules（前身vgo），Go1.13 起
 GO111MODULE:
 
 Go语言提供了 GO111MODULE 这个环境变量来作为 Go modules 的开关，其允许设置以下参数：
+
 * auto：只要项目包含了 go.mod 文件的话启用 Go modules，目前在 Go1.11 至 Go1.14 中仍然是默认值。
 * on：启用 Go modules，推荐设置，将会是未来版本中的默认值。
 * off：禁用 Go modules，不推荐设置
-
 
 GOPROXY:
 
 这个环境变量主要是用于设置 Go 模块代理（Go module proxy），其作用是用于使 Go 在后续拉取模块版本时能够脱离传统的 VCS 方式，直接通过镜像站点来快速拉取。
 
 GOPROXY 的默认值是：https://proxy.golang.org,direct，这有一个很严重的问题，就是 proxy.golang.org 在国内是无法访问的，因此这会直接卡住你的第一步，所以你必须在开启 Go modules 的时，同时设置国内的 Go 模块代理，执行如下命令：
+
 ```bash
 go env -w GOPROXY=https://goproxy.cn,direct
 ```
+
 GOPROXY 的值是一个以英文逗号 “,” 分割的 Go 模块代理列表，允许设置多个模块代理，假设你不想使用，也可以将其设置为 “off” ，这将会禁止 Go 在后续操作中使用任何 Go 模块代理。
 
 而在刚刚设置的值中，我们可以发现值列表中有 “direct” 标识，它又有什么作用呢？
-> 实际上 “direct” 是一个特殊指示符，用于指示 Go 回源到模块版本的源地址去抓取（比如 GitHub 等），场景如下：当值列表中上一个 Go 模块代理返回 404 或 410 错误时，Go 自动尝试列表中的下一个，遇见 “direct” 时回源，也就是回到源地址去抓取，而遇见 EOF 时终止并抛出类似 “invalid version: unknown revision…” 的错误。
 
+> 实际上 “direct” 是一个特殊指示符，用于指示 Go 回源到模块版本的源地址去抓取（比如 GitHub 等），场景如下：当值列表中上一个 Go 模块代理返回 404 或 410 错误时，Go 自动尝试列表中的下一个，遇见 “direct” 时回源，也就是回到源地址去抓取，而遇见 EOF 时终止并抛出类似 “invalid version: unknown revision…” 的错误。
 
 GOSUMDB:
 
@@ -1150,11 +1196,11 @@ GOSUMDB 的默认值为：sum.golang.org，在国内也是无法访问的，但�
 
 因此我们可以通过设置 GOPROXY 来解决，而先前我们所设置的模块代理 goproxy.cn 就能支持代理 sum.golang.org，所以这一个问题在设置 GOPROXY 后，你可以不需要过度关心。
 另外若对 GOSUMDB 的值有自定义需求，其支持如下格式：
+
 * 格式 1：<SUMDB_NAME>+<PUBLIC_KEY>。
 * 格式 2：<SUMDB_NAME>+<PUBLIC_KEY> <SUMDB_URL>。
 
 也可以将其设置为“off”，也就是禁止 Go 在后续操作中校验模块版本。
-
 
 GONOPROXY/GONOSUMDB/GOPRIVATE:
 
@@ -1165,6 +1211,7 @@ GONOPROXY/GONOSUMDB/GOPRIVATE:
 而一般建议直接设置 GOPRIVATE，它的值将作为 GONOPROXY 和 GONOSUMDB 的默认值，所以建议的最佳姿势是直接使用 GOPRIVATE。
 
 并且它们的值都是一个以英文逗号 “,” 分割的模块路径前缀，也就是可以设置多个，例如：
+
 ```bash
 go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
 ```
@@ -1172,26 +1219,30 @@ go env -w GOPRIVATE="git.example.com,github.com/eddycjy/mquote"
 设置后，前缀为 git.xxx.com 和 github.com/eddycjy/mquote 的模块都会被认为是私有模块。
 
 如果不想每次都重新设置，我们也可以利用通配符，例如：
+
 ```bash
 go env -w GOPRIVATE="*.example.com"
 ```
 
 这样子设置的话，所有模块路径为 example.com 的子域名（例如：git.example.com）都将不经过 Go module proxy 和 Go checksum database，需要注意的是不包括 example.com 本身。
 
-### 使用Go Modules初始化项目
+### 使用 Go Modules 初始化项目
 
 在完成 Go modules 的开启后，我们需要创建一个示例项目来进行演示，执行如下命令：
+
 ```bash
 mkdir -p $HOME/eddycjy/module-repo
 cd $HOME/edddycjy/module-repo
 ```
 
 然后进行 Go modules 的初始化，如下：
+
 ```bash
 go mod init github.com/eddycjy/module-repo
 ```
 
 在执行 go mod init命令时，我们指定了模块导入路径为 github.com/eddycjy/module-repo。接下来我们在该项目根目录下创建 main.go 文件，如下：
+
 ```golang
 package main
 import (
@@ -1205,6 +1256,7 @@ func main() {
 ```
 
 然后在项目根目录执行 go get github.com/eddycjy/mquote 命令，如下：
+
 ```bash
 go get github.com/eddycjy/mquote
 ```
@@ -1214,6 +1266,7 @@ go get github.com/eddycjy/mquote
 在初始化项目时，会生成一个 go.mod 文件，是启用了 Go modules 项目所必须的最重要的标识，同时也是 GO111MODULE 值为 auto 时的识别标识，它描述了当前项目（也就是当前模块）的元信息，每一行都以一个动词开头。
 
 在我们刚刚进行了初始化和简单拉取后，我们再次查看 go.mod 文件，基本内容如下
+
 ```bash
 module github.com/eddycjy/module-repo
 
@@ -1246,6 +1299,7 @@ indirect 标识表示该模块为间接依赖，也就是在当前应用程序�
 ### 查看 go.sum 文件
 
 在第一次拉取模块依赖后，会发现多出了一个 go.sum 文件，其详细罗列了当前项目直接或间接依赖的所有模块版本，并写明了那些模块版本的 SHA-256 哈希值以备 Go 在今后的操作中保证项目所依赖的那些模块版本不会被篡改。
+
 ```bash
 github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
 github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
@@ -1255,6 +1309,7 @@ github.com/eddycjy/mquote/module/tour v0.0.1/go.mod h1:8uL1FOiQJZ4/1hzqQ5mv4Sm7n
 ```
 
 我们可以看到一个模块路径可能有如下两种：
+
 ```bash
 github.com/eddycjy/mquote v0.0.1 h1:4QHXKo7J8a6J/k8UA6CiHhswJQs0sm2foAQQUq8GFHM=
 github.com/eddycjy/mquote v0.0.1/go.mod h1:ZtlkDs7Mriynl7wsDQ4cU23okEtVYqHwl7F1eDh4qPg=
@@ -1267,6 +1322,7 @@ h1 hash 是 Go modules 将目标模块版本的 zip 文件开包后，针对所�
 ### 查看全局缓存
 
 我们刚刚成功的将 github.com/eddycjy/mquote 模块拉取了下来，其拉取的结果缓存在 $GOPATH/pkg/mod和 $GOPATH/pkg/sumdb 目录下，而在mod目录下会以 github.com/foo/bar 的格式进行存放，如下：
+
 ```bash
 mod
 ├── cache
@@ -1279,7 +1335,6 @@ mod
 
 需要注意的是同一个模块版本的数据只缓存一份，所有其它模块共享使用。如果你希望清理所有已缓存的模块版本数据，可以执行 go clean -modcache命令。
 
-
 ## 参考资料
 
 [8小时转职golang工程师](https://www.yuque.com/aceld/mo95lb/dsk886)
@@ -1287,4 +1342,3 @@ mod
 [Go语言并发](http://c.biancheng.net/golang/concurrent/)
 
 [Go Modules详解](https://blog.csdn.net/u011069013/article/details/110114319)
-
